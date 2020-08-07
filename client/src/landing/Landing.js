@@ -35,6 +35,7 @@ export default class Landing extends Component {
             selectTemp:'',
             selectTemplate:'',
             files:[],
+            filers:[],
             fileData:[],
             temp:[img1,img2,img3,img4,img],
             templates:[img5,img6,img7,img8],
@@ -50,8 +51,6 @@ export default class Landing extends Component {
         fetch('/getData',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:ident})}).then(res=>res.json()).then(dat=>{
             if(dat.status =='success'){
                 let data=dat.dat
-                console.log(data.files)
-                console.log(data.fileData)
                 this.setState({name:data.username,email:data.email, fullName:data.name,
                     text:data.text,files:data.files,fileData:data.fileData, bankName:data.bankName,
                     bankNo:data.bankNo, selectTemp:data.temp,selectTemplate:data.template, payment:data.payment, website:data.website, company:data.company
@@ -84,11 +83,11 @@ export default class Landing extends Component {
         let tt=[...e.target.files].map((i)=>{
             add.push({name:'',price:'',des:''})
             this.down(i).then(kk=>{
-                this.setState({files:[...this.state.files,kk]})
+                this.setState({filers:[...this.state.filers,kk]})
                 return tt
             })
         })
-        this.setState({fileData:[...this.state.fileData,...add]})
+        this.setState({files:[...this.state.files,...this.state.filers],fileData:[...this.state.fileData,...add]})
         
     }
     web=()=>{
@@ -181,7 +180,7 @@ export default class Landing extends Component {
     }
     publish=()=>{
         //send to database
-        let bod={'company':this.state.company,'files':this.state.files,temp:this.state.selectTemp,template:this.state.selectTemplate,'id':ident, 'fileData':this.state.fileData}
+        let bod={'company':this.state.company,'files':this.state.filers,temp:this.state.selectTemp,template:this.state.selectTemplate,'id':ident, 'fileData':this.state.fileData}
         fetch('/publish',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(bod) }).then(res=>res.json()).then(data=>{
             if(data.status=='success'){
                 this.setState({showCase:<Creative id='dent' info={{name:this.state.name,files:this.state.files,fileData:this.state.fileData,
@@ -232,7 +231,6 @@ export default class Landing extends Component {
         })
     }
     render() {
-        console.log(window.location.hostname)
         var componentProps = {
             email:this.state.email,
             amount:500000,

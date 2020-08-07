@@ -37,13 +37,13 @@ export default class Creative extends Component {
         }
     }
     componentDidMount(){
-        ident=this.getUrlParameter('id')
         if(this.props.info){
             let info=this.props.info
             this.setState({name:info.name,files:info.files,fileData:info.fileData,selectTemp:this.state.temp[info.temp],selectTemplate:this.state.templates[info.template],index:3})
 
         }
         else{
+            ident=this.getUrlParameter('id')
             fetch('/getData',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:ident})}).then(res=>res.json()).then(dat=>{
                 if(dat.status =='success'){
                     let data=dat.dat
