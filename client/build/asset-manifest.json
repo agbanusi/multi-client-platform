@@ -1,0 +1,38 @@
+{
+  "files": {
+    "main.css": "/static/css/main.a3195de0.chunk.css",
+    "main.js": "/static/js/main.cb0cf61e.chunk.js",
+    "main.js.map": "/static/js/main.cb0cf61e.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.09b85ec0.js",
+    "runtime-main.js.map": "/static/js/runtime-main.09b85ec0.js.map",
+    "static/js/2.9d4b8a8d.chunk.js": "/static/js/2.9d4b8a8d.chunk.js",
+    "static/js/2.9d4b8a8d.chunk.js.map": "/static/js/2.9d4b8a8d.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.bc1cce4da65e0f815d8cf6b692cf65b8.js": "/precache-manifest.bc1cce4da65e0f815d8cf6b692cf65b8.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.a3195de0.chunk.css.map": "/static/css/main.a3195de0.chunk.css.map",
+    "static/js/2.9d4b8a8d.chunk.js.LICENSE.txt": "/static/js/2.9d4b8a8d.chunk.js.LICENSE.txt",
+    "static/media/2860933.jpg": "/static/media/2860933.33a2d2e6.jpg",
+    "static/media/Signup.css": "/static/media/Confetti-Doodles.1257a615.svg",
+    "static/media/Diamond-Sunset.svg": "/static/media/Diamond-Sunset.f66c1ef5.svg",
+    "static/media/Liquid-Cheese.svg": "/static/media/Liquid-Cheese.4f96b4e8.svg",
+    "static/media/Rainbow-Vortex.svg": "/static/media/Rainbow-Vortex.4469b7be.svg",
+    "static/media/Repeating-Triangles.svg": "/static/media/Repeating-Triangles.3eb74d6f.svg",
+    "static/media/semi-opened-laptop-computer-turned-on-on-table-2047905.jpg": "/static/media/semi-opened-laptop-computer-turned-on-on-table-2047905.5afc248f.jpg",
+    "static/media/transport-3366391_640.jpg": "/static/media/transport-3366391_640.5d62a91c.jpg",
+    "static/media/undraw_Online_page_re_lhgx.svg": "/static/media/undraw_Online_page_re_lhgx.7a14df2a.svg",
+    "static/media/undraw_business_shop_qw5t.png": "/static/media/undraw_business_shop_qw5t.b0c11510.png",
+    "static/media/Landing.css": "/static/media/undraw_gone_shopping_vwmc.aefce448.svg",
+    "static/media/undraw_group_selfie_ijc6.png": "/static/media/undraw_group_selfie_ijc6.d554b7d2.png",
+    "static/media/undraw_online_video_ivvq.svg": "/static/media/undraw_online_video_ivvq.532cde0d.svg",
+    "static/media/undraw_selfie_time_cws4.png": "/static/media/undraw_selfie_time_cws4.f73c5c4e.png",
+    "static/media/undraw_web_search_eetr.svg": "/static/media/undraw_web_search_eetr.d5872f4a.svg",
+    "static/media/white-headphones-3394650.jpg": "/static/media/white-headphones-3394650.bdca546f.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.09b85ec0.js",
+    "static/js/2.9d4b8a8d.chunk.js",
+    "static/css/main.a3195de0.chunk.css",
+    "static/js/main.cb0cf61e.chunk.js"
+  ]
+}
