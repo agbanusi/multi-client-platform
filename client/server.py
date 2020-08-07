@@ -15,7 +15,7 @@ dbe=os.getenv('DB')
 client=MongoClient(dbe) #mongo_url
 db=client.Cluster0['multiple']
 
-app = Flask(__name__,template_folder='/client/build', static_folder='/client/build/static')
+app = Flask(__name__,template_folder='./build', static_folder='./build/static')
 UPLOAD_FOLDER = '/client/src/assets'
 app.config['UPLOAD_FOLDER']=UPLOAD_FOLDER
 ALLOWED_EXTENSIONS= set(['png','jpg','jpeg','svg'])
