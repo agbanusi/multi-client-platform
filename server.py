@@ -15,7 +15,7 @@ dbe=os.getenv('DB')
 client=MongoClient(dbe) #mongo_url
 db=client.Cluster0['multiple']
 
-app = Flask(__name__,template_folder='/client/build', static_folder='/client/build/static')
+app = Flask(__name__,static_folder='client/build',static_url_path='/')
 UPLOAD_FOLDER = '/client/src/assets'
 app.config['UPLOAD_FOLDER']=UPLOAD_FOLDER
 ALLOWED_EXTENSIONS= set(['png','jpg','jpeg','svg'])
@@ -81,7 +81,7 @@ def check_pay(id):
 
 @app.route('/',methods=['GET'])
 def home():        
-    return render_template('index.html')
+    return app.send_static_file('index.html')
 
 @app.route('/newUser',methods=['POST'])
 def user():

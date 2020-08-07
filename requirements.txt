@@ -1,0 +1,6 @@
+passlib
+flask
+pymongo
+python-dotenv
+requests
+gunicorn
