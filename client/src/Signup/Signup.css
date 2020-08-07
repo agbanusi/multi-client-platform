@@ -1,0 +1,90 @@
+#signed{
+    width:100vw;
+    height:100vh;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+}
+.left{
+    background-image:url('./Confetti-Doodles.svg');
+    font-family: sans-serif;
+}
+.left h1{
+    font-family: 'Lobster', cursive;
+}
+.img1{
+    background-image: url('./Confetti-Doodles.svg') ;
+    height:50%;
+    width: 90%;
+    border-radius:0.25rem;
+    margin-top: 35%;
+    margin-left:5%;
+}
+.right{
+    display:grid;
+    justify-items: center;
+    background-color: white;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+.log{
+    margin-left:60%;
+}
+.form{
+    width:65%;
+}
+.namer{
+    margin-left: 10%;
+    margin-top: 2rem;
+    margin-bottom:0.75rem;
+}
+hr{
+    width:100%;
+}
+button:focus,input:focus{
+    outline:none;
+}
+.names{
+    width:100%;
+    display:flex;
+    justify-content: space-between;
+}
+.names div{
+    width:45%;
+    display:grid;
+}
+.names div h2, .mail h2{
+    margin-bottom: 0.5rem;
+}
+.names input{
+    border-radius: 0.45rem;
+    padding-left:0.45rem;
+    padding-right:0.45rem;
+}
+.mail{
+    width:100%;
+}
+.mail input{
+    width:100%;
+    border-radius:0.45rem;
+    padding-left:0.45rem;
+    padding-right:0.45rem;
+}
+.id{
+    margin-top:1rem;
+}
+.but{
+    height:3rem;
+    border-radius: 0.5rem;
+    margin-top:1rem;
+    width: 50%;
+    color: rgb(133, 15, 117);
+}
+.but:hover{
+    background-color: purple;
+    color:white;
+}
+#copywrite{
+    margin-top: 3rem;
+}
+a{
+    text-decoration: none;
+}

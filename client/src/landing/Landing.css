@@ -1,0 +1,140 @@
+.landing{
+    width:100vw;
+    display:grid;
+    background-image: url('./undraw_gone_shopping_vwmc.svg');
+    background-size: 100% 100%;
+}
+.topper{
+    height:10vh;
+    border:1px solid;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.mainer{
+    height:90vh;
+    display:grid;
+    grid-template-columns: 1.5fr 1fr;
+}
+.Lefti{
+    padding-left: 2.5%;
+    padding-right:2.5%;
+}
+.Lefti h3{
+    margin-top:15%;
+}
+.Lefti .tens{
+    margin-bottom:1rem;
+    margin-left: 10%;
+    width: 60%;
+    display:flex;
+    height: 8.5%;
+    justify-content: space-between;
+}
+.Lefti .tens button,#kk{
+    height:3rem;
+    width:5rem;
+    border-radius: 0.75rem;
+    background-image: linear-gradient(to top left,orange,yellow,orange);
+}
+.tens button:focus,#kk:focus{
+    outline:none;
+}
+.Righti{
+    display:grid;
+    place-items: center;
+}
+.bank{
+    width:75%;
+}
+.banking input{
+    width:90%;
+    height:1.25rem;
+    border-radius: 0.75rem;
+    padding: 0px 0.75rem 0px 0.75rem;
+}
+.bank button:focus, .banking input:focus,
+.person button:focus,.personal input:focus,
+.personal textarea:focus, .web input:focus,.web button:focus{
+    outline:none;
+}
+.bank button, .person button, .web button{
+    margin-top:1.5rem;
+    width:30%;
+    margin-left: 35%;
+    height:3rem;
+    border-radius: 0.75rem;
+    background-color:lawngreen;
+}
+.banking h4{
+    margin-bottom: 0.25rem;
+}
+.person{
+    width:75%;
+    height:75%;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.person .personal h5{
+    margin-bottom:0.25rem;
+}
+.personal textarea{
+    border-radius: 0.75rem;
+    padding: 0px 0.75rem 0px 0.75rem;
+}
+.personal input{
+    width:90%;
+    height:1.25rem;
+    border-radius: 0.75rem;
+    padding: 0px 0.75rem 0px 0.75rem;
+}
+.web{
+    padding-left:1rem;
+}
+.web h4{
+    margin-bottom:0.25rem;
+}
+.webber input{
+    width:80%;
+    height:1.25rem;
+    border-radius: 0.75rem;
+    padding: 0px 0.75rem 0px 0.75rem;
+}
+.web img{
+    height:3rem;
+    width: 5rem;
+}
+.webbed1,.webbed2{
+    display: grid;
+    grid-template-columns: repeat(auto-fit,5.5rem);
+}
+.items{
+    margin-bottom: 0.5rem;
+    height:10rem;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    place-items: center;
+    background-color: gainsboro;
+}
+.items div{
+    display:grid;
+    grid-template-rows: 1fr 1fr 1fr;
+}
+.items input{
+    margin-bottom: 0.5rem;
+}
+.items button{
+    margin-bottom: 1rem;
+}
+.showOff{
+    border:0.75rem solid orange;
+    height:100%;
+    width:33.5vw;
+    border-radius: 0.75rem;
+    background-color: white;
+    overflow: scroll;
+}
+button:focus, input:focus{
+    outline:none;
+}

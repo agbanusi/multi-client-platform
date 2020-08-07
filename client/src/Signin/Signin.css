@@ -1,0 +1,104 @@
+.signinjs{
+    width:100vw;
+    height:100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.righty{
+    display:grid;
+}
+.righty .pass h2{
+    margin-top:35%;
+    margin-bottom:10%;
+    width:85%;
+}
+.righty .pass div{
+    width: 75%;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    animation-name:slideup;
+    animation-duration:5s;
+    animation-timing-function:ease-out;
+}
+@keyframes slideup {
+    0%{margin-top:60%}
+    100%{margin-top:0;}
+  }
+.righty .pass button{
+   border:none;
+   height:3rem;
+   width: 5.5rem;
+   border-radius: 1rem;
+   background-color: aqua;
+   
+}
+a{
+    text-decoration: none;
+    color: inherit;
+}
+.pass{
+    width:100%;
+    height:100%;
+}
+button:focus,input:focus{
+    outline: none;
+}
+.noPass{
+    height:50%;
+    width: 80%;
+    margin-top:25%;
+    display: grid;
+    justify-items: center;
+}
+#userfirst{
+    width: 80%;
+    height: 2.5rem;
+}
+.forms i{
+    width:10%;
+}
+.forms{
+    width: 80%;
+    display:flex;
+    align-items: center;
+    height: 2.5rem;
+    border:1px solid;
+    border-radius: 1.25rem;
+}
+.forms i{
+    margin-left:1rem;
+}
+.forms input{
+    height:1.5rem;
+    border:0px;
+    width:80%;
+    background-color:transparent;
+}
+.forms button{
+    border: none;
+    background-color: inherit;
+    margin-right:0.5rem;
+}
+.yes1{
+    margin-top: 40%;
+}
+.loggy{
+    height:3.5rem;
+    width: 6.5rem;
+    background-color: khaki;
+    border-radius: 1rem;
+}
+.forgot{
+    margin-top: 0rem;
+}
+.lefty h1{
+    margin-left:15%;
+    font-family: 'Lobster', cursive;
+}
+#cojoined{
+    height:50%;
+    width: 70%;
+    margin-left:10%;
+    margin-top: 25%;
+}
