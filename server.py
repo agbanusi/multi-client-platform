@@ -15,7 +15,7 @@ dbe=os.getenv('DB')
 client=MongoClient(dbe) #mongo_url
 db=client.Cluster0['multiple']
 
-app = Flask(__name__,template_folder='./client/build', static_folder='./client/build/static')
+app = Flask(__name__,template_folder='client/build', static_folder='client/build/static')
 UPLOAD_FOLDER = '/client/src/assets'
 app.config['UPLOAD_FOLDER']=UPLOAD_FOLDER
 ALLOWED_EXTENSIONS= set(['png','jpg','jpeg','svg'])
@@ -228,4 +228,4 @@ def apper(ide='none'):
             return ({'ERROR':"NOT AVAILABLE"})
 
 if __name__=='__main__':
-    app.run(host='0.0.0.0', debug=False, port=os.environ.get('PORT', 80))
+    app.run( debug=False, port=os.environ.get('PORT', 80))
