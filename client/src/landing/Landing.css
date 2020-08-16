@@ -1,12 +1,12 @@
 .landing{
     width:100vw;
     display:grid;
-    background-image: url('./undraw_gone_shopping_vwmc.svg');
-    background-size: 100% 100%;
+    background-image:url('./undraw_gone_shopping_vwmc.svg');
+    background-size: 70% 100%;
 }
 .topper{
     height:10vh;
-    border:1px solid;
+    box-shadow: 2.5px 2.5px 2.5px 2.5px grey;
     display: flex;
     justify-content: space-around;
     align-items: center;

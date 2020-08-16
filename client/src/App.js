@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import './App.css';
-import {BrowserRouter,Route, Switch, Redirect} from 'react-router-dom'
+import {BrowserRouter as Brow,Route, Switch, HashRouter as Hash} from 'react-router-dom'
 import Signup from './Signup/Signup'
 import Signin from './Signin/Signin'
 import Landing from './landing/Landing'
@@ -10,7 +10,7 @@ import Creative from './landing/Creative'
 function App() {
   return (
     <div className="App">
-    <BrowserRouter>
+    <Brow>
       <Switch>
         <Route exact path='/' component={Signin} /> 
         <Route path='/signup' component={Signup} />
@@ -19,7 +19,7 @@ function App() {
         <Route path='/api/:id' component={Custom} />
         <Route path='/user' component={Creative} />
       </Switch>
-    </BrowserRouter>
+    </Brow>
     </div>
   );
 }

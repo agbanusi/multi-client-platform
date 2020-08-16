@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Redirect} from 'react-router-dom'
+import {Redirect,Link} from 'react-router-dom'
 import './Signup.css'
 import img from './2860933.jpg'
 export default class Signup extends Component {
@@ -87,7 +87,7 @@ export default class Signup extends Component {
                     <img className='img1' src={img} />
                     </div>
                 <div className='right'>
-                    <p className='log'>Already a member? <a href='/sign'>Sign In.</a></p>
+                    <p className='log'>Already a member? <Link to='/?sign=signed'>Sign In.</Link></p>
                     <div className='form'>
                     <h2 className='namer'>Sign up to Magento.</h2>
                     <hr/>

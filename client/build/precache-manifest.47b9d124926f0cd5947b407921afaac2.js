@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "afef2e8b46093aa504f372528d8c3fd1",
+    "revision": "ab21db96ac3fcc6b4638887d526e5fdd",
     "url": "/index.html"
   },
   {
-    "revision": "23b881fc547e89fc08e4",
-    "url": "/static/css/main.a3195de0.chunk.css"
+    "revision": "80a7d5dde14d5a61e902",
+    "url": "/static/css/main.0e9b9a44.chunk.css"
   },
   {
-    "revision": "f045ad91115325525f57",
-    "url": "/static/js/2.c0284c57.chunk.js"
+    "revision": "2d9b2290e119b774518e",
+    "url": "/static/js/2.06f5fb1a.chunk.js"
   },
   {
     "revision": "216e537bacc64f9dbaabd26649a9ab95",
-    "url": "/static/js/2.c0284c57.chunk.js.LICENSE.txt"
+    "url": "/static/js/2.06f5fb1a.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "23b881fc547e89fc08e4",
-    "url": "/static/js/main.07ca6ee4.chunk.js"
+    "revision": "80a7d5dde14d5a61e902",
+    "url": "/static/js/main.91e74154.chunk.js"
   },
   {
     "revision": "9b4e396c183e42c1fa5c",
@@ -48,14 +48,6 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/media/Repeating-Triangles.3eb74d6f.svg"
   },
   {
-    "revision": "5afc248fc18706ccef776ce1fb117750",
-    "url": "/static/media/semi-opened-laptop-computer-turned-on-on-table-2047905.5afc248f.jpg"
-  },
-  {
-    "revision": "5d62a91ce1f7103ebc6bcc8f1185c418",
-    "url": "/static/media/transport-3366391_640.5d62a91c.jpg"
-  },
-  {
     "revision": "7a14df2a71698f115fb91228441e9e5d",
     "url": "/static/media/undraw_Online_page_re_lhgx.7a14df2a.svg"
   },
@@ -64,8 +56,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/media/undraw_business_shop_qw5t.b0c11510.png"
   },
   {
-    "revision": "aefce4489355e8e0515c6e5248a511ec",
-    "url": "/static/media/undraw_gone_shopping_vwmc.aefce448.svg"
+    "revision": "eb04862c5ba5899ead4d00fabee964f7",
+    "url": "/static/media/undraw_gone_shopping_vwmc.eb04862c.svg"
   },
   {
     "revision": "d554b7d25ed280723289d2447e7e9fba",
@@ -82,9 +74,5 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "d5872f4a3f4f6e3d606e536a87338dd7",
     "url": "/static/media/undraw_web_search_eetr.d5872f4a.svg"
-  },
-  {
-    "revision": "bdca546f258d91bc24315a7856636349",
-    "url": "/static/media/white-headphones-3394650.bdca546f.jpg"
   }
 ]);

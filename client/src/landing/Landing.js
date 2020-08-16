@@ -14,15 +14,14 @@ import img5 from './Repeating-Triangles.svg'
 import img6 from './Diamond-Sunset.svg'
 import img7 from './Liquid-Cheese.svg'
 import img8 from './Rainbow-Vortex.svg'
-import img9 from './white-headphones-3394650.jpg'
-import img10 from './transport-3366391_640.jpg'
-import img11 from './semi-opened-laptop-computer-turned-on-on-table-2047905.jpg'
+
 var ident
 export default class Landing extends Component {
     constructor(props){
         super(props);
         this.state={
             payment:'0.00',
+            paid:false,
             name:'',
             index:0,
             bankName:'',
@@ -48,12 +47,13 @@ export default class Landing extends Component {
     }
     componentDidMount(){
         ident=this.getUrlParameter('id')
+        console.log(window.location.hostname)
         fetch('/getData',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:ident})}).then(res=>res.json()).then(dat=>{
             if(dat.status =='success'){
                 let data=dat.dat
                 this.setState({name:data.username,email:data.email, fullName:data.name,
                     text:data.text,files:data.files,fileData:data.fileData, bankName:data.bankName,
-                    bankNo:data.bankNo, selectTemp:data.temp,selectTemplate:data.template, payment:data.payment, website:data.website, company:data.company
+                    bankNo:data.bankNo, selectTemp:data.temp,selectTemplate:data.template, payment:data.payment+'.00', website:data.website, company:data.company,paid:data.paid
                 })
             
             }
@@ -110,13 +110,16 @@ export default class Landing extends Component {
         //setup the payment and redirect
         let acctNo=this.state.bankNo
         let acctName=this.state.bankName
-        fetch('/withdraw',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:ident,acctName,acctNo})}).then(res=>res.json()).then(data=>{
+        fetch('/withdraw',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:ident,acctName,acctNo,payment:'0'})}).then(res=>res.json()).then(data=>{
             if(data.status=='success'){
-                this.setState({payment:data.payment})
+                this.setState({payment:data.payment+'.00'})
                 alert('Money sent to your account')
             }
+            else if(data.status=='Faileddis'){
+                alert('Add a bank account registered in your name')
+            }
             else{
-                alert('Please try again')
+                alert('Please try again later')
             }
         })
     }
@@ -223,7 +226,7 @@ export default class Landing extends Component {
         //send to server and setState
         fetch('/paid',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:ident,website:window.location.hostname+'/api/'+ident})}).then(res=>res.json()).then(data=>{
             if(data.status=='success'){
-                this.setState({website:window.location.hostname+'/api/'+ident})
+                this.setState({website:window.location.hostname+'/api/'+ident,paid:true})
             }
             else{
                 document.getElementById('downer').innerHTML='<p>One or more  files is not a picture</p>'
@@ -238,7 +241,7 @@ export default class Landing extends Component {
               name:this.state.fullName,
               phone: '08012345678',
             },
-            text: "Pay 5000 to host",
+            text: "Pay 5000NGN",
             publicKey:'pk_live_9d3b45fa5d4ea9a2ba0a4ee95906fbda1d50fe37',
             onSuccess: () =>{
                 this.done();
@@ -249,7 +252,7 @@ export default class Landing extends Component {
           }
           
         var show={
-            0:<h2 style={{opacity:0.5}}><i>Preview Not Available</i></h2>,
+            0:<h2 style={{opacity:0.5}}><i>No Preview Available</i></h2>,
             1:(<div className='web'>
             <div className='webber'><h4>Company Name(Name of your site)</h4><input id='company' onChange={this.change3} value={this.state.company} /></div>
             <div className='webber'><h4 id='downer'>Upload your product pictures</h4><input type='file' name='files[]' multiple='true' onChange={this.files} /></div>
@@ -275,9 +278,9 @@ export default class Landing extends Component {
              <button onClick={this.publish}>Save</button>
             </div>), 
             2:<div className='bank'>
-            <h3>We will only pay if this account matches the name used to register.</h3>
-            <div className='banking'><h4>Bank Name</h4><input id='bankName' value={this.state.bankName} onChange={this.change} required/></div>
-            <div className='banking'><h4>Account Number</h4><input id='acctNo' value={this.state.bankNo} onChange={this.change} /></div>
+            <h3>Please we will only pay if this account matches the name used to register.</h3>
+            <div className='banking'><h4>Bank Name</h4><input id='bankName' value={this.state.bankName} placeholder='Enter bank name in full, no abbreviations please.' onChange={this.change} required/></div>
+            <div className='banking'><h4>Account Number</h4><input id='acctNo' value={this.state.bankNo} placeholder='Enter account number here' onChange={this.change} required/></div>
             <button onClick={this.bankDone}>Submit</button>
             </div>,
             3:<div className='person'>
@@ -305,20 +308,20 @@ export default class Landing extends Component {
         return (
             <div className='landing'>
                 <div className='topper'>
-                    <h3>WELCOME {this.state.name}</h3>
-                    <h3>Account Balance: {this.state.payment}</h3>
+                    <h3>Welcome {this.state.name}</h3>
+                    <h3>Account Balance: NGN {this.state.payment}</h3>
                 </div>
                 <div className='mainer'>
                     <div className='Lefti'>
                         <h4 style={{display:'none'}} id='live'>Your Website is at <a href={this.state.website}>{this.state.website}</a></h4>
-                        <h3>Magento is all about expressing yourself to your customers and showing you're more than they think you are.
-                        Show your products to them in the most expressive and way and do it just as fast too. Magento handles the payment and it is credited to you with payment information and customer information, so you
+                        <h3>Magento is all about expressing yourself to your customers in the easiest and fastest of ways without removing quality of design.
+                         Setup your web shop easily and Magento handles the payments and monetization and it is credited to your account with payment information of customers paid and for what, so you
                         can deliver your products any way you want to. Magento takes away the stress of building a website and trying to handle the payment, organisation of customer database for free!. You only pay for hosting and handle the delivery.</h3>
                         <div className='tens'><h5>Setup/Edit your Webpage</h5><button onClick={this.web}>SetUp!</button></div>
                         <div className='tens'><h5>It is advisable to set up your banking information</h5><button onClick={this.bank}>Banking Info</button></div>
                         <div className='tens'><h5>Edit your personal Information</h5><button onClick={this.edit}>Edit</button></div>
-                        <div className='tens'><h5>Preview Site</h5><button onClick={this.preview}>Preview</button></div>
-                        <div className='tens'><h5>Host Site</h5><PaystackButton id='kk' {...componentProps} /></div>
+                        <div className='tens'><h5>Preview Your Site</h5><button onClick={this.preview}>Preview</button></div>
+                        {this.state.paid?<></>:<div className='tens'><h5>Pay to get your website deployed immediately</h5><PaystackButton id='kk' {...componentProps} /></div>}
                         <div className='tens'><h5>Withdraw Payments</h5><button onClick={this.withdraw}>Withdraw</button></div>
                         
                     </div>

@@ -27,38 +27,46 @@ def allowed(filename):
 
 
 def bank_code():
-    headers={
-        'Authorization': secret
-    }
-    r=req.get('api.paystack.co/bank',headers=headers)
-    return r.json().data
+    r=req.get('https://api.paystack.co/bank')
+    return r.json()['data']
 
 def verify(acct,bank):
     banks=bank_code()
     sort=0
     for i in banks:
-        if i.name==bank or i.slug==bank:
-            sort=i.code
-    headers={'Authorization':secret}
-    r=req.get('api.paystack.co//bank/resolve?account_number='+acct+'&bank_code='+sort, headers=headers)
+        if all(x in bank.lower() for x in i['name'].lower().split(' ')) or all(x in i['name'].lower() for x in bank.lower().split(' ')):
+            sort=str(i['code'])
+            break
+    headers={'Authorization':'Bearer '+secret}
+    r=req.get('https://api.paystack.co/bank/resolve?account_number='+acct+'&bank_code='+sort, headers=headers)
     return {**r.json(),'sort_code':sort}
 
-def trans(acct,bank):
-    very=verify(acct,bank).message
-    data={'type':'nuban','name':very.data.account_name,'account_number':very.account_number,
-    'bank_code':very.sort_code,"currency": "NGN"}
-    if very.message=='Account number resolved':
-        headers={'Authorization': secret,'Content-Type': 'application/json'}
-        r=req.post('api.paystack.co/transferrecipient', data=data, headers=headers)
+def trans(acct,bank,name):
+    very=verify(acct,bank)
+    if not (all(x in name.lower() for x in very['data']['account_name'].lower().split(' ')) or all(x in very['data']['account_name'].lower() for x in name.lower().split(' '))):
+        print('1')
+        return False
+    data={'type':'nuban','name':very['data']['account_name'],'account_number':very['data']['account_number'],
+    'bank_code':very['sort_code'],"currency": "NGN"}
+    data=json.dumps(data)
+    if very['message']=='Account number resolved':
+        headers={'Authorization':'Bearer '+secret,'Content-Type': 'application/json'}
+        r=req.post('https://api.paystack.co/transferrecipient', data=data, headers=headers)
         return r.json()
 
-def initiate(acct,bank,payment):
-    then=trans(acct,bank)
-    data={'source':'balance','amount':payment,'recipient':then.data.recipient_code,'reason':'payout'}
-    headers={'Authorization': secret,'Content-Type': 'application/json'}
-    r=req.post('api.paystack.co/transfer',headers=headers,data=data)
-    if r.json().status :
-        id=r.json().data.reference
+def initiate(acct,bank,payment,name):
+    #if payment == '0' or payment=='000':
+        #return 'failed'
+    then=trans(acct,bank,name)
+    if not then:
+        print('2')
+        return 'faileddis'
+    data={'source':'balance','amount':payment,'recipient':then['data']['recipient_code'],'reason':'payout'}
+    headers={'Authorization':'Bearer '+secret,'Content-Type': 'application/json'}
+    data=json.dumps(data)
+    r=req.post('https://api.paystack.co/transfer',headers=headers,data=data)
+    if r.json()['status'] :
+        id=r.json()['data']['reference']
         if check_pay(id)=='success':
             return 'success'
         else:
@@ -66,21 +74,24 @@ def initiate(acct,bank,payment):
             if check_pay(id)=='success':
                 return 'success'
             else:
-                time.sleep(30)
+                time.sleep(60)
                 if check_pay(id)=='success':
                     return 'success'
                 else:
                     return 'failed'
+    else:
+        return 'failed'
 
 def check_pay(id):
     headers={
-        'Authorization': secret
+        'Authorization':'Bearer '+secret
     }
-    r=req.get('api.paystack.co/transfer/verify/'+id,headers=headers)
-    return r.json().data.status
+    r=req.get('https://api.paystack.co/transfer/verify/'+id,headers=headers)
+    return r.json()['data']['status']
 
-@app.route('/',methods=['GET'])
-def home():        
+@app.route('/', defaults={'path': ''})
+@app.route('/<path:path>')
+def home(path):        
     return render_template('index.html')
 
 @app.route('/newUser',methods=['POST'])
@@ -89,7 +100,7 @@ def user():
     if request.method=='POST':
         data=request.json
         password=sha.encrypt(data['password'])
-        result=db.insert_one({'name':data['name'],'email':data['email'],'username':data['username'],'password':password,'check':data['check'],'text':'','files':[],'fileData':[],'bankName':'','bankNo':'','temp':'','template':'','payment':'','website':'','company':'','customers':[],'paid':False})
+        result=db.insert_one({'name':data['name'],'email':data['email'],'username':data['username'],'password':password,'check':data['check'],'text':'','files':[],'fileData':[],'bankName':'','bankNo':'','temp':'','template':'','payment':'0','website':'','company':'','customers':[],'paid':False})
         id=str(result.inserted_id)
         response={'status':'success','id':str(id)}
         return response
@@ -104,15 +115,21 @@ def log():
             if result == None:
                 response={'status':'Failed'}
             else:
+                try:
+                    if sha.verify(data['password'],result['password']):
+                        response={'status':'success','id':str(result['_id'])}
+                    else:
+                        response={'status':'Failed'} 
+                except:
+                    response={'status':'Error'}
+        else:
+            try:
                 if sha.verify(data['password'],result['password']):
                     response={'status':'success','id':str(result['_id'])}
                 else:
-                   response={'status':'Failed'} 
-        else:
-            if sha.verify(data['password'],result['password']):
-                response={'status':'success','id':str(result['_id'])}
-            else:
-                response={'status':'Failed'}
+                    response={'status':'Failed'}
+            except:
+                response={'status':'Error'}
 
         return response
 
@@ -137,9 +154,14 @@ def withdraw():
          if result == None:
              response={'status':'Failed'}
          else:
-             then=initiate(result['bankNo'],result['bankName'],result['payment'])
+             then=initiate(str(result['bankNo']),str(result['bankName']),str(int(data['payment'])*100),result['name'])
              if then =='success':
-                response={'status':'success','payment':'0.00'}
+                 rem=int(result['payment'])-int(data['payment'])
+                 db.find_one_and_update({'_id':ObjectId(data['id'])},{'$set':{'payment':rem}})
+                 response={'status':'success','payment':rem}
+             elif then =='faileddis':
+                 print('3')
+                 response={'status':'Faileddis'}
              else:
                  response={'status':'Failed'}
          return response
