@@ -3,7 +3,7 @@ import {Redirect} from 'react-router-dom'
 import './Landing.css'
 import { PaystackButton } from 'react-paystack'
 import Creative from './Creative'
-import fileUpload from 'fuctbase64'
+import Loader from 'react-loader-spinner';
 //import all images and templates here for test
 import img from './undraw_online_video_ivvq.svg'
 import img1 from './undraw_web_search_eetr.svg'
@@ -34,13 +34,13 @@ export default class Landing extends Component {
             selectTemp:'',
             selectTemplate:'',
             files:[],
-            filers:[],
             fileData:[],
             temp:[img1,img2,img3,img4,img],
             templates:[img5,img6,img7,img8],
             company:'',
             website:'',
             showCase:'',
+            loading:true,
             redirect:false
         }
             
@@ -53,9 +53,9 @@ export default class Landing extends Component {
                 let data=dat.dat
                 this.setState({name:data.username,email:data.email, fullName:data.name,
                     text:data.text,files:data.files,fileData:data.fileData, bankName:data.bankName,
-                    bankNo:data.bankNo, selectTemp:data.temp,selectTemplate:data.template, payment:data.payment+'.00', website:data.website, company:data.company,paid:data.paid
+                    bankNo:data.bankNo, selectTemp:data.temp,selectTemplate:data.template, payment:data.payment+'.00', website:data.website, company:data.company,paid:data.paid,loading:false
                 })
-            
+                document.getElementById('landing').style.opacity=1.0
             }
             else{
                 this.setState({redirect:'2'})
@@ -79,16 +79,12 @@ export default class Landing extends Component {
 
     files=(e)=>{
         //store them in the server
-        let add=[]
         let tt=[...e.target.files].map((i)=>{
-            add.push({name:'',price:'',des:''})
             this.down(i).then(kk=>{
-                this.setState({filers:[...this.state.filers,kk]})
+                this.setState({files:[...this.state.files,kk],fileData:[...this.state.fileData,{name:'',price:'',des:''}]})
                 return tt
             })
         })
-        this.setState({files:[...this.state.files,...this.state.filers],fileData:[...this.state.fileData,...add]})
-        
     }
     web=()=>{
         //setup page
@@ -182,16 +178,25 @@ export default class Landing extends Component {
         
     }
     publish=()=>{
+        this.setState({loading:true})
+        document.getElementById('landing').style.opacity=0.45
         //send to database
-        let bod={'company':this.state.company,'files':this.state.filers,temp:this.state.selectTemp,template:this.state.selectTemplate,'id':ident, 'fileData':this.state.fileData}
+        let bod={'company':this.state.company,'files':this.state.files,temp:this.state.selectTemp,template:this.state.selectTemplate,'id':ident, 'fileData':this.state.fileData}
         fetch('/publish',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(bod) }).then(res=>res.json()).then(data=>{
             if(data.status=='success'){
                 this.setState({showCase:<Creative id='dent' info={{name:this.state.name,files:this.state.files,fileData:this.state.fileData,
-                    temp:this.state.selectTemp,template:this.state.selectTemplate}} />, index:4})
+                    temp:this.state.selectTemp,template:this.state.selectTemplate}} />, index:4,loading:false})
+                
             }
             else{
                 this.publish()
             }
+            document.getElementById('landing').style.opacity=1.0
+            setTimeout(()=>{
+                document.getElementsByClassName('total')[0].style.transform='scale(0.325)'
+                document.getElementsByClassName('total')[0].style.marginLeft='-57.5%'
+                document.getElementsByClassName('total')[0].style.marginTop='-30%'
+            },1000)
         })
         
     }
@@ -202,7 +207,9 @@ export default class Landing extends Component {
             fileData[ind].name=e.target.value
         }
         else if(e.target.id.slice(1,)=='pr'){
-            fileData[ind].price=e.target.value
+            if(Number(e.target.value)){
+                fileData[ind].price=e.target.value
+            }
         }
         else if(e.target.id.slice(1,)=='des'){
             fileData[ind].des=e.target.value
@@ -272,10 +279,12 @@ export default class Landing extends Component {
              <img src={i} />
              <div><input id={k+'p'} onChange={this.nameChange} placeholder='Enter Name of Product' value={this.state.fileData[k].name} required/>
              <input id={k+ 'pr'} onChange={this.nameChange} placeholder='Enter Price, NUMBERS ONLY!' value={this.state.fileData[k].price} required/>
-             <input id={k+ 'des'} onChange={this.nameChange} maxLength='30' value={this.state.fileData[k].des} placeholder='Enter a short description' /></div>
+             <textarea id={k+ 'des'} onChange={this.nameChange} maxLength='150' value={this.state.fileData[k].des} placeholder='Enter a short description' />
+             <button id='destroy' onClick={()=>{this.setState({files:[...this.state.files.slice(0,k),...this.state.files.slice(k+1)],fileData:[...this.state.fileData.slice(0,k),...this.state.fileData.slice(k+1)]})}}>Remove</button>
+             </div>
              </div>
              )}
-             <button onClick={this.publish}>Save</button>
+             <button className='save' onClick={this.publish}>Save</button>
             </div>), 
             2:<div className='bank'>
             <h3>Please we will only pay if this account matches the name used to register.</h3>
@@ -296,6 +305,7 @@ export default class Landing extends Component {
                 {this.state.showCase}
             </div>
          }
+         
          if(document.getElementById('live') && this.state.website !==''){
             document.getElementById('live').style.display='block'
          }
@@ -306,7 +316,7 @@ export default class Landing extends Component {
              return <Redirect to={'/user?id='+ident} />
          }
         return (
-            <div className='landing'>
+            <div className='landing' id='landing' style={{opacity:0.45}}>
                 <div className='topper'>
                     <h3>Welcome {this.state.name}</h3>
                     <h3>Account Balance: NGN {this.state.payment}</h3>
@@ -325,10 +335,11 @@ export default class Landing extends Component {
                         <div className='tens'><h5>Withdraw Payments</h5><button onClick={this.withdraw}>Withdraw</button></div>
                         
                     </div>
-                    <div className='Righti'>
-                        <h5 id='status'></h5>
+                    {this.state.loading? <Loader type="ThreeDots" color="Green" height="100" width="100" className="tryk" /> : 
+                    <div className='Righti' id='Righti'>
+                        <h4 id='status'></h4>
                         {show[this.state.index]}
-                    </div>
+                    </div>}
                 </div>  
             </div>
         )

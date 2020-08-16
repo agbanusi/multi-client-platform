@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "ab21db96ac3fcc6b4638887d526e5fdd",
+    "revision": "bf1ac0b2be27085dafccc8e7bf95adb3",
     "url": "/index.html"
   },
   {
-    "revision": "80a7d5dde14d5a61e902",
-    "url": "/static/css/main.0e9b9a44.chunk.css"
+    "revision": "bd0e92a8bab7bb0cfcf1",
+    "url": "/static/css/main.e774d326.chunk.css"
   },
   {
-    "revision": "2d9b2290e119b774518e",
-    "url": "/static/js/2.06f5fb1a.chunk.js"
+    "revision": "9b201499b7920db204ff",
+    "url": "/static/js/2.120e2fdb.chunk.js"
   },
   {
     "revision": "216e537bacc64f9dbaabd26649a9ab95",
-    "url": "/static/js/2.06f5fb1a.chunk.js.LICENSE.txt"
+    "url": "/static/js/2.120e2fdb.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "80a7d5dde14d5a61e902",
-    "url": "/static/js/main.91e74154.chunk.js"
+    "revision": "bd0e92a8bab7bb0cfcf1",
+    "url": "/static/js/main.239742a0.chunk.js"
   },
   {
     "revision": "9b4e396c183e42c1fa5c",
@@ -56,8 +56,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/media/undraw_business_shop_qw5t.b0c11510.png"
   },
   {
-    "revision": "eb04862c5ba5899ead4d00fabee964f7",
-    "url": "/static/media/undraw_gone_shopping_vwmc.eb04862c.svg"
+    "revision": "14375df55f44501ca02a19c6721af231",
+    "url": "/static/media/undraw_gone_shopping_vwmc.14375df5.svg"
   },
   {
     "revision": "d554b7d25ed280723289d2447e7e9fba",

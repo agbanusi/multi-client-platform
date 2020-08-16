@@ -17,7 +17,7 @@
     grid-template-columns: 1.5fr 1fr;
 }
 .Lefti{
-    padding-left: 2.5%;
+    padding-left: 1rem;
     padding-right:2.5%;
 }
 .Lefti h3{
@@ -83,6 +83,9 @@
     border-radius: 0.75rem;
     padding: 0px 0.75rem 0px 0.75rem;
 }
+.person button{
+    margin-bottom: 1rem;
+}
 .personal input{
     width:90%;
     height:1.25rem;
@@ -90,7 +93,7 @@
     padding: 0px 0.75rem 0px 0.75rem;
 }
 .web{
-    padding-left:1rem;
+    padding-right:1rem;
 }
 .web h4{
     margin-bottom:0.25rem;
@@ -111,30 +114,55 @@
 }
 .items{
     margin-bottom: 0.5rem;
-    height:10rem;
     display: grid;
     grid-template-columns: 1fr 2fr;
     place-items: center;
     background-color: gainsboro;
 }
+#destroy{
+    opacity:0;
+    background-color:red;
+    color:white;
+    border-radius: 1rem;
+    margin: 0rem 0px 0.5rem 3rem;
+    height:3rem;
+    width:5rem;
+}
+.items:hover #destroy{
+    opacity:1;
+    
+}
 .items div{
     display:grid;
-    grid-template-rows: 1fr 1fr 1fr;
 }
-.items input{
+.items input, .items textarea{
+    margin-top: 0.5rem;
+}
+.items textarea{
     margin-bottom: 0.5rem;
 }
 .items button{
     margin-bottom: 1rem;
 }
 .showOff{
-    border:0.75rem solid orange;
-    height:100%;
+    border:0.5rem solid orange;
+    height:80vh;
     width:33.5vw;
     border-radius: 0.75rem;
     background-color: white;
-    overflow: scroll;
+    overflow: hidden;
+}
+.save{
+    margin-bottom: 1rem;
 }
 button:focus, input:focus{
     outline:none;
+}
+#dent{
+    max-width: 100%;
+    max-height: 100%;
+}
+.tryk{
+    margin:40vh 0px 0px -10vw;
+    opacity:1 !important;
 }

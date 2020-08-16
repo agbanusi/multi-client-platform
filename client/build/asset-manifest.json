@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/static/css/main.0e9b9a44.chunk.css",
-    "main.js": "/static/js/main.91e74154.chunk.js",
-    "main.js.map": "/static/js/main.91e74154.chunk.js.map",
+    "main.css": "/static/css/main.e774d326.chunk.css",
+    "main.js": "/static/js/main.239742a0.chunk.js",
+    "main.js.map": "/static/js/main.239742a0.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.09b85ec0.js",
     "runtime-main.js.map": "/static/js/runtime-main.09b85ec0.js.map",
-    "static/js/2.06f5fb1a.chunk.js": "/static/js/2.06f5fb1a.chunk.js",
-    "static/js/2.06f5fb1a.chunk.js.map": "/static/js/2.06f5fb1a.chunk.js.map",
+    "static/js/2.120e2fdb.chunk.js": "/static/js/2.120e2fdb.chunk.js",
+    "static/js/2.120e2fdb.chunk.js.map": "/static/js/2.120e2fdb.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.47b9d124926f0cd5947b407921afaac2.js": "/precache-manifest.47b9d124926f0cd5947b407921afaac2.js",
+    "precache-manifest.2c8c56df260c418b4c6ac6825b17baf3.js": "/precache-manifest.2c8c56df260c418b4c6ac6825b17baf3.js",
     "service-worker.js": "/service-worker.js",
-    "static/css/main.0e9b9a44.chunk.css.map": "/static/css/main.0e9b9a44.chunk.css.map",
-    "static/js/2.06f5fb1a.chunk.js.LICENSE.txt": "/static/js/2.06f5fb1a.chunk.js.LICENSE.txt",
+    "static/css/main.e774d326.chunk.css.map": "/static/css/main.e774d326.chunk.css.map",
+    "static/js/2.120e2fdb.chunk.js.LICENSE.txt": "/static/js/2.120e2fdb.chunk.js.LICENSE.txt",
     "static/media/2860933.jpg": "/static/media/2860933.33a2d2e6.jpg",
     "static/media/Signup.css": "/static/media/Confetti-Doodles.1257a615.svg",
     "static/media/Diamond-Sunset.svg": "/static/media/Diamond-Sunset.f66c1ef5.svg",
@@ -20,7 +20,7 @@
     "static/media/Repeating-Triangles.svg": "/static/media/Repeating-Triangles.3eb74d6f.svg",
     "static/media/undraw_Online_page_re_lhgx.svg": "/static/media/undraw_Online_page_re_lhgx.7a14df2a.svg",
     "static/media/undraw_business_shop_qw5t.png": "/static/media/undraw_business_shop_qw5t.b0c11510.png",
-    "static/media/Landing.css": "/static/media/undraw_gone_shopping_vwmc.eb04862c.svg",
+    "static/media/Landing.css": "/static/media/undraw_gone_shopping_vwmc.14375df5.svg",
     "static/media/undraw_group_selfie_ijc6.png": "/static/media/undraw_group_selfie_ijc6.d554b7d2.png",
     "static/media/undraw_online_video_ivvq.svg": "/static/media/undraw_online_video_ivvq.532cde0d.svg",
     "static/media/undraw_selfie_time_cws4.png": "/static/media/undraw_selfie_time_cws4.f73c5c4e.png",
@@ -28,8 +28,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.09b85ec0.js",
-    "static/js/2.06f5fb1a.chunk.js",
-    "static/css/main.0e9b9a44.chunk.css",
-    "static/js/main.91e74154.chunk.js"
+    "static/js/2.120e2fdb.chunk.js",
+    "static/css/main.e774d326.chunk.css",
+    "static/js/main.239742a0.chunk.js"
   ]
 }

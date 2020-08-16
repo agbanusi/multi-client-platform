@@ -15,7 +15,7 @@ dbe=os.getenv('DB')
 client=MongoClient(dbe) #mongo_url
 db=client.Cluster0['multiple']
 
-app = Flask(__name__,template_folder='client/build', static_folder='client/build/static')
+app = Flask(__name__,template_folder='./client/build', static_folder='./client/build/static')
 UPLOAD_FOLDER = '/client/src/assets'
 app.config['UPLOAD_FOLDER']=UPLOAD_FOLDER
 ALLOWED_EXTENSIONS= set(['png','jpg','jpeg','svg'])
@@ -193,7 +193,7 @@ def publish():
         template=data['template']
         fileData=data['fileData']
         ide=data['id']
-        db.find_one_and_update({'_id':ObjectId(ide)},{'$set':{'temp':temp,'template':template,'company':company},'$push':{'files':{'$each':file},'fileData':{'$each':fileData}}},upsert=True)
+        db.find_one_and_update({'_id':ObjectId(ide)},{'$set':{'temp':temp,'template':template,'company':company,'files':file,'fileData':fileData}},upsert=True)
         response={'status':'success'}
         return response
 
