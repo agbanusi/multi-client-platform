@@ -194,7 +194,7 @@ export default class Landing extends Component {
             document.getElementById('landing').style.opacity=1.0
             setTimeout(()=>{
                 document.getElementsByClassName('total')[0].style.transform='scale(0.325)'
-                document.getElementsByClassName('total')[0].style.marginLeft='-57.5%'
+                document.getElementsByClassName('total')[0].style.marginLeft='-60%'
                 document.getElementsByClassName('total')[0].style.marginTop='-30%'
             },1000)
         })
@@ -330,7 +330,7 @@ export default class Landing extends Component {
                         <div className='tens'><h5>Setup/Edit your Webpage</h5><button onClick={this.web}>SetUp!</button></div>
                         <div className='tens'><h5>It is advisable to set up your banking information</h5><button onClick={this.bank}>Banking Info</button></div>
                         <div className='tens'><h5>Edit your personal Information</h5><button onClick={this.edit}>Edit</button></div>
-                        <div className='tens'><h5>Preview Your Site</h5><button onClick={this.preview}>Preview</button></div>
+                        <div className='tens'><h5>Preview Your Site</h5><button ><Link to={'/user?id='+ident} target='_blank'>Preview</Link></button></div>
                         {this.state.paid?<></>:<div className='tens'><h5>Pay to get your website deployed immediately</h5><PaystackButton id='kk' {...componentProps} /></div>}
                         <div className='tens'><h5>Withdraw Payments</h5><button onClick={this.withdraw}>Withdraw</button></div>
                         

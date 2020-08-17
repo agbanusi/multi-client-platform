@@ -10,6 +10,7 @@ import img5 from './Repeating-Triangles.svg'
 import img6 from './Diamond-Sunset.svg'
 import img7 from './Liquid-Cheese.svg'
 import img8 from './Rainbow-Vortex.svg'
+import Loader from 'react-loader-spinner';
 
 var ident
 export default class Creative extends Component {
@@ -33,7 +34,8 @@ export default class Creative extends Component {
             password2:'',
             check:false,
             type:false,
-            data:''
+            data:'',
+            loading:true
         }
     }
     componentDidMount(){
@@ -242,8 +244,8 @@ export default class Creative extends Component {
             4:item5
         }
         return (
-            <div className='diddy' style={{backgroundImage:'url('+this.state.selectTemp+')'}}>
-               {show[this.state.index]} 
+            <div style={{opacity:0.5}} className='diddy' style={{backgroundImage:'url('+this.state.selectTemp+')'}}>
+               {this.state.loading? <Loader type="ThreeDots" color="Green" height="100" width="100" className="tryi" />:show[this.state.index]} 
             </div>
         )
     }
