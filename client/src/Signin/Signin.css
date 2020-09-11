@@ -2,11 +2,16 @@
     width:100vw;
     height:100vh;
     display: grid;
+    margin-top: -1rem;
     grid-template-columns: 1fr 1fr;
+    background-image: url('./wave.svg');
+    background-size: 100% 50%;
+    background-repeat: no-repeat;
 }
 .righty{
     display:grid;
 }
+
 .righty .pass h2{
     margin-top:35%;
     margin-bottom:10%;
@@ -18,11 +23,11 @@
     justify-content: space-between;
     align-items: center;
     animation-name:slideup;
-    animation-duration:5s;
+    animation-duration:4s;
     animation-timing-function:ease-out;
 }
 @keyframes slideup {
-    0%{margin-top:60%}
+    0%{margin-top:100%}
     100%{margin-top:0;}
   }
 .righty .pass button{
@@ -44,10 +49,10 @@ a{
 button:focus,input:focus{
     outline: none;
 }
-.noPass{
+.noPasser{
     height:50%;
     width: 80%;
-    margin-top:25%;
+    margin-top:40%;
     display: grid;
     justify-items: center;
 }
@@ -92,13 +97,35 @@ button:focus,input:focus{
 .forgot{
     margin-top: 0rem;
 }
+.lefty:before{
+    
+    content: '';
+    display: block;
+    top: -7.5rem;
+    height: 35%;
+    left: 0;
+    position: absolute;
+    right: 0;
+    transform: skewY(-4.5deg);
+    transform-origin: 100%;
+    z-index: -1;
+}
 .lefty h1{
+    margin-top: 5rem;
     margin-left:15%;
     font-family: 'Lobster', cursive;
+    color: whitesmoke;
 }
 #cojoined{
     height:50%;
     width: 70%;
     margin-left:10%;
     margin-top: 25%;
+}
+#titi{
+    margin-top: -0.5rem;
+    cursor: pointer;
+}
+.signup:hover, .signin:hover{
+    transform: scale(1.25)
 }

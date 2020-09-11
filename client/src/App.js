@@ -1,11 +1,11 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import './App.css';
-import {BrowserRouter as Brow,Route, Switch, HashRouter as Hash} from 'react-router-dom'
+import {BrowserRouter as Brow,Route, Switch} from 'react-router-dom'
 import Signup from './Signup/Signup'
 import Signin from './Signin/Signin'
 import Landing from './landing/Landing'
-import Custom from './landing/Custom'
-import Creative from './landing/Creative'
+import Custom from './custom/Custom'
+import Creative from './customer/Creative'
 
 function App() {
   return (
@@ -15,8 +15,8 @@ function App() {
         <Route exact path='/' component={Signin} /> 
         <Route path='/signup' component={Signup} />
         <Route path='/landing' component={Landing} />
-        <Route path='/redUser' component={Custom} />
-        <Route path='/api/:id' component={Custom} />
+        <Route path='/custom' component={Custom} />
+        <Route path='/api/:id' component={Creative} />
         <Route path='/user' component={Creative} />
       </Switch>
     </Brow>

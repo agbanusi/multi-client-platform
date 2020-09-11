@@ -1,20 +1,21 @@
 import React, { Component } from 'react'
-import {Redirect} from 'react-router-dom'
+import {Redirect, Link} from 'react-router-dom'
 import './Landing.css'
 import { PaystackButton } from 'react-paystack'
-import Creative from './Creative'
+import Creative from '../customer/Creative'
 import Loader from 'react-loader-spinner';
 //import all images and templates here for test
-import img from './undraw_online_video_ivvq.svg'
-import img1 from './undraw_web_search_eetr.svg'
-import img2 from './undraw_business_shop_qw5t.png'
-import img3 from './undraw_group_selfie_ijc6.png'
-import img4 from './undraw_selfie_time_cws4.png'
-import img5 from './Repeating-Triangles.svg'
-import img6 from './Diamond-Sunset.svg'
-import img7 from './Liquid-Cheese.svg'
-import img8 from './Rainbow-Vortex.svg'
+import img from '../assets/undraw_online_video_ivvq.svg'
+import img1 from '../assets/undraw_web_search_eetr.svg'
+import img2 from '../assets/undraw_business_shop_qw5t.png'
+import img3 from '../assets/undraw_group_selfie_ijc6.png'
+import img4 from '../assets/undraw_selfie_time_cws4.png'
+import img5 from '../assets/Repeating-Triangles.svg'
+import img6 from '../assets/Diamond-Sunset.svg'
+import img7 from '../assets/Liquid-Cheese.svg'
+import img8 from '../assets/Rainbow-Vortex.svg'
 
+const cloudinary = window.cloudinary
 var ident
 export default class Landing extends Component {
     constructor(props){
@@ -32,11 +33,8 @@ export default class Landing extends Component {
             password:'',
             password2:'',
             selectTemp:'',
-            selectTemplate:'',
-            files:[],
             fileData:[],
-            temp:[img1,img2,img3,img4,img],
-            templates:[img5,img6,img7,img8],
+            temp:[img1,img2,img3,img4,img,img5,img6,img7,img8],
             company:'',
             website:'',
             showCase:'',
@@ -49,10 +47,10 @@ export default class Landing extends Component {
         ident=this.getUrlParameter('id')
         console.log(window.location.hostname)
         fetch('/getData',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:ident})}).then(res=>res.json()).then(dat=>{
-            if(dat.status =='success'){
+            if(dat.status ==='success'){
                 let data=dat.dat
                 this.setState({name:data.username,email:data.email, fullName:data.name,
-                    text:data.text,files:data.files,fileData:data.fileData, bankName:data.bankName,
+                    text:data.text,fileData:data.fileData, bankName:data.bankName,
                     bankNo:data.bankNo, selectTemp:data.temp,selectTemplate:data.template, payment:data.payment+'.00', website:data.website, company:data.company,paid:data.paid,loading:false
                 })
                 document.getElementById('landing').style.opacity=1.0
@@ -80,7 +78,7 @@ export default class Landing extends Component {
     files=(e)=>{
         //store them in the server
         let tt=[...e.target.files].map((i)=>{
-            this.down(i).then(kk=>{
+            return this.down(i).then(kk=>{
                 this.setState({files:[...this.state.files,kk],fileData:[...this.state.fileData,{name:'',price:'',des:''}]})
                 return tt
             })
@@ -107,11 +105,11 @@ export default class Landing extends Component {
         let acctNo=this.state.bankNo
         let acctName=this.state.bankName
         fetch('/withdraw',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:ident,acctName,acctNo,payment:'0'})}).then(res=>res.json()).then(data=>{
-            if(data.status=='success'){
+            if(data.status==='success'){
                 this.setState({payment:data.payment+'.00'})
                 alert('Money sent to your account')
             }
-            else if(data.status=='Faileddis'){
+            else if(data.status==='Faileddis'){
                 alert('Add a bank account registered in your name')
             }
             else{
@@ -120,15 +118,14 @@ export default class Landing extends Component {
         })
     }
     selectTemp=(e)=>{
-        if(this.state.selectTemp !=''){
+        if(this.state.selectTemp !==''){
             document.getElementById(this.state.selectTemp+'p').style.border='none'
         }
         document.getElementById(e.target.id).style.border='3px solid orange'
-        console.log(e.target.id.slice(0,-1))
         this.setState({selectTemp:e.target.id.slice(0,-1)})
     }
     selectTemplate=(e)=>{
-        if(this.state.selectTemplate !=''){
+        if(this.state.selectTemplate !==''){
             document.getElementById(this.state.selectTemp+'o').style.border='none'
         }
         document.getElementById(e.target.id).style.border='3px solid orange'
@@ -136,11 +133,11 @@ export default class Landing extends Component {
     }
     
     change=(e)=>{
-        if(e.target.id == 'bankName'){
+        if(e.target.id === 'bankName'){
             this.setState({bankName:e.target.value})
         }
         else{
-            if(Number(e.target.value) || e.target.value==''){
+            if(Number(e.target.value) || e.target.value===''){
                 this.setState({bankNo:e.target.value})
             }
             
@@ -181,10 +178,10 @@ export default class Landing extends Component {
         this.setState({loading:true})
         document.getElementById('landing').style.opacity=0.45
         //send to database
-        let bod={'company':this.state.company,'files':this.state.files,temp:this.state.selectTemp,template:this.state.selectTemplate,'id':ident, 'fileData':this.state.fileData}
+        let bod={'company':this.state.company,temp:this.state.selectTemp,template:this.state.selectTemplate,'id':ident, 'fileData':this.state.fileData}
         fetch('/publish',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(bod) }).then(res=>res.json()).then(data=>{
-            if(data.status=='success'){
-                this.setState({showCase:<Creative id='dent' info={{name:this.state.name,files:this.state.files,fileData:this.state.fileData,
+            if(data.status==='success'){
+                this.setState({showCase:<Creative id='dent' info={{name:this.state.name,fileData:this.state.fileData,
                     temp:this.state.selectTemp,template:this.state.selectTemplate}} />, index:4,loading:false})
                 
             }
@@ -194,24 +191,24 @@ export default class Landing extends Component {
             document.getElementById('landing').style.opacity=1.0
             setTimeout(()=>{
                 document.getElementsByClassName('total')[0].style.transform='scale(0.325)'
-                document.getElementsByClassName('total')[0].style.marginLeft='-60%'
+                document.getElementsByClassName('total')[0].style.marginLeft='-66.25%'
                 document.getElementsByClassName('total')[0].style.marginTop='-30%'
-            },1000)
+            },3000)
         })
         
     }
     nameChange=(e)=>{
         let ind=Number(e.target.id[0])
         let fileData=this.state.fileData
-        if(e.target.id.slice(1,)=='p'){
+        if(e.target.id.slice(1,)==='p'){
             fileData[ind].name=e.target.value
         }
-        else if(e.target.id.slice(1,)=='pr'){
+        else if(e.target.id.slice(1,)==='pr'){
             if(Number(e.target.value)){
                 fileData[ind].price=e.target.value
             }
         }
-        else if(e.target.id.slice(1,)=='des'){
+        else if(e.target.id.slice(1,)==='des'){
             fileData[ind].des=e.target.value
         }
         this.setState({fileData:fileData})
@@ -228,11 +225,19 @@ export default class Landing extends Component {
         }
     })
     }
-    
+    widget=()=>(
+        cloudinary.createUploadWidget({
+            cloudName: 'johnny11',
+            uploadPreset: 'q1bjjs9hgr5h'}, (error, result) => { 
+              if (!error && result && result.event === "success") {
+                this.setState({fileData:[...this.state.fileData,{name:'',price:'',des:'',url:result.info.secure_url}]})
+              }
+            }).open()
+    )
     done=()=>{
         //send to server and setState
         fetch('/paid',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:ident,website:window.location.hostname+'/api/'+ident})}).then(res=>res.json()).then(data=>{
-            if(data.status=='success'){
+            if(data.status==='success'){
                 this.setState({website:window.location.hostname+'/api/'+ident,paid:true})
             }
             else{
@@ -261,30 +266,31 @@ export default class Landing extends Component {
         var show={
             0:<h2 style={{opacity:0.5}}><i>No Preview Available</i></h2>,
             1:(<div className='web'>
+            <button id='custom'><Link to={'/custom?id='+ident}>Customize your Site fully {'->'}</Link></button>
+            <br />
+            <h3><i>Quick Setup</i></h3>
+            <hr/>
             <div className='webber'><h4>Company Name(Name of your site)</h4><input id='company' onChange={this.change3} value={this.state.company} /></div>
-            <div className='webber'><h4 id='downer'>Upload your product pictures</h4><input type='file' name='files[]' multiple='true' onChange={this.files} /></div>
-            <div className='webber'><h4>Choose a background SVG to make your website attractive.</h4>
+            <div className='webber'><h4 id='downer'>Upload your product pictures</h4><button onClick={this.widget} className='uploadUser'>Upload +</button></div>
+            <h3><u>Default Website using default design and settings</u></h3>
+            <div className='webber'><h4>Choose a background Image to make your website attractive.</h4>
             <div className='webbed1'>{this.state.temp.map((i,k)=>
-                <img id={k+'p'} className='svgs' onClick={this.selectTemp} src={i} />
-            )}</div>
-            </div>
-            <div className='webber'><h4>Choose a template for your website.</h4>
-            <div className='webbed2'>{this.state.templates.map((i,k)=>
-                <img id={k+'o'} className='imgs' onClick={this.selectTemplate} src={i} />
+                <img id={k+'p'} alt='template images' className='svgs' onClick={this.selectTemp} src={i} />
             )}</div>
             </div>
             <h4>Customise your Products</h4>
-            {this.state.files.map((i,k)=>
+            {this.state.fileData.map((i,k)=>
              <div className='items'>
-             <img src={i} />
-             <div><input id={k+'p'} onChange={this.nameChange} placeholder='Enter Name of Product' value={this.state.fileData[k].name} required/>
-             <input id={k+ 'pr'} onChange={this.nameChange} placeholder='Enter Price, NUMBERS ONLY!' value={this.state.fileData[k].price} required/>
-             <textarea id={k+ 'des'} onChange={this.nameChange} maxLength='150' value={this.state.fileData[k].des} placeholder='Enter a short description' />
-             <button id='destroy' onClick={()=>{this.setState({files:[...this.state.files.slice(0,k),...this.state.files.slice(k+1)],fileData:[...this.state.fileData.slice(0,k),...this.state.fileData.slice(k+1)]})}}>Remove</button>
+             <img alt='uploaded images' src={i.url} />
+             <div><input id={k+'p'} onChange={this.nameChange} placeholder='Enter Name of Product' value={i.name} required/>
+             <input id={k+ 'pr'} onChange={this.nameChange} placeholder='Enter Price, NUMBERS ONLY!' value={i.price} required/>
+             <textarea id={k+ 'des'} onChange={this.nameChange} maxLength='150' value={i.des} placeholder='Enter a short description' />
+             <button id='destroy' onClick={()=>{this.setState({fileData:[...this.state.fileData.slice(0,k),...this.state.fileData.slice(k+1)]})}}>Remove</button>
              </div>
              </div>
              )}
              <button className='save' onClick={this.publish}>Save</button>
+             <button id='custom'><Link to={'/custom?id='+ident}>Customize your Site fully {'->'}</Link></button>
             </div>), 
             2:<div className='bank'>
             <h3>Please we will only pay if this account matches the name used to register.</h3>
@@ -309,10 +315,10 @@ export default class Landing extends Component {
          if(document.getElementById('live') && this.state.website !==''){
             document.getElementById('live').style.display='block'
          }
-         if(this.state.redirect=='2'){
+         if(this.state.redirect==='2'){
              return <Redirect to={'/landing?id='+ident} />
          }
-         else if(this.state.redirect=='1'){
+         else if(this.state.redirect==='1'){
              return <Redirect to={'/user?id='+ident} />
          }
         return (
@@ -340,8 +346,26 @@ export default class Landing extends Component {
                         <h4 id='status'></h4>
                         {show[this.state.index]}
                     </div>}
-                </div>  
+                </div>
+                <footer class='footers'>
+                <div class='medias'>
+                <i class="fa fa-facebook-official" aria-hidden="true"><a href='facebook' /></i>
+                <i class="fa fa-whatsapp" aria-hidden="true"><a href='whatsapp' /></i>
+                <i class="fa fa-twitter" aria-hidden="true"><a href='twitter' /></i>
+                <i class="fa fa-instagram" aria-hidden="true"><a href='instagram' /></i>
+                </div>
+                <p>© {new Date().getFullYear()}</p>
+                </footer>  
             </div>
         )
     }
 }
+
+
+/*
+<div className='webber'><h4>Choose a second background Image for your site.</h4>
+            <div className='webbed2'>{this.state.templates.map((i,k)=>
+                <img id={k+'o'} className='imgs' onClick={this.selectTemplate} src={i} />
+            )}</div>
+            </div>
+*/

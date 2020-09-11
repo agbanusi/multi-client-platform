@@ -1,18 +1,17 @@
 .landing{
     width:100vw;
     display:grid;
-    background-image:url('./undraw_gone_shopping_vwmc.svg');
+    background-image:url('../assets/undraw_gone_shopping_vwmc.svg');
     background-size: 70% 100%;
 }
 .topper{
-    height:10vh;
+    height:12.5vh;
     box-shadow: 2.5px 2.5px 2.5px 2.5px grey;
     display: flex;
     justify-content: space-around;
     align-items: center;
 }
 .mainer{
-    height:90vh;
     display:grid;
     grid-template-columns: 1.5fr 1fr;
 }
@@ -65,6 +64,18 @@
     height:3rem;
     border-radius: 0.75rem;
     background-color:lawngreen;
+}
+#custom{
+    margin-left: 33%;
+    color:white;
+    background-color: orangered;
+    width: 12rem;
+    height:4rem;
+    border-radius: 1rem;
+}
+#custom:hover{
+    background-color: teal;
+    transform: scale(1.25);
 }
 .banking h4{
     margin-bottom: 0.25rem;
@@ -165,4 +176,18 @@ button:focus, input:focus{
 .tryk{
     margin:40vh 0px 0px -10vw;
     opacity:1 !important;
+}
+.footers{
+    margin-top: 15vh;
+    display:grid;
+    place-items: center;
+    padding-top:1rem;
+    background-color: rgb(22, 2, 2);
+    color:white;
+}
+.medias{
+    font-size: 1.25rem;
+    width:50vw;
+    display: flex;
+    justify-content: space-around;
 }

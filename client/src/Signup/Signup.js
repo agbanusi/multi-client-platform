@@ -34,6 +34,7 @@ export default class Signup extends Component {
                 let stat=false
                 arr.map(i=>{
                     if(e.target.value.includes(i)){
+                        // eslint-disable-next-line 
                         stat=true
                     }
                 })
@@ -62,7 +63,7 @@ export default class Signup extends Component {
     submit=()=>{
         if(this.state.check && this.state.real){
             fetch('/newUser',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:this.state.name,email:this.state.email,username:this.state.username,password:this.state.password,check:this.state.check}) }).then(res=>res.json()).then(data=>{
-                if(data.status == 'success'){
+                if(data.status === 'success'){
                     this.setState({redirect:true,data:data})
                 }
                 else{
@@ -84,14 +85,14 @@ export default class Signup extends Component {
                 <div className='left'>
                     <h1>Welcome to Magento</h1>
                     <h3>Build and customise your site to attract your customers without stress.</h3>
-                    <img className='img1' src={img} />
+                    <img className='img1' alt='welcome svg' src={img} />
                     </div>
-                <div className='right'>
-                    <p className='log'>Already a member? <Link to='/?sign=signed'>Sign In.</Link></p>
+                <div className='rightUp'>
+                    <p className='logUp'>Already a member? <Link to='/?sign=signed'>Sign In.</Link></p>
                     <div className='form'>
                     <h2 className='namer'>Sign up to Magento.</h2>
                     <hr/>
-                    <div className='names'>
+                    <div className='namesUp'>
                     <div><h3>Full Name</h3><input id='name' value={this.state.name} onChange={this.change} required /></div>
                     <div><h3>Username</h3><input id='username' value={this.state.username} onChange={this.change} required /></div>
                     </div>

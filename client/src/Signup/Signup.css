@@ -19,13 +19,13 @@
     margin-top: 35%;
     margin-left:5%;
 }
-.right{
+.rightUp{
     display:grid;
     justify-items: center;
-    background-color: white;
+    background-image: url('./Confetti-4s-1156px.svg');
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
-.log{
+.logUp{
     margin-left:60%;
 }
 .form{
@@ -42,19 +42,19 @@ hr{
 button:focus,input:focus{
     outline:none;
 }
-.names{
+.namesUp{
     width:100%;
     display:flex;
     justify-content: space-between;
 }
-.names div{
+.namesUp div{
     width:45%;
     display:grid;
 }
-.names div h2, .mail h2{
+.namesUp div h2, .mail h2{
     margin-bottom: 0.5rem;
 }
-.names input{
+.namesUp input{
     border-radius: 0.45rem;
     padding-left:0.45rem;
     padding-right:0.45rem;
