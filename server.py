@@ -1,9 +1,11 @@
 from flask import Flask, request,render_template,redirect,url_for,make_response
 from werkzeug.utils import secure_filename
+from datetime import datetime
 from dotenv import load_dotenv
 from pymongo import MongoClient
 from bson.objectid import ObjectId
 from bson.json_util import loads, dumps
+from unique_id import get_unique_id as uniq
 from passlib.hash import sha256_crypt as sha
 import os
 import time
@@ -91,7 +93,7 @@ def check_pay(id):
 
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
-def home(path):        
+def home(path):
     return render_template('index.html')
 
 @app.route('/newUser',methods=['POST'])
@@ -100,10 +102,14 @@ def user():
     if request.method=='POST':
         data=request.json
         password=sha.encrypt(data['password'])
-        result=db.insert_one({'name':data['name'],'email':data['email'],'username':data['username'],'password':password,'check':data['check'],'text':'','files':[],'fileData':[],'bankName':'','bankNo':'','temp':'','template':'','payment':'0','website':'','company':'','customers':[],'paid':False})
-        id=str(result.inserted_id)
-        response={'status':'success','id':str(id)}
-        return response
+        res=db.find_one({'email':data['email']})
+        if res != None:
+            return {'status':'Failed'}
+        else:
+            result=db.insert_one({'name':data['name'],'email':data['email'],'username':data['username'],'password':password,'check':data['check'],'text':'','fileData':[],'bankName':'','bankNo':'','temp':'','template':'','payment':'0','website':'','company':'','customers':[],'paid':False,'first':'','second':'','third':'','fourth':[]})
+            id=str(result.inserted_id)
+            response={'status':'success','id':str(id)}
+            return response
 
 @app.route('/login',methods=['POST'])
 def log():
@@ -146,6 +152,139 @@ def userData():
 
          return response
 
+@app.route('/getFirstData',methods=['POST'])
+def firstData():
+    if request.method=='POST':
+        data=request.json
+        result=db.find_one({'_id':ObjectId(data['id'])})
+        if result == None:
+            response={'status':'Failed'}
+        else:
+            response={'status':'success','info':result['first'],'fullName':result['name'],'email':result['email'],
+            'temp':result['temp'],'company':result['company'],'text':result['text'],'website':result['website'],'paid':result['paid']}
+
+        return response
+
+@app.route('/getSecondData',methods=['POST'])
+def secondData():
+    if request.method=='POST':
+        data=request.json
+        result=db.find_one({'_id':ObjectId(data['id'])})
+        if result == None:
+            response={'status':'Failed'}
+        else:
+            response={'status':'success','dat':result['second']}
+
+        return response
+
+@app.route('/getThirdData',methods=['POST'])
+def thirdData():
+    if request.method=='POST':
+        data=request.json
+        result=db.find_one({'_id':ObjectId(data['id'])})
+        if result == None:
+            response={'status':'Failed'}
+        else:
+            response={'status':'success','dat':result['third']}
+
+        return response
+
+@app.route('/getFourthData',methods=['POST'])
+def fourthData():
+    if request.method=='POST':
+        data=request.json
+        result=db.find_one({'_id':ObjectId(data['id'])})
+        if result == None:
+            response={'status':'Failed'}
+        else:
+            response={'status':'success','dat':result['fourth']}
+
+        return response
+
+@app.route('/getCustomerData',methods=['POST'])
+def CustomerData():
+    if request.method=='POST':
+        data=request.json()
+        result=db.find_one({'_id':ObjectId(data['id'])})
+        if result ==None:
+            response={'status':'Failed'}
+        else:
+            customer=[i for i in result['customers'] if i['id']==data['custId']][0]
+            resulted={key:val for key,val in result.items() if key !='_id' and key !='password' }
+            resd={'data':customer,**resulted}
+            response={'status':'success','dat':resd}
+        
+        return response
+
+@app.route('/saveCart',method=['POST'])
+def cart_saver():
+    if request.method=='POST':
+        data=request.json()
+        result=db.find_one({'_id':ObjectId(data['id'])})
+        if result ==None:
+            response={'status':'Failed'}
+        else:
+            customers=result['customers']
+            ind=-1
+            customer={}
+            for i in range(len(customers)):
+                if customers[i]['id'] == data['custId']:
+                    customer= customers[i]
+                    ind=i
+                    break
+
+            customer['cart']=data['cart']
+            customers[ind]=customer
+            db.find_one_and_update({'_id':ObjectId(data['id'])}, {'$set':{'customers':customers} })
+            response={'status':'success'}
+        return response
+
+@app.route('/saveData',method=['POST'])
+def saveData():
+    if request.method=='POST':
+        data=request.json()
+        result=db.find_one({'_id':ObjectId(data['id'])})
+        if result ==None:
+            response={'status':'Failed'}
+        else:
+            if data['level']=='first':
+                db.find_one_and_update({'_id':ObjectId(data['id'])}, { '$set':{'first': data['data']} })
+            elif data['level']=='second':
+                db.find_one_and_update({'_id':ObjectId(data['id'])}, { '$set':{'second': data['data']} })
+            elif data['level']=='third':
+                db.find_one_and_update({'_id':ObjectId(data['id'])}, { '$set':{'third': data['data']} })
+            elif data['level']=='fourth':
+                db.find_one_and_update({'_id':ObjectId(data['id'])}, { '$set':{'fourth': data['data']} })
+
+            response={'status':'success'}
+
+        return response
+
+@app.route('/customerPaid',method=['POST'])
+def customer_paid():
+    if request.method=='POST':
+        data=request.json()
+        result=db.find_one({'_id':ObjectId(data['id'])})
+        if result ==None:
+            response={'status':'Failed'}
+        else:
+            customers=result['customers']
+            ind=-1
+            customer={}
+            for i in range(len(customers)):
+                if customers[i]['id'] == data['custId']:
+                    customer= customers[i]
+                    ind=i
+                    break
+
+            customer['cart']=[]
+            date=datetime.today().strftime('%Y-%m-%d-%H:%M:%S')
+            customer['bought'].append({'items':data['cart'],'date':date})
+            customers[ind]=customer
+            db.find_one_and_update({'_id':ObjectId(data['id'])}, {'$set':{'customers':customers} })
+            response={'status':'success'}     
+        return response
+
 @app.route('/withdraw',methods=["POST"])
 def withdraw():
     if request.method=='POST':
@@ -187,13 +326,11 @@ def savers():
 def publish():
     if request.method=='POST':
         data=request.json
-        file=data['files']
         company=data['company']
         temp = data['temp']
-        template=data['template']
         fileData=data['fileData']
         ide=data['id']
-        db.find_one_and_update({'_id':ObjectId(ide)},{'$set':{'temp':temp,'template':template,'company':company,'files':file,'fileData':fileData}},upsert=True)
+        db.find_one_and_update({'_id':ObjectId(ide)},{'$set':{'temp':temp,'company':company,'fileData':fileData,'fourth':fileData } },upsert=True)
         response={'status':'success'}
         return response
 
@@ -218,13 +355,15 @@ def minilogin():
             for i in result.customers:
                 if i['email']==data['username'] or i['username']==data['username']:
                     filt=i
+                    break
             if sha.verify(data['password'],filt['password']):
-                    response={'status':'success',**filt}
+                    #session['id']=
+                    response=make_response({'status':'success',**filt})
+                    response.set_cookie('id',filt['id'])
             else:
                 response={'status':'Failed'}
         else:
             response={'status':'Failed'}
-
         return response
             
 @app.route('/mininewuser',methods=['POST'])
@@ -232,8 +371,16 @@ def mininew():
     if request.method=='POST':
         data=request.json
         password=sha.encrypt(data['password'])
-        db.find_one_and_update({'_id':ObjectId(data['id'])},{'$push':{'customers':{'email':data['email'],'name':data['name'],'username':data['username'],'password':password}}})
-        return{'status':'success'}      
+        user=db.find_one({'_id':ObjectId(data['id'])})
+        user=[i for i in user['customers'] if i==data['email']]
+        if(len(user) <1):
+            idd=uniq()
+            db.find_one_and_update({'_id':ObjectId(data['id'])},{'$push':{'customers':{'id':idd,'email':data['email'],'name':data['name'],'username':data['username'],'password':password,'cart':[],'bought':[]}}})
+            res=make_response({'status':'success'})
+            res.set_cookie('id',idd)
+            return res
+        else:
+            return ({'status':'Failed'})     
 
 
 @app.route('/api/',defaults={'ide':'none'},methods=['GET','POST'])

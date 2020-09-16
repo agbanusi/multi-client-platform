@@ -16,7 +16,6 @@ function App() {
         <Route path='/signup' component={Signup} />
         <Route path='/landing' component={Landing} />
         <Route path='/custom' component={Custom} />
-        <Route path='/api/:id' component={Creative} />
         <Route path='/user' component={Creative} />
       </Switch>
     </Brow>
@@ -24,5 +23,5 @@ function App() {
   );
 }
 
-
+//<Route path='/user/:id' component={Creative} /><Route component={notFound} />
 export default App;

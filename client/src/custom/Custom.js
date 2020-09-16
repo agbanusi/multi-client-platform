@@ -21,22 +21,22 @@ class Custom extends Component {
             last1:"image",
             last2:"text",
             last3:"text",
-            container1:{color:'black',backgroundColor:"white",image:"",backgroundImage:"",text:""},
-            container2:{color:'black',backgroundColor:"white",image:"",backgroundImage:"",text:""},
-            container3:{color:'black',backgroundColor:"white",image:"",backgroundImage:"",text:""}
+            container1:{color:'black',backgroundColor:"inherit",image:"",backgroundImage:"",text:""},
+            container2:{color:'black',backgroundColor:"inherit",image:"",backgroundImage:"",text:""},
+            container3:{color:'black',backgroundColor:"inherit",image:"",backgroundImage:"",text:""}
         }
     }
     async componentDidMount(){
+        //server path attention 
         alert('Hey, you can choose the input of text, color or pictures for each section of your custom home page by choosing the appropriate option from the dropdown menu and click NEXT to move to the next page.')
         ident=this.getUrlParameter('id')
         const method= {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:ident})}
-        const dot =await fetch('/getData',method)
-        var dat =(await dot.json()).home
-        if (dat.status ==='success'){
-            let data = dat.dat
+        const dot =await fetch('/getFirstData',method)
+        var data =await dot.json()
+        if (data.status ==='success'){
             this.setState({name:data.username,email:data.email, fullName:data.name,
-                text:data.text,files:data.files,fileData:data.fileData,
-                selectTemp:data.temp,selectTemplate:data.template, website:data.website, company:data.company,paid:data.paid,loading:false,
+                text:data.text,fileData:data.fileData,
+                selectTemp:data.temp, website:data.website, company:data.company,paid:data.paid,loading:false,
                 containerOne:dat.info.containerOne,containerTwo:dat.info.containerTwo,containerThree:dat.info.containerThree,
                 last1:dat.info.last1, last2:dat.info.last2, last3: dat.info.last3, container1: dat.info.container1,
                 container2: dat.info.container2, container3: dat.info.container3
@@ -234,13 +234,20 @@ class Custom extends Component {
     save=async()=>{
         this.props.changy(1)
         this.props.refChange(this.state)
-        ident=this.getUrlParameter('id')
-        const method= {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:ident,level:'first',data:this.state})}
-        const dot =await fetch('/saveData',method)
-        var dat =await dot.json()
-        if (dat.status ==='success'){
-            this.props.changy(1)
-            this.props.refChange(this.state)
+        if((this.state.container1.text==='' && this.state.container1.image=='')){
+            document.getElementById('lastContainer1').innerHTML='<p style="color:red;">At least a text or image is needed in this space</p>'
+        }else if((this.state.container2.text==='' && this.state.container2.image=='')){
+            document.getElementById('lastContainer2').innerHTML='<p style="color:red;">At least a text or image is needed in this space</p>'
+        }else{
+            //server path attention
+            ident=this.getUrlParameter('id')
+            const method= {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:ident,level:'first',data:this.state})}
+            const dot =await fetch('/saveData',method)
+            var dat =await dot.json()
+            if (dat.status ==='success'){
+                this.props.changy(1)
+                this.props.refChange(this.state)
+            }
         }
         
     }
@@ -273,9 +280,9 @@ class Custom extends Component {
                     <option value='image'>Add Image</option>
                     </select>
                     <this.Container1 />
-                    {this.state.last1==='image' && container1.image!==""?
+                    {container1.last==='image' && container1.image!==""?
                     <img className='resImg' src={container1.image} />:
-                    <h3 className='resText' style={{color:container1.color}}>{container1.text}</h3>
+                    <h3 className='resText' id='lastContainer1' style={{color:container1.color}}>{container1.text}</h3>
                     }
                  </div>
                  <div  style={{border:'1px solid',backgroundImage:'url('+container2.backgroundImage+')',backgroundSize:'100% 100%', backgroundColor:container2.backgroundColor, color:container2.color}}>
@@ -288,9 +295,9 @@ class Custom extends Component {
                     <option value='image'>Add Image</option>
                     </select>
                     <this.Container2 />
-                    {this.state.last2==='image' && container2.image!==""?
+                    {container2.last==='image' && container2.image!==""?
                     <img className='resImg' src={container2.image} />:
-                    <h3 className='resText' style={{color:container2.color}}>{container2.text}</h3>
+                    <h3 id='lastContainer2' className='resText' style={{color:container2.color}}>{container2.text}</h3>
                     }
                  </div>
                 </div>
@@ -304,7 +311,7 @@ class Custom extends Component {
                     <option value='image'>Add Image</option>
                     </select>
                     <this.Container3 />
-                    {this.state.last3==='image' && container3.image!==""?
+                    {container3.last==='image' && container3.image!==""?
                     <img className='resImgDown' src={container3.image} />:
                     <h3 className='resTextDown' style={{color:container3.color}}>{container3.text}</h3>
                     }
@@ -327,10 +334,11 @@ class SignIn extends Component {
         }
     }
     async componentDidMount(){
+        //server path attention
         ident=this.getUrlParameter('id')
         const method= {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:ident})}
-        const dot =await fetch('/getData',method)
-        var dat =(await dot.json()).in
+        const dot =await fetch('/getSecondData',method)
+        var dat =await dot.json()
         if (dat.status ==='success'){
             let data = dat.dat
             this.setState({form:data.form, first:data.first})
@@ -366,7 +374,8 @@ class SignIn extends Component {
         this.props.changy(0)
         this.props.refChange(this.state)
         ident=this.getUrlParameter('id')
-        const method= {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:ident,level:'signin',data:this.state})}
+        //server path attention
+        const method= {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:ident,level:'second',data:this.state})}
         const dot =await fetch('/saveData',method)
         var dat =await dot.json()
         if (dat.status ==='success'){
@@ -379,7 +388,8 @@ class SignIn extends Component {
         this.props.changy(2)
         this.props.refChange(this.state)
         ident=this.getUrlParameter('id')
-        const method= {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:ident,level:'signin',data:this.state})}
+        //server path attention
+        const method= {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:ident,level:'second',data:this.state})}
         const dot =await fetch('/saveData',method)
         var dat =await dot.json()
         if (dat.status ==='success'){
@@ -421,19 +431,21 @@ class SignUp extends Component {
             form:[{name:'First Name',type:'text'},{name:'Last Name',type:'text'},{name:'Email Address',type:'email'},{name:'Phone Number',type:'tel'},{name:'Password',type:'password'}],
             name:'',
             type:'text',
+            companyName:'Test',
             short:true,
             ele:0
         }
     }
     async componentDidMount(){
+        //server path attention
         ident=this.getUrlParameter('id')
         alert('You can click on a form attribute and drag to exchange the position with another attribute, you can also add new attributes')
         const method= {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:ident})}
-        const dot =await fetch('/getData',method)
-        var dat =(await dot.json()).up
+        const dot =await fetch('/getThirdData',method)
+        var dat =await dot.json()
         if (dat.status ==='success'){
             let data = dat.dat
-            this.setState({form:data})
+            this.setState({form:data.form,companyName:data.name})
         }
     }
     getUrlParameter=(name)=>{
@@ -483,17 +495,18 @@ class SignUp extends Component {
         let {form,ele} = this.state
         if(Number(e.target.id)){
             [form[e.target.id],form[ele]]=[form[ele],form[e.target.id]]
+            document.getElementById(ele).style.opacity=1.0
+            document.getElementById(ele).style.backgroundColor='inherit'
+            document.getElementById(e.target.id).style.backgroundColor='inherit'
+            this.setState({form})
         }
-        this.setState({form})
-        document.getElementById(ele).style.opacity=1.0
-        document.getElementById(ele).style.backgroundColor='inherit'
-        document.getElementById(e.target.id).style.backgroundColor='inherit'
     }
     back=async()=>{
+        //server path attention
         this.props.changy(1)
         this.props.refChange(this.state)
         ident=this.getUrlParameter('id')
-        const method= {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:ident,level:'signup',data:this.state})}
+        const method= {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:ident,level:'third',data:this.state})}
         const dot =await fetch('/saveData',method)
         var dat =await dot.json()
         if (dat.status ==='success'){
@@ -503,10 +516,11 @@ class SignUp extends Component {
         
     }
     save=async()=>{
+        //server path attention
         this.props.changy(3)
         this.props.refChange(this.state)
         ident=this.getUrlParameter('id')
-        const method= {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:ident,level:'signup',data:this.state})}
+        const method= {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:ident,level:'third',data:this.state})}
         const dot =await fetch('/saveData',method)
         var dat =await dot.json()
         if (dat.status ==='success'){
@@ -547,26 +561,37 @@ class Landings extends Component {
             items:[],
         }
     }
+    async componentDidMount(){
+        //server path attention
+        const method= {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:ident})}
+        const dot =await fetch('/getFourthData',method)
+        var data =await dot.json()
+        if (data.status ==='success'){
+            this.setState({items:data.dat})
+        }
+    }
     save=async()=>{
+        //server path attention
         this.props.changy(4)
-        this.props.refChange(this.state)
-        const method= {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:ident,level:'landing',data:this.state})}
+        this.props.refChange(this.state.items)
+        const method= {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:ident,level:'fourth',data:this.state.items})}
         const dot =await fetch('/saveData',method)
         var dat =await dot.json()
         if (dat.status ==='success'){
             this.props.changy(4)
-            this.props.refChange(this.state)
+            this.props.refChange(this.state.items)
         }
     }
     back=async()=>{
+        //server path attention
         this.props.changy(2)
-        this.props.refChange(this.state)
-        const method= {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:ident,level:'landing',data:this.state})}
+        this.props.refChange(this.state.items)
+        const method= {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:ident,level:'fourth',data:this.state.items})}
         const dot =await fetch('/saveData',method)
         var dat =await dot.json()
         if (dat.status ==='success'){
             this.props.changy(2)
-            this.props.refChange(this.state)
+            this.props.refChange(this.state.items)
         }
         
     }
@@ -584,12 +609,12 @@ class Landings extends Component {
                 items[num].name=e.target.value
                 break;
             case 'priceLands':
-                if(Number(e.target.value) || e.target.value.includes('.') || e.target.id===''){
+                if(Number(e.target.value) || e.target.value.includes('.') || e.target.value==='' || e.target.value==='0.'){
                     items[num].price=e.target.value
                 }
                 break;
             case 'numberLands':
-                if(Number(e.target.value) || e.target.id===''){
+                if(Number(e.target.value) || e.target.value===''){
                     items[num].number=e.target.value
                 }
                 break;
@@ -650,7 +675,6 @@ const App=(props)=>{
     }
     const refChange=(data,num)=>{
         if(num===1){
-            console.log(data)
             setFirst(data)
         }else if(num===2){
             setSecond(data)
@@ -669,7 +693,7 @@ const App=(props)=>{
     else if(index===2){
         return <SignUp {...props} refChange={(data)=>{refChange(data,3)}} changy={(num)=>changy(num)} />
     }else if(index===4){
-        return <Creative total={{first,second,third,fourth}} />
+        return <Creative total={{first,second,third,fourth,changy:(num)=>changy(num)}} />
     }
     else {
         return <Custom {...props} refChange={(data)=>{refChange(data,1)}} changy={(num)=>changy(num)} />

@@ -50,8 +50,8 @@ export default class Landing extends Component {
             if(dat.status ==='success'){
                 let data=dat.dat
                 this.setState({name:data.username,email:data.email, fullName:data.name,
-                    text:data.text,fileData:data.fileData, bankName:data.bankName,
-                    bankNo:data.bankNo, selectTemp:data.temp,selectTemplate:data.template, payment:data.payment+'.00', website:data.website, company:data.company,paid:data.paid,loading:false
+                    text:data.text,fileData:data.fourth, bankName:data.bankName,
+                    bankNo:data.bankNo, selectTemp:data.temp, payment:data.payment+'.00', website:data.website, company:data.company,paid:data.paid,loading:false
                 })
                 document.getElementById('landing').style.opacity=1.0
             }
@@ -178,12 +178,11 @@ export default class Landing extends Component {
         this.setState({loading:true})
         document.getElementById('landing').style.opacity=0.45
         //send to database
-        let bod={'company':this.state.company,temp:this.state.selectTemp,template:this.state.selectTemplate,'id':ident, 'fileData':this.state.fileData}
+        let bod={'company':this.state.company,temp:this.state.selectTemp,'id':ident, 'fileData':this.state.fileData}
         fetch('/publish',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(bod) }).then(res=>res.json()).then(data=>{
             if(data.status==='success'){
-                this.setState({showCase:<Creative id='dent' info={{name:this.state.name,fileData:this.state.fileData,
-                    temp:this.state.selectTemp,template:this.state.selectTemplate}} />, index:4,loading:false})
-                
+                this.setState({showCase:<Creative id='dent' info={{name:this.state.name,fourth:this.state.fileData,
+                    temp:this.state.selectTemp}} />, index:4,loading:false})
             }
             else{
                 this.publish()
@@ -234,6 +233,12 @@ export default class Landing extends Component {
               }
             }).open()
     )
+    disable=()=>{
+        if(window.screen.width < 700){
+            return true
+        }
+        return false
+    }
     done=()=>{
         //send to server and setState
         fetch('/paid',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:ident,website:window.location.hostname+'/api/'+ident})}).then(res=>res.json()).then(data=>{
@@ -266,7 +271,7 @@ export default class Landing extends Component {
         var show={
             0:<h2 style={{opacity:0.5}}><i>No Preview Available</i></h2>,
             1:(<div className='web'>
-            <button id='custom'><Link to={'/custom?id='+ident}>Customize your Site fully {'->'}</Link></button>
+            <button id='custom' onClick={this.disable?()=>alert('Your device width is too small, therefore customized setup is not available'):()=>console.log('redirecting')}>{!this.disable?<Link to={'/custom?id='+ident}>Customize your Site fully {'->'}</Link>:"Customize your Site fully ->"}</button>
             <br />
             <h3><i>Quick Setup</i></h3>
             <hr/>
@@ -290,7 +295,7 @@ export default class Landing extends Component {
              </div>
              )}
              <button className='save' onClick={this.publish}>Save</button>
-             <button id='custom'><Link to={'/custom?id='+ident}>Customize your Site fully {'->'}</Link></button>
+             <button id='custom' onClick={this.disable?()=>alert('Your device width is too small, therefore customized setup is not available'):()=>console.log('redirecting')}>{!this.disable?<Link to={'/custom?id='+ident}>Customize your Site fully {'->'}</Link>:"Customize your Site fully ->"}</button>
             </div>), 
             2:<div className='bank'>
             <h3>Please we will only pay if this account matches the name used to register.</h3>
