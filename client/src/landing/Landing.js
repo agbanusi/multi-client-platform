@@ -45,12 +45,11 @@ export default class Landing extends Component {
     }
     componentDidMount(){
         ident=this.getUrlParameter('id')
-        console.log(window.location.hostname)
         fetch('/getData',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:ident})}).then(res=>res.json()).then(dat=>{
             if(dat.status ==='success'){
                 let data=dat.dat
                 this.setState({name:data.username,email:data.email, fullName:data.name,
-                    text:data.text,fileData:data.fourth, bankName:data.bankName,
+                    text:data.text,fileData:data.fourth || data.fileData, bankName:data.bankName,
                     bankNo:data.bankNo, selectTemp:data.temp, payment:data.payment+'.00', website:data.website, company:data.company,paid:data.paid,loading:false
                 })
                 document.getElementById('landing').style.opacity=1.0
@@ -181,7 +180,7 @@ export default class Landing extends Component {
         let bod={'company':this.state.company,temp:this.state.selectTemp,'id':ident, 'fileData':this.state.fileData}
         fetch('/publish',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(bod) }).then(res=>res.json()).then(data=>{
             if(data.status==='success'){
-                this.setState({showCase:<Creative id='dent' info={{name:this.state.name,fourth:this.state.fileData,
+                this.setState({showCase:<Creative {...this.props} id='dent' info={{name:this.state.name,fourth:this.state.fileData,
                     temp:this.state.selectTemp}} />, index:4,loading:false})
             }
             else{
@@ -191,7 +190,9 @@ export default class Landing extends Component {
             setTimeout(()=>{
                 document.getElementsByClassName('total')[0].style.transform='scale(0.325)'
                 document.getElementsByClassName('total')[0].style.marginLeft='-66.25%'
-                document.getElementsByClassName('total')[0].style.marginTop='-30%'
+                document.getElementsByClassName('total')[0].style.marginTop='-10%'
+                document.getElementsByClassName('total')[0].style.height='100%'
+
             },3000)
         })
         
@@ -205,6 +206,11 @@ export default class Landing extends Component {
         else if(e.target.id.slice(1,)==='pr'){
             if(Number(e.target.value)){
                 fileData[ind].price=e.target.value
+            }
+        }
+        else if(e.target.id.slice(1,)==='num'){
+            if(Number(e.target.value)){
+                fileData[ind].number=e.target.value
             }
         }
         else if(e.target.id.slice(1,)==='des'){
@@ -229,7 +235,7 @@ export default class Landing extends Component {
             cloudName: 'johnny11',
             uploadPreset: 'q1bjjs9hgr5h'}, (error, result) => { 
               if (!error && result && result.event === "success") {
-                this.setState({fileData:[...this.state.fileData,{name:'',price:'',des:'',url:result.info.secure_url}]})
+                this.setState({fileData:[...this.state.fileData,{name:'',number:'',price:'',des:'',url:result.info.secure_url}]})
               }
             }).open()
     )
@@ -271,7 +277,7 @@ export default class Landing extends Component {
         var show={
             0:<h2 style={{opacity:0.5}}><i>No Preview Available</i></h2>,
             1:(<div className='web'>
-            <button id='custom' onClick={this.disable?()=>alert('Your device width is too small, therefore customized setup is not available'):()=>console.log('redirecting')}>{!this.disable?<Link to={'/custom?id='+ident}>Customize your Site fully {'->'}</Link>:"Customize your Site fully ->"}</button>
+            <button id='custom' onClick={()=>this.disable()?alert('Your device width is too small, therefore customized setup is not available'):console.log('redirecting')}>{!this.disable()?<Link to={'/custom?id='+ident}>Customize your Site fully {'->'}</Link>:"Customize your Site fully ->"}</button>
             <br />
             <h3><i>Quick Setup</i></h3>
             <hr/>
@@ -289,6 +295,7 @@ export default class Landing extends Component {
              <img alt='uploaded images' src={i.url} />
              <div><input id={k+'p'} onChange={this.nameChange} placeholder='Enter Name of Product' value={i.name} required/>
              <input id={k+ 'pr'} onChange={this.nameChange} placeholder='Enter Price, NUMBERS ONLY!' value={i.price} required/>
+             <input id={k+ 'num'} onChange={this.nameChange} placeholder='Enter Number of items available' value={i.number} required/>
              <textarea id={k+ 'des'} onChange={this.nameChange} maxLength='150' value={i.des} placeholder='Enter a short description' />
              <button id='destroy' onClick={()=>{this.setState({fileData:[...this.state.fileData.slice(0,k),...this.state.fileData.slice(k+1)]})}}>Remove</button>
              </div>
@@ -338,12 +345,14 @@ export default class Landing extends Component {
                         <h3>Magento is all about expressing yourself to your customers in the easiest and fastest of ways without removing quality of design.
                          Setup your web shop easily and Magento handles the payments and monetization and it is credited to your account with payment information of customers paid and for what, so you
                         can deliver your products any way you want to. Magento takes away the stress of building a website and trying to handle the payment, organisation of customer database for free!. You only pay for hosting and handle the delivery.</h3>
-                        <div className='tens'><h5>Setup/Edit your Webpage</h5><button onClick={this.web}>SetUp!</button></div>
-                        <div className='tens'><h5>It is advisable to set up your banking information</h5><button onClick={this.bank}>Banking Info</button></div>
-                        <div className='tens'><h5>Edit your personal Information</h5><button onClick={this.edit}>Edit</button></div>
-                        <div className='tens'><h5>Preview Your Site</h5><button ><Link to={'/user?id='+ident} target='_blank'>Preview</Link></button></div>
-                        {this.state.paid?<></>:<div className='tens'><h5>Pay to get your website deployed immediately</h5><PaystackButton id='kk' {...componentProps} /></div>}
-                        <div className='tens'><h5>Withdraw Payments</h5><button onClick={this.withdraw}>Withdraw</button></div>
+                        <div className='saveLand'>
+                            <div className='tens'><h5>Setup/Edit your Webpage</h5><button onClick={this.web}>SetUp!</button></div>
+                            <div className='tens'><h5>It is advisable to set up your banking information</h5><button onClick={this.bank}>Banking Info</button></div>
+                            <div className='tens'><h5>Edit your personal Information</h5><button onClick={this.edit}>Edit</button></div>
+                            <div className='tens'><h5>Preview Your Site</h5><button ><Link to={'/user?id='+ident} target='_blank'>Preview</Link></button></div>
+                            {this.state.paid?<></>:<div className='tens'><h5>Pay to get your website deployed immediately</h5><PaystackButton id='kk' {...componentProps} /></div>}
+                            <div className='tens'><h5>Withdraw Payments</h5><button onClick={this.withdraw}>Withdraw</button></div>
+                        </div>
                         
                     </div>
                     {this.state.loading? <Loader type="ThreeDots" color="Green" height="100" width="100" className="tryk" /> : 

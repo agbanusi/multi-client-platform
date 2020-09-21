@@ -36,11 +36,18 @@ class Custom extends Component {
         if (data.status ==='success'){
             this.setState({name:data.username,email:data.email, fullName:data.name,
                 text:data.text,fileData:data.fileData,
-                selectTemp:data.temp, website:data.website, company:data.company,paid:data.paid,loading:false,
-                containerOne:dat.info.containerOne,containerTwo:dat.info.containerTwo,containerThree:dat.info.containerThree,
-                last1:dat.info.last1, last2:dat.info.last2, last3: dat.info.last3, container1: dat.info.container1,
-                container2: dat.info.container2, container3: dat.info.container3
+                selectTemp:data.temp, website:data.website, company:data.company,paid:data.paid,loading:false
             })
+
+            if(data.info.container1 && data.info.container2 && data.info.container3){
+                this.setState({
+                    containerOne:data.info.containerOne,containerTwo:data.info.containerTwo,containerThree:data.info.containerThree,
+                    last1:data.info.last1, last2:data.info.last2, last3: data.info.last3, container1: data.info.container1,
+                    container2: data.info.container2, container3: data.info.container3
+                })
+            }
+        }else{
+            window.location.href='/'
         }
     }
     widget=(num,type)=>(
@@ -341,7 +348,9 @@ class SignIn extends Component {
         var dat =await dot.json()
         if (dat.status ==='success'){
             let data = dat.dat
-            this.setState({form:data.form, first:data.first})
+            if(data.form){
+                this.setState({form:data.form, first:data.first})
+            }
         }
     }
     getUrlParameter=(name)=>{
@@ -445,7 +454,9 @@ class SignUp extends Component {
         var dat =await dot.json()
         if (dat.status ==='success'){
             let data = dat.dat
-            this.setState({form:data.form,companyName:data.name})
+            if(data.form){
+                this.setState({form:data.form,companyName:data.name})
+            }
         }
     }
     getUrlParameter=(name)=>{
@@ -567,7 +578,11 @@ class Landings extends Component {
         const dot =await fetch('/getFourthData',method)
         var data =await dot.json()
         if (data.status ==='success'){
-            this.setState({items:data.dat})
+            if(data.dat){
+                this.setState({items:data.dat})
+            }else if(data.alt){
+                this.setState({items:data.alt})
+            }
         }
     }
     save=async()=>{
@@ -649,7 +664,7 @@ class Landings extends Component {
                             <h3>Number of items available</h3>
                             <input id={'numberLands'+k} value={i.number} onChange={this.change} />
                             <h3>Describe your products in a few words</h3>
-                            <textarea id={'desLands'+k} value={i.description} onChange={this.change} />
+                            <textarea id={'desLands'+k} value={i.des} onChange={this.change} />
                             <button id={k} className='remButLands' onClick={this.remove}>Remove</button>
                         </div>
                     </div>
@@ -693,7 +708,7 @@ const App=(props)=>{
     else if(index===2){
         return <SignUp {...props} refChange={(data)=>{refChange(data,3)}} changy={(num)=>changy(num)} />
     }else if(index===4){
-        return <Creative total={{first,second,third,fourth,changy:(num)=>changy(num)}} />
+        return <Creative {...props} total={{first,second,third,fourth,changy:(num)=>changy(num)}} />
     }
     else {
         return <Custom {...props} refChange={(data)=>{refChange(data,1)}} changy={(num)=>changy(num)} />

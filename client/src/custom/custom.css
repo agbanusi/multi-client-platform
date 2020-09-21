@@ -160,6 +160,7 @@ textarea{
     color:white;
     background-color: red;
     margin-top:1rem;
+    margin-left: 30%;
 }
 .itemLands:hover .remButLands{
     opacity:1;

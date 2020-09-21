@@ -197,29 +197,46 @@ def fourthData():
         if result == None:
             response={'status':'Failed'}
         else:
-            response={'status':'success','dat':result['fourth']}
+            response={'status':'success','dat':result['fourth'], 'alt':result['fileData'] }
 
         return response
 
 @app.route('/getCustomerData',methods=['POST'])
-def CustomerData():
+def customerData():
     if request.method=='POST':
-        data=request.json()
+        data=request.json
         result=db.find_one({'_id':ObjectId(data['id'])})
         if result ==None:
             response={'status':'Failed'}
         else:
-            customer=[i for i in result['customers'] if i['id']==data['custId']][0]
-            resulted={key:val for key,val in result.items() if key !='_id' and key !='password' }
-            resd={'data':customer,**resulted}
-            response={'status':'success','dat':resd}
+            customer=[i for i in result['customers'] if i['id']==data['custId']]
+            if len(customer) >0:
+                customer=customer[0]
+                resulted={key:val for key,val in result.items() if key !='_id' and key !='password' }
+                resd={'data':customer,**resulted}
+                response={'status':'success','dat':resd}
+            else:
+                response={'status':'empty'}
         
         return response
 
-@app.route('/saveCart',method=['POST'])
+@app.route('/getUserData',methods=['POST'])
+def getUserData():
+    if request.method=='POST':
+        data=request.json
+        result=db.find_one({'_id':ObjectId(data['id'])})
+        if result ==None:
+            response={'status':'Failed'}
+        else:
+            resulted={key:val for key,val in result.items() if key !='_id' and key !='password' }
+            response={'status':'success','dat':resulted}
+        
+        return response
+
+@app.route('/saveCart',methods=['POST'])
 def cart_saver():
     if request.method=='POST':
-        data=request.json()
+        data=request.json
         result=db.find_one({'_id':ObjectId(data['id'])})
         if result ==None:
             response={'status':'Failed'}
@@ -239,10 +256,10 @@ def cart_saver():
             response={'status':'success'}
         return response
 
-@app.route('/saveData',method=['POST'])
+@app.route('/saveData',methods=['POST'])
 def saveData():
     if request.method=='POST':
-        data=request.json()
+        data=request.json
         result=db.find_one({'_id':ObjectId(data['id'])})
         if result ==None:
             response={'status':'Failed'}
@@ -260,10 +277,10 @@ def saveData():
 
         return response
 
-@app.route('/customerPaid',method=['POST'])
+@app.route('/customerPaid',methods=['POST'])
 def customer_paid():
     if request.method=='POST':
-        data=request.json()
+        data=request.json
         result=db.find_one({'_id':ObjectId(data['id'])})
         if result ==None:
             response={'status':'Failed'}

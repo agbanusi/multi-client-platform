@@ -13,8 +13,42 @@ import img7 from '../assets/Liquid-Cheese.svg'
 import img8 from '../assets/Rainbow-Vortex.svg'
 import Loader from 'react-loader-spinner';
 
+const firstArb={
+    loading:true,
+    redirect:false,
+    background:'',
+    backImg:'',
+    backCol:'',
+    containerOne:"",
+    containerTwo:"",
+    containerThree:"",
+    last1:"image",
+    last2:"text",
+    last3:"text",
+    container1:{color:'black',backgroundColor:"inherit",image:"",backgroundImage:"",text:""},
+    container2:{color:'black',backgroundColor:"inherit",image:"",backgroundImage:"",text:""},
+    container3:{color:'black',backgroundColor:"inherit",image:"",backgroundImage:"",text:""}
+
+}
+const secondArb={
+    form:[{name:'Username/Email',type:'text'},{name:'Password',type:'password'}],
+    name:'',
+    first:'',
+    type:'text',
+    short:true
+}
+const thirdArb={
+    form:[{name:'First Name',type:'text'},{name:'Last Name',type:'text'},{name:'Email Address',type:'email'},{name:'Phone Number',type:'tel'},{name:'Password',type:'password'}],
+            name:'',
+            type:'text',
+            companyName:'Test',
+            short:true,
+            ele:0
+}
+
 var ident
 var custIdent
+
 export default class Creative extends Component {
     constructor(props){
         super(props);
@@ -29,9 +63,9 @@ export default class Creative extends Component {
             type:false,
             data:'',
             loading:true,
-            first:[],
-            second:[],
-            third:[],
+            first:firstArb,
+            second:secondArb,
+            third:thirdArb,
             fourth:[],
             fifth:[]
         }
@@ -39,24 +73,27 @@ export default class Creative extends Component {
     componentDidMount(){
         if(this.props.info){
             let info=this.props.info
-            this.setState({name:info.name,fourth:info.fileData,fileData:info.fileData,selectTemp:this.state.temp[info.temp],index:3,loading:false})
+            ident=this.getUrlParameter('id')
+            document.getElementById('diddyCreate').style.opacity=1
+            this.setState({name:info.name,fourth:info.fourth,fileData:info.fourth,selectTemp:this.state.temp[info.temp],index:3,loading:false})
         }
         else if(this.props.total){
             let total=this.props.total
-            document.getElementById('diddyCreate').style.opacity=1
-            this.setState({first:total.first,second:total.second,third:total.third,fourth:total.fourth.items, loading:false})
+            ident=this.getUrlParameter('id')
+            this.setState({first:total.first,second:total.second,third:total.third,fourth:total.fourth, loading:false})
             document.getElementById('diddyCreate').style.opacity=1
         }
         else{
             //server path attention
             ident=this.getUrlParameter('id')
-            custIdent=this.getCookie('id')
-            fetch('/getCustomerData',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:ident,custId:custIdent})}).then(res=>res.json()).then(dat=>{
+            fetch('/getUserData',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:ident}) }).then(res=>res.json()).then(dat=>{
                 if(dat.status ==='success'){
                     let data=dat.dat
                     document.getElementById('diddyCreate').style.opacity=1
-                    this.setState({email:data.email,fileData:data.fileData, name:data.company,loading:false,
-                    first:data.first, second:data.second, third:data.third,fourth:data.fourth, data:data.data})
+                    this.setState({email:data.email,fileData:data.fileData, name:data.company,loading:false})
+                    if(data.first.container1 && data.first.container2 && data.first.container3){
+                        this.setState({first:data.first, second:data.second, third:data.third,fourth:data.fourth})
+                    }
                 }
                 else{
                     window.location.href='/'
@@ -64,17 +101,7 @@ export default class Creative extends Component {
             })
         }
     }
-    getCookie=(name)=>{
-        var ident
-        let t = decodeURIComponent(document.cookie).split(';')
-        t.map(i => {
-            let b = i.trim().split('=')
-            if (b[0] === name) {
-                ident = b[1]
-            }
-        })
-        return ident
-    };
+    
     getUrlParameter=(name)=>{
         // eslint-disable-next-line
         name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
@@ -87,8 +114,8 @@ export default class Creative extends Component {
             0:<Item1 {...this.props} total={this.props.total} first={this.state.first} change={(num)=>{this.setState({index:num})}}/>,
             1:<Item2 {...this.props} total={this.props.total} second={this.state.second} first={{backImg:this.state.first.backImg,backCol:this.state.first.backCol}} change={(num)=>{this.setState({index:num})}} changeData={(data)=>{this.setState({data})}} />,
             2:<Item3 {...this.props} total={this.props.total} third={this.state.third} first={{backImg:this.state.first.backImg,backImg2:this.state.selectTemp,backCol:this.state.first.backCol}} change={(num)=>{this.setState({index:num})}} changeData={(data)=>{this.setState({data})}} />,
-            3:<Item4 {...this.props} total={this.props.total} data={{name:this.state.data.name, email:this.state.data.email}} fileData={this.state.fourth} cart={this.state.cart} first={{backImg:this.state.selectTemp || this.state.first.backImg,backCol:this.state.first.backCol || 'rgb(223, 234, 247)'}} change={(num)=>{this.setState({index:num})}} carter={(cart)=>{this.setState({cart})}} />,
-            4:<Item5 {...this.props} total={this.props.total} data={{name:this.state.data.name, email:this.state.data.email}} cart={this.state.cart} change={(num)=>{this.setState({index:num})}} carter={(cart)=>{this.setState({cart})}} />
+            3:<Item4 {...this.props} total={this.props.total} fileData={this.state.fourth} cart={this.state.cart} first={{backImg:this.state.selectTemp || this.state.first.backImg,backCol:this.state.first.backCol || 'rgb(223, 234, 247)'}} change={(num)=>{this.setState({index:num})}} carter={(cart)=>{this.setState({cart})}} />,
+            4:<Item5 {...this.props} total={this.props.total} cart={this.state.cart} change={(num)=>{this.setState({index:num})}} carter={(cart)=>{this.setState({cart})}} />
         }
         return (
             <div style={{opacity:0.5}} className='diddy' id='diddyCreate' >
@@ -98,21 +125,57 @@ export default class Creative extends Component {
     }
 }
 
-const Item1=(props)=>(
+const Item1=(props)=>{
+    const [name, setName]=useState("")
+    const[auth, setAuth]=useState(false)
+
+    useEffect(()=>{
+        custIdent=getCookie('id')
+        fetch('/getCustomerData',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:ident,custId:custIdent}) }).then(res=>res.json()).then(dat=>{
+            if(dat.status ==='success'){
+                let data=dat.dat.data
+                document.getElementById('diddyCreate').style.opacity=1
+                setName(data.name)
+                setAuth(true)
+                ///this.setState({email:data.email,fileData:data.fileData, name:data.company,loading:false,
+                //first:data.first, second:data.second, third:data.third,fourth:data.fourth, data:data.data})
+            }
+        })
+    })
+    const getCookie=(name)=>{
+        var ident
+        let t = decodeURIComponent(document.cookie).split(';')
+        t.map(i => {
+            let b = i.trim().split('=')
+            if (b[0] === name) {
+                ident = b[1]
+            }
+        })
+        return ident
+    };
+    const logged=()=>{
+        if(auth){
+            props.change(3)
+        }else{
+            props.change(1)
+        }
+    }
+
+    return(
     <div className='passid' style={{backgroundImage:props.first.backImg,backgroundColor:props.first.backCol}}>
         <div className='beautCustom beauterCustom'>
             <div className='firstCont' style={{backgroundImage:'url('+props.first.container1.backgroundImage+')',backgroundSize:'100% 100%', backgroundColor:props.first.container1.backgroundColor, color:props.first.container1.color}}>
                 {props.first.last1==='image' && props.first.container1.image!==""?
                 <img className='nittyCreateImg' src={props.first.container1.image} />: 
                 <h3 className='nittyCreate'>{props.first.container1.text}</h3>}
-                {!(props.first.last1==='image' && props.first.container1.image!=="") && <div className='showFirst'><h5>Already a member? </h5><button onClick={()=>props.change(1)} className='signin'>Sign In</button></div>}
+                {!(props.first.last1==='image' && props.first.container1.image!=="") && <div className='showFirst'><h5>Already a member? </h5><button onClick={()=>logged()} className='signin'>Sign In</button></div>}
                 {!(props.first.last1==='image' && props.first.container1.image!=="") && <div className='showFirst'><h5>Go to Products Page</h5><button onClick={()=>props.change(3)} className='signin'>Products</button></div>}
             </div>  
                 <div className='firstCont' style={{backgroundImage:'url('+props.first.container2.backgroundImage+')',backgroundSize:'100% 100%', backgroundColor:props.first.container2.backgroundColor, color:props.first.container2.color}} >
                 {props.first.last2==='text' && props.first.container2.text!==""?
                 <h3 className='nittyCreate'>{props.first.container2.text}</h3>:
                 <img className='nittyCreateImg' src={props.first.container2.image} />}
-                {(props.first.last2==='text' && props.first.container2.text!=="") && <div className='showFirst'><h5>Already a member? </h5><button onClick={()=>props.change(1)} className='signin'>Sign In</button></div>}
+                {(props.first.last2==='text' && props.first.container2.text!=="") && <div className='showFirst'><h5>Already a member? </h5><button onClick={()=>logged()} className='signin'>Sign In</button></div>}
                 {(props.first.last2==='text' && props.first.container2.text!=="") && <div className='showFirst'><h5>Go to Products Page</h5><button onClick={()=>props.change(3)} className='signin'>Products</button></div>}
             </div>
         </div>
@@ -123,7 +186,8 @@ const Item1=(props)=>(
         </div>
         {props.total?<div className='nextDivCreate'><button className='nextCreate' onClick={()=>props.change(1)}>NEXT</button></div>:<></>}
     </div>
-)
+    )
+}
 const Item2=(props)=>{
     const [emails,setEmail]=useState('')
     const [passwords,setPassword]=useState('')
@@ -131,7 +195,7 @@ const Item2=(props)=>{
     const [type,setType]=useState(true)
 
     useEffect(()=>{
-        console.log(props.second)
+        //console.log(props.second)
         props.second.form.map(i=>{
             let newt=[...arbtr]
             newt.push('')
@@ -262,13 +326,42 @@ const Item3=(props)=>{
 
 const Item4=(props)=>{
     const[cart, setCart]=useState(props.cart)
+    const [name,setName]=useState("")
+    const [email, setMail]=useState("")
 
+    useEffect(()=>{
+        custIdent=getCookie('id')
+        console.log(props.cart)
+        fetch('/getCustomerData',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:ident,custId:custIdent}) }).then(res=>res.json()).then(dat=>{
+            if(dat.status ==='success'){
+                let data=dat.dat.data
+                document.getElementById('diddyCreate').style.opacity=1
+                setName(data.name)
+                setMail(data.email)
+                ///this.setState({email:data.email,fileData:data.fileData, name:data.company,loading:false,
+                //first:data.first, second:data.second, third:data.third,fourth:data.fourth, data:data.data})
+            }
+        })
+    })
+
+    const getCookie=(name)=>{
+        var ident
+        let t = decodeURIComponent(document.cookie).split(';')
+        t.map(i => {
+            let b = i.trim().split('=')
+            if (b[0] === name) {
+                ident = b[1]
+            }
+        })
+        return ident
+    };
     const add=(item,id)=>{
-        if(!cart.includes(item)){
+        let cartNames=cart.map(i=>i.name)
+        if(!cartNames.includes(item.name)){
             setCart([...cart,{...item,id}])
             props.carter([...cart,{...item,id}])
             save()
-            document.getElementById('mess').innerHTML='Added to Cart'
+            document.getElementById('mess').innerHTML='Added to Cart.'
         }
         else{
             document.getElementById('mess').innerHTML='Already added to Cart, you can increase the number of a particular item at the checkout.'
@@ -276,6 +369,7 @@ const Item4=(props)=>{
     }
     const save=()=>{
         //server path attention
+        custIdent=getCookie('id')
         const method={method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:ident,custId:custIdent,cart})}
         fetch('/saveCart',method).then(res=>res.json())
     }
@@ -286,11 +380,11 @@ const Item4=(props)=>{
             <div className='butonn'>
             <p className='cart'>{cart.length}</p>
             <p className='homer' onClick={()=>{if(cart.length>0){props.change(4)}
-                                                else if(props.data.name){props.change(1)}else{props.change(4)}}}>🛒</p>
+                                                else if(name != ""){props.change(1)}else{props.change(4)}}}>🛒</p>
             </div>
             <button className='home buton' onClick={()=>{props.change(0)}}>Welcome Page</button>
         </div>
-        <h1 id='messy'>Welcome {props.data.name || 'Guest'} to Our Store</h1>
+        <h1 id='messy'>Welcome {name || 'Guest'} to Our Store</h1>
         <h5 id='mess'> </h5>
         <div className='bodyLin'>
             {props.fileData.map((i,k)=>{
@@ -298,9 +392,9 @@ const Item4=(props)=>{
                     <img className='displayid' src={i.url}  alt='logo' />
                     <h2>{i.name}</h2>
                     <h3 className='price'>{i.price}</h3>
-                    <h4>{Number(i.number)} items remaining</h4>
+                    <h4>{!i.number?0:i.number} items remaining</h4>
                     <p  className='describe'>{i.des}</p>
-                    <button id='hover' onClick={()=>{add({'path':i.url,'price':i.price,'content':i.des},k)}} disabled={i.numbers<1? true:false}>BUY NOW</button>
+                    <button id='hover' onClick={()=>{add({'path':i.url,name:i.name,'price':i.price,'des':i.des,'number':i.number},k)}} disabled={i.number<1 || !i.number? true:false}>BUY NOW</button>
                 </div>)
             })}
         </div>
@@ -322,12 +416,14 @@ const Item4=(props)=>{
 const Item5=(props)=>{
     const[cart, setCart]=useState(props.cart)
     const [no, setNo] = useState(props.cart.map(i=>1))
+    const [name,setName]=useState("")
+    const [email, setMail]=useState("")
 
     const componentProps = {
-        email:props.data.email,
-        amount:(props.cart.map(i=>Number(i.price)).reduce((acc,value)=>acc+value,0))*100,
+        email:email,
+        amount:(cart.map(i=>Number(i.price)).reduce((acc,value)=>acc+value,0))*100,
         metadata: {
-          name:props.data.name,
+          name:name,
           phone: '08012345678',
         },
         text: "Pay Now",
@@ -339,15 +435,50 @@ const Item5=(props)=>{
         onClose: () => alert("Wait! You need this, don't go!!!!"),
     
     }
+    useEffect(()=>{
+        custIdent=getCookie('id')
+        fetch('/getCustomerData',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:ident,custId:custIdent}) }).then(res=>res.json()).then(dat=>{
+            if(dat.status ==='success'){
+                let data=dat.dat.data
+                document.getElementById('diddyCreate').style.opacity=1
+                setName(data.name)
+                setMail(data.email)
+                ///this.setState({email:data.email,fileData:data.fileData, name:data.company,loading:false,
+                //first:data.first, second:data.second, third:data.third,fourth:data.fourth, data:data.data})
+            }else if(dat.status=='Failed'){
+                props.change(1)
+            }
+            
+        })
+    })
     const remove=(k)=>{
         let carted=[...cart.slice(0,k),...cart.slice(k+1)]
+        let numb=[...no.slice(0,k),...no.slice(k+1)]
         setCart(carted)
-    }
-    const add=(k)=>{
-        let numb = no
-        numb[k] +=1
         setNo(numb)
     }
+    const add=(k)=>{
+        let numb = [...no.slice(0,k),no[k]+1,...no.slice(k+1)]
+        setNo(numb)
+    }
+    const reduce=(k)=>{
+        if(no[k]-1 > 0){
+            let numb = [...no.slice(0,k),no[k]-1,...no.slice(k+1)]
+            setNo(numb)
+        }
+        
+    }
+    const getCookie=(name)=>{
+        var ident
+        let t = decodeURIComponent(document.cookie).split(';')
+        t.map(i => {
+            let b = i.trim().split('=')
+            if (b[0] === name) {
+                ident = b[1]
+            }
+        })
+        return ident
+    };
     const done=()=>{
         //send to server and setState
         //server path attention
@@ -364,17 +495,18 @@ const Item5=(props)=>{
     }
     return(
     <div className='cati'>
-        {props.cart.map((i,k)=>(
+        {cart.map((i,k)=>(
             <div className='falseSeeny'>
                 <div className='seeny'>
                 <img className='deen' src={i.path} />
                 <h4>{i.name}</h4>
-                <p>{no[k]}</p>
+                <h5>{no[k]}</h5>
                 <h5>NGN {i.price*no[k]}</h5>
                 </div>
                 <div className='bottomSeeny'>
                 <button className='removeCartItem' onClick={()=>remove(k)}>Remove</button>
                 <button className='removeCartItem' onClick={()=>add(k)}>Add More</button>
+                <button className='removeCartItem' onClick={()=>reduce(k)}>Reduce</button>
                 </div>
             </div>)
         )}
@@ -382,11 +514,20 @@ const Item5=(props)=>{
         <div className='biggy'>
             <button className='shop' onClick={()=>{props.change(3)}}>Back</button> 
             <PaystackButton className='kkk' id='kkk' {...componentProps} /> 
-            <h3>Sub-Total: NGN {(props.cart.map(i=>Number(i.price)).reduce((acc,value)=>acc+value,0)).toFixed(2)}</h3>
+            <h3>Sub-Total: NGN {(cart.map((i,k)=>Number(i.price)*no[k]).reduce((acc,value)=>acc+value,0)).toFixed(2)}</h3>
         </div>
         {props.total?<div className='nextDivCreate'><button className='nextCreate' onClick={()=>props.total.changy(0)}>Change</button>
         <button className='nextCreate' onClick={()=>props.change(3)}>BACK</button></div>:<></>}
     </div>
+    )
+}
+
+const Forgot=()=>{
+
+    return(
+        <div>
+        
+        </div>
     )
 }
 // add and add twitter acct, facebook acct, email done, instagram acct
