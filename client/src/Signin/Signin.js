@@ -17,7 +17,6 @@ export default class Signin extends Component {
         }
         
     }
-    
     componentDidMount(){
         if(this.getUrlParameter('sign')==='signed'){
             this.setState({second:true})
@@ -29,7 +28,7 @@ export default class Signin extends Component {
         <div><h5>Already a Magento User? </h5><button onClick={this.replace} className='signin'>Sign In</button></div>
         </div>
     )
-
+    
     getUrlParameter=(name)=>{
         // eslint-disable-next-line
         name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
