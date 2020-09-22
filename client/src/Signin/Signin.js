@@ -39,6 +39,7 @@ export default class Signin extends Component {
     replace=()=>{
         this.setState({second:true})
     }
+    
     typeChange=()=>{
         if(!this.state.type){
             document.getElementById('passFirst').type='text'
