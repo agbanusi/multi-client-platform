@@ -1,0 +1,183 @@
+.custom{
+    width:100vw;
+    display:grid;
+    justify-items: center;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+.beautCustom{
+    margin-top: 1rem;
+    height:65vh;
+    width:100%;
+    display:flex;
+    justify-content: space-evenly;
+}
+.beautCustom div{
+    height:100%;
+    width:45%;
+    display: grid;
+    justify-items: center;
+}
+.down{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    height:40vh;
+    width:93%;
+    display: grid;
+    justify-items: center;
+}
+select{
+    width: 15rem;
+    height:1.75rem;
+    margin: 1rem 0px 1rem 0px;
+}
+.contSignIn:hover{
+    background-color: moccasin !important;
+}
+textarea{
+    height: 5rem;
+    width: 85%;
+}
+.contRes{
+    margin-top: -7.5rem;
+    margin-bottom: 1rem;
+}
+.resText,.resImg,.resImgDown{
+    margin-top: -8.5rem;
+    width:85%;
+}
+.resImgDown{
+    height: 12rem;
+    width: 12rem;
+}
+.resTextDown,.resImgDown{
+    margin-top: -4rem;
+}
+.contResDow{
+    width:5rem;
+    margin-top: -4rem;
+}
+.contResDown{
+    width:70%;
+    margin-top: -4rem;
+}
+.homeRem{
+    position: relative !important;
+}
+.backImg{
+    height: 6rem;
+    width: 12rem;
+    background-color: yellow;
+    border-radius: 0.75rem;
+    font-size: 1.35rem;
+}
+.buttonsHome{
+    z-index:5;
+    margin-top:0rem;
+    height: 4rem;
+    width: 7.5rem;
+    border-radius: 0.75rem;
+    background-color: firebrick;
+    color: white;
+    font-size: 1.5rem;
+}
+.buttonsHome:hover{
+    background-color:teal;
+    color: white;
+}
+.subInp{
+    margin: 1rem 0px 1rem 2rem;
+    background-color: green;
+    color: whitesmoke;
+    height: 3.5rem;
+    width: 5rem;
+    border-radius:0.75rem;
+}
+.addSign{
+    margin-top:2rem;
+    cursor: pointer;
+}
+.signIn{
+    display: grid;
+    place-items: center;
+}
+.endButtons{
+    margin-bottom: 1rem;
+    width: 50%;
+    display: flex;
+    justify-content: space-around;
+}
+.contSignIn{
+    margin-top:1rem;
+    height: 6.5rem;
+    display: grid;
+    place-items: center;
+}
+.lands{
+    display:grid;
+    place-items: center;
+}
+.butLands{
+    margin-top:1rem;
+    height:4rem;
+    width:6.5rem;
+    border-radius: 0.75rem;
+    background-color: deepskyblue;
+}
+.butLands:hover,.backImg:hover{
+    background-color: teal;
+    color:white;
+}
+.itemLands{
+    padding:1rem;
+    width: 50%;
+    margin: 1rem 0px 1rem 0px;
+    display:grid;
+    align-items: center;
+    grid-template-columns: 1fr 4fr;
+    border-radius:1rem;
+    box-shadow: 3px 3px 3px 3px black;
+}
+.itemLands div{
+    margin-left: 1rem;
+    display:grid;
+    align-content:center;
+}
+.itemLands input{
+    width: 70%;
+}
+.imageLands:hover{
+    transform: scale(1.25);
+}
+.imageLands{
+    margin-left:1.5rem;
+    height: 7.5rem;
+    width: 7.5rem;
+}
+.remButLands{
+    height: 3rem;
+    width: 6rem;
+    border-radius: 0.75rem;
+    opacity: 0;
+    color:white;
+    background-color: red;
+    margin-top:1rem;
+    margin-left: 30%;
+}
+.itemLands:hover .remButLands{
+    opacity:1;
+}
+.uploadUser{
+    border-radius: 0.75rem;
+    font-size: 1.25rem;
+    height: 4rem;
+    width: 7rem;
+    background-color: gold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.uploadUser:hover{
+   color: white;
+   background-color: teal;
+}

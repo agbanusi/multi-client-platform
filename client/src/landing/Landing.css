@@ -1,0 +1,201 @@
+.landing{
+    width:100vw;
+    display:grid;
+    background-image:url('../assets/undraw_gone_shopping_vwmc.svg');
+    background-size: 70vw 100vh;
+    background-repeat: no-repeat;
+}
+.topper{
+    height:12.5vh;
+    box-shadow: 2.5px 2.5px 2.5px 2.5px grey;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.mainer{
+    padding-right:1rem;
+    display:grid;
+    grid-template-columns: 1.5fr 1fr;
+}
+.Lefti{
+    padding-left: 1rem;
+    padding-right:2.5%;
+}
+.saveLand{
+    margin-top: 2rem;
+}
+.Lefti h3{
+    margin-top:15%;
+}
+.Lefti .tens{
+    margin-bottom:1rem;
+    margin-left: 10%;
+    width: 60%;
+    display:flex;
+    height: 8.5%;
+    justify-content: space-between;
+}
+.Lefti .tens button,#kk{
+    height:3rem;
+    width:5rem;
+    border-radius: 0.75rem;
+    background-image: linear-gradient(to top left,orange,yellow,orange);
+}
+.tens button:focus,#kk:focus{
+    outline:none;
+}
+.Righti{
+    display:grid;
+    place-items: center;
+}
+.bank{
+    width:75%;
+}
+.banking input{
+    width:90%;
+    height:1.25rem;
+    border-radius: 0.75rem;
+    padding: 0px 0.75rem 0px 0.75rem;
+}
+.bank button:focus, .banking input:focus,
+.person button:focus,.personal input:focus,
+.personal textarea:focus, .web input:focus,.web button:focus{
+    outline:none;
+}
+.bank button, .person button, .web button{
+    margin-top:1.5rem;
+    width:30%;
+    margin-left: 35%;
+    height:3rem;
+    border-radius: 0.75rem;
+    background-color:lawngreen;
+}
+#custom{
+    margin-left: 33%;
+    color:white;
+    background-color: orangered;
+    width: 12rem;
+    height:4rem;
+    border-radius: 1rem;
+}
+#custom:hover{
+    background-color: teal;
+    transform: scale(1.25);
+}
+.banking h4{
+    margin-bottom: 0.25rem;
+}
+.person{
+    width:75%;
+    height:75%;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.person .personal h5{
+    margin-bottom:0.25rem;
+}
+.personal textarea{
+    border-radius: 0.75rem;
+    padding: 0px 0.75rem 0px 0.75rem;
+}
+.person button{
+    margin-bottom: 1rem;
+}
+.personal input{
+    width:90%;
+    height:1.25rem;
+    border-radius: 0.75rem;
+    padding: 0px 0.75rem 0px 0.75rem;
+}
+.web{
+    padding-right:1rem;
+}
+.web h4{
+    margin-bottom:0.25rem;
+}
+.webber input{
+    width:80%;
+    height:1.25rem;
+    border-radius: 0.75rem;
+    padding: 0px 0.75rem 0px 0.75rem;
+}
+.web img{
+    height:3rem;
+    width: 5rem;
+}
+.webbed1,.webbed2{
+    display: grid;
+    grid-column-gap:0.25rem;
+    grid-row-gap:0.25rem;
+    grid-template-columns: repeat(auto-fit,5.5rem);
+}
+.items{
+    margin-bottom: 0.5rem;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    place-items: center;
+    background-color: gainsboro;
+}
+#destroy{
+    opacity:0;
+    background-color:red;
+    color:white;
+    border-radius: 1rem;
+    margin: 0rem 0px 0.5rem 3rem;
+    height:3rem;
+    width:5rem;
+}
+.items:hover #destroy{
+    opacity:1;
+    
+}
+.items div{
+    display:grid;
+}
+.items input, .items textarea{
+    margin-top: 0.5rem;
+    width: 100%;
+}
+.items textarea{
+    margin-bottom: 0.5rem;
+}
+.items button{
+    margin-bottom: 1rem;
+}
+.showOff{
+    border:0.5rem solid orange;
+    height:80vh;
+    width:33.5vw;
+    border-radius: 0.75rem;
+    background-color: white;
+    overflow: hidden;
+}
+.save{
+    margin-bottom: 1rem;
+}
+button:focus, input:focus{
+    outline:none;
+}
+#dent{
+    max-width: 100%;
+    height: 100%;
+}
+.tryk{
+    margin:40vh 0px 0px -10vw;
+    opacity:1 !important;
+}
+.footers{
+    margin-top: 15vh;
+    display:grid;
+    place-items: center;
+    padding-top:1rem;
+    background-color: rgb(22, 2, 2);
+    color:white;
+}
+.medias{
+    font-size: 1.25rem;
+    width:50vw;
+    display: flex;
+    justify-content: space-around;
+}
