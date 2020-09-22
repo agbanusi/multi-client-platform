@@ -285,7 +285,7 @@ const Item3=(props)=>{
             document.getElementById('checkdi').innerText='You haven\'t checked the box for terms and services.'
         }
         
-    }
+    } 
 
     return(
     <div id='signedd' className='resortFar' style={{backgroundImage:props.first.backImg,backgroundColor:props.first.backCol}} >
