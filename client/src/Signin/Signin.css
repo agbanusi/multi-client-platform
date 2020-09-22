@@ -5,7 +5,7 @@
     margin-top: -1rem;
     grid-template-columns: 1fr 1fr;
     background-image: url('./wave.svg');
-    background-size: 100% 50%;
+    background-size: 100% 27.5vw;
     background-repeat: no-repeat;
 }
 .righty{

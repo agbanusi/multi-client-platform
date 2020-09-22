@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/static/css/main.fc1fd045.chunk.css",
+    "main.css": "/static/css/main.79f26560.chunk.css",
     "main.js": "/static/js/main.a18ac194.chunk.js",
     "main.js.map": "/static/js/main.a18ac194.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.09b85ec0.js",
@@ -8,9 +8,9 @@
     "static/js/2.d3c81323.chunk.js": "/static/js/2.d3c81323.chunk.js",
     "static/js/2.d3c81323.chunk.js.map": "/static/js/2.d3c81323.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.bdd095464b1f8356ce8d8bec65c157f5.js": "/precache-manifest.bdd095464b1f8356ce8d8bec65c157f5.js",
+    "precache-manifest.0678bb49a3bf3ae1320c3b345224acb4.js": "/precache-manifest.0678bb49a3bf3ae1320c3b345224acb4.js",
     "service-worker.js": "/service-worker.js",
-    "static/css/main.fc1fd045.chunk.css.map": "/static/css/main.fc1fd045.chunk.css.map",
+    "static/css/main.79f26560.chunk.css.map": "/static/css/main.79f26560.chunk.css.map",
     "static/js/2.d3c81323.chunk.js.LICENSE.txt": "/static/js/2.d3c81323.chunk.js.LICENSE.txt",
     "static/media/2860933.jpg": "/static/media/2860933.33a2d2e6.jpg",
     "static/media/Signup.css": "/static/media/Confetti-Doodles.1257a615.svg",
@@ -30,7 +30,7 @@
   "entrypoints": [
     "static/js/runtime-main.09b85ec0.js",
     "static/js/2.d3c81323.chunk.js",
-    "static/css/main.fc1fd045.chunk.css",
+    "static/css/main.79f26560.chunk.css",
     "static/js/main.a18ac194.chunk.js"
   ]
 }
