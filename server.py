@@ -347,8 +347,11 @@ def publish():
         temp = data['temp']
         fileData=data['fileData']
         ide=data['id']
-        db.find_one_and_update({'_id':ObjectId(ide)},{'$set':{'temp':temp,'company':company,'fileData':fileData,'fourth':fileData } },upsert=True)
-        response={'status':'success'}
+        res = db.find_one_and_update({'_id':ObjectId(ide)},{'$set':{'temp':temp,'company':company,'fileData':fileData,'fourth':fileData } },upsert=True)
+        if res:
+            response={'status':'success'}
+        else:
+            response={'status':'Failed'}
         return response
 
 @app.route('/paid',methods=['POST'])
@@ -412,6 +415,8 @@ def apper(ide='none'):
            return render_template('index.html')
         else:
             return ({'ERROR':"NOT AVAILABLE"})
+
+#error message: 'You cannot initiate third party payouts as a starter business'
 
 if __name__=='__main__':
     app.run(debug=False)

@@ -1,0 +1,730 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="1156"
+  height="660"
+  preserveAspectRatio="xMidYMid"
+  viewBox="0 0 1156 660"
+  style="z-index:1;display:block;background-color:rgb(241, 242, 243);animation-play-state:running"
+><g transform="" style="animation-play-state:running"><style
+      type="text/css"
+      style="animation-play-state:running"
+    >@keyframes ld-fall {
+    0% { transform: translate(0,0px) rotate3d(1,1,1,0deg); }
+    100% { transform: translate(0,660px) rotate3d(1,1,1,1080deg) ; }
+  }
+  .ld.ld-fall {
+    animation: ld-fall 4s linear infinite;
+    animation: ld-fall 1s linear infinite;
+  }</style>
+
+  
+<g
+      transform="translate(0 649.0901453990089)"
+      style="animation-play-state:running"
+    ><g
+        transform="translate(181.33199479285088 0)"
+        style="animation-play-state:running"
+      ><g
+          class="ld ld-fall"
+          style="transform:matrix(1, 0, 0, 1, 0, 0);animation-play-state:running;animation-duration:2s"
+        ><rect
+            x="-5.2465881107534145"
+            y="-4.3319552956735174"
+            width="10.493176221506829"
+            height="8.663910591347035"
+            fill="#07abcc"
+            style="transform:matrix(1.74235, 0, 0, 1.74235, 0, 0);animation-play-state:running"
+          /></g></g>
+<g
+        transform="translate(625.7163712575257 0)"
+        style="animation-play-state:running"
+      ><g
+          class="ld ld-fall"
+          style="transform:matrix3d(-0.0970346, 0.107585, 0.989449, 0, 0.989449, -0.0970346, 0.107585, 0, 0.107585, 0.989449, -0.0970346, 0, 0, 140.429, 0, 1);animation-play-state:running;animation-duration:4s;animation-delay:-0.851085s"
+        ><rect
+            x="-5.249182734115175"
+            y="-3.1351136609008603"
+            width="10.49836546823035"
+            height="6.270227321801721"
+            fill="#91bcc6"
+            style="transform:matrix(2.5944, 0, 0, 2.5944, 0, 0);animation-play-state:running"
+          /></g></g>
+<g
+        transform="translate(143.25089546594546 0)"
+        style="animation-play-state:running"
+      ><g
+          class="ld ld-fall"
+          style="transform:matrix3d(0.374002, -0.263276, 0.889274, 0, 0.889274, 0.374002, -0.263276, 0, -0.263276, 0.889274, 0.374002, 0, 0, 607.137, 0, 1);animation-play-state:running;animation-duration:4s;animation-delay:-3.67962s"
+        ><rect
+            x="-5.554945323294678"
+            y="-4.242407958227579"
+            width="11.109890646589356"
+            height="8.484815916455158"
+            fill="#0a69aa"
+            style="transform:matrix(3.03975, 0, 0, 3.03975, 0, 0);animation-play-state:running"
+          /></g></g>
+<g
+        transform="translate(162.48988281536646 0)"
+        style="animation-play-state:running"
+      ><g
+          class="ld ld-fall"
+          style="transform:matrix3d(0.744235, -0.326764, 0.582529, 0, 0.582529, 0.744235, -0.326764, 0, -0.326764, 0.582529, 0.744235, 0, 0, 408.253, 0, 1);animation-play-state:running;animation-duration:4s;animation-delay:-2.47426s"
+        ><rect
+            x="-4.246469371067933"
+            y="-4.598284236327464"
+            width="8.492938742135866"
+            height="9.196568472654928"
+            fill="#e4934b"
+            style="transform:matrix(2.12798, 0, 0, 2.12798, 0, 0);animation-play-state:running"
+          /></g></g>
+<g
+        transform="translate(17.013798421174485 0)"
+        style="animation-play-state:running"
+      ><g
+          class="ld ld-fall"
+          style="transform:matrix3d(0.988176, -0.102344, 0.114168, 0, 0.114168, 0.988176, -0.102344, 0, -0.102344, 0.114168, 0.988176, 0, 0, 433.396, 0, 1);animation-play-state:running;animation-duration:2s;animation-delay:-1.31332s"
+        ><rect
+            x="-5.88694416567076"
+            y="-4.868401327437198"
+            width="11.77388833134152"
+            height="9.736802654874396"
+            fill="#0a69aa"
+            style="transform:matrix(2.85103, 0, 0, 2.85103, 0, 0);animation-play-state:running"
+          /></g></g>
+<g
+        transform="translate(44.19054707604795 0)"
+        style="animation-play-state:running"
+      ><g
+          class="ld ld-fall"
+          style="transform:matrix3d(0.537372, 0.780959, -0.318331, 0, -0.318331, 0.537372, 0.780959, 0, 0.780959, -0.318331, 0.537372, 0, 0, 264.109, 0, 1);animation-play-state:running;animation-duration:4s;animation-delay:-1.60066s"
+        ><rect
+            x="-3.121650351584875"
+            y="-3.7185530174810033"
+            width="6.24330070316975"
+            height="7.437106034962007"
+            fill="#0a69aa"
+            style="transform:matrix(1.8524, 0, 0, 1.8524, 0, 0);animation-play-state:running"
+          /></g></g>
+<g
+        transform="translate(217.5086880771052 0)"
+        style="animation-play-state:running"
+      ><g
+          class="ld ld-fall"
+          style="transform:matrix3d(0.95441, 0.232631, -0.187041, 0, -0.187041, 0.95441, 0.232631, 0, 0.232631, -0.187041, 0.95441, 0, 0, 453.024, 0, 1);animation-play-state:running;animation-duration:4s;animation-delay:-2.7456s"
+        ><rect
+            x="-5.777687351723463"
+            y="-4.231541749541715"
+            width="11.555374703446926"
+            height="8.46308349908343"
+            fill="#df1317"
+            style="transform:matrix(3.04084, 0, 0, 3.04084, 0, 0);animation-play-state:running"
+          /></g></g>
+<g
+        transform="translate(277.6970836338155 0)"
+        style="animation-play-state:running"
+      ><g
+          class="ld ld-fall"
+          style="transform:matrix3d(0.951767, -0.191495, 0.239728, 0, 0.239728, 0.951767, -0.191495, 0, -0.191495, 0.239728, 0.951767, 0, 0, 426.599, 0, 1);animation-play-state:running;animation-duration:4s;animation-delay:-2.58545s"
+        ><rect
+            x="-3.4798941916728054"
+            y="-3.969429523833951"
+            width="6.959788383345611"
+            height="7.938859047667902"
+            fill="#07abcc"
+            style="transform:matrix(2.66689, 0, 0, 2.66689, 0, 0);animation-play-state:running"
+          /></g></g>
+<g
+        transform="translate(334.8408312084349 0)"
+        style="animation-play-state:running"
+      ><g
+          class="ld ld-fall"
+          style="transform:matrix3d(0.708973, -0.331461, 0.622488, 0, 0.622488, 0.708973, -0.331461, 0, -0.331461, 0.622488, 0.708973, 0, 0, 185.958, 0, 1);animation-play-state:running;animation-duration:4s;animation-delay:-1.12702s"
+        ><rect
+            x="-3.079798297549176"
+            y="-4.430992871220974"
+            width="6.159596595098352"
+            height="8.861985742441949"
+            fill="#e1e7e7"
+            style="transform:matrix(1.81568, 0, 0, 1.81568, 0, 0);animation-play-state:running"
+          /></g></g>
+<g
+        transform="translate(139.8377319513458 0)"
+        style="animation-play-state:running"
+      ><g
+          class="ld ld-fall"
+          style="transform:matrix3d(0.838962, 0.456801, -0.295763, 0, -0.295763, 0.838962, 0.456801, 0, 0.456801, -0.295763, 0.838962, 0, 0, 24.8556, 0, 1);animation-play-state:running;animation-duration:2s;animation-delay:-2.07532s"
+        ><rect
+            x="-3.2699744749618094"
+            y="-3.8084651068051407"
+            width="6.539948949923619"
+            height="7.616930213610281"
+            fill="#e4934b"
+            style="transform:matrix(2.54421, 0, 0, 2.54421, 0, 0);animation-play-state:running"
+          /></g></g>
+<g
+        transform="translate(488.7324994557799 0)"
+        style="animation-play-state:running"
+      ><g
+          class="ld ld-fall"
+          style="transform:matrix3d(0.169721, -0.144554, 0.974833, 0, 0.974833, 0.169721, -0.144554, 0, -0.144554, 0.974833, 0.169721, 0, 0, 156.318, 0, 1);animation-play-state:running;animation-duration:4s;animation-delay:-0.947383s"
+        ><rect
+            x="-5.917212093105275"
+            y="-4.926030902772717"
+            width="11.83442418621055"
+            height="9.852061805545434"
+            fill="#e1e7e7"
+            style="transform:matrix(3.06189, 0, 0, 3.06189, 0, 0);animation-play-state:running"
+          /></g></g>
+<g
+        transform="translate(578.0341820068741 0)"
+        style="animation-play-state:running"
+      ><g
+          class="ld ld-fall"
+          style="transform:matrix3d(0.557988, 0.764588, -0.322576, 0, -0.322576, 0.557988, 0.764588, 0, 0.764588, -0.322576, 0.557988, 0, 0, 42.9653, 0, 1);animation-play-state:running;animation-duration:4s;animation-delay:-0.260396s"
+        ><rect
+            x="-5.427531801142334"
+            y="-3.487605487738205"
+            width="10.855063602284668"
+            height="6.97521097547641"
+            fill="#07abcc"
+            style="transform:matrix(3.49014, 0, 0, 3.49014, 0, 0);animation-play-state:running"
+          /></g></g>
+<g
+        transform="translate(1006.3785315276481 0)"
+        style="animation-play-state:running"
+      ><g
+          class="ld ld-fall"
+          style="transform:matrix3d(-0.0343352, 0.0355574, 0.998778, 0, 0.998778, -0.0343352, 0.0355574, 0, 0.0355574, 0.998778, -0.0343352, 0, 0, 364.546, 0, 1);animation-play-state:running;animation-duration:4s;animation-delay:-2.20937s"
+        ><rect
+            x="-4.771031194739313"
+            y="-4.416170686693051"
+            width="9.542062389478627"
+            height="8.832341373386102"
+            fill="#91bcc6"
+            style="transform:matrix(3.05933, 0, 0, 3.05933, 0, 0);animation-play-state:running"
+          /></g></g>
+<g
+        transform="translate(369.1227221116224 0)"
+        style="animation-play-state:running"
+      ><g
+          class="ld ld-fall"
+          style="transform:matrix3d(-0.268433, 0.882695, 0.385738, 0, 0.385738, -0.268433, 0.882695, 0, 0.882695, 0.385738, -0.268433, 0, 0, 534.422, 0, 1);animation-play-state:running;animation-duration:2s;animation-delay:-3.61946s"
+        ><rect
+            x="-5.218532894050896"
+            y="-4.227462086060424"
+            width="10.437065788101792"
+            height="8.454924172120847"
+            fill="#91bcc6"
+            style="transform:matrix(1.68439, 0, 0, 1.68439, 0, 0);animation-play-state:running"
+          /></g></g>
+<g
+        transform="translate(1056.7787087034528 0)"
+        style="animation-play-state:running"
+      ><g
+          class="ld ld-fall"
+          style="transform:matrix3d(0.0569112, 0.996927, -0.0538379, 0, -0.0538379, 0.0569112, 0.996927, 0, 0.996927, -0.0538379, 0.0569112, 0, 0, 69.9699, 0, 1);animation-play-state:running;animation-duration:2s;animation-delay:-0.21203s"
+        ><rect
+            x="-5.158337830723715"
+            y="-3.2733596283926167"
+            width="10.31667566144743"
+            height="6.5467192567852335"
+            fill="#e2bb8b"
+            style="transform:matrix(2.25095, 0, 0, 2.25095, 0, 0);animation-play-state:running"
+          /></g></g>
+<g
+        transform="translate(1069.0841298479593 0)"
+        style="animation-play-state:running"
+      ><g
+          class="ld ld-fall"
+          style="transform:matrix3d(0.545787, -0.320142, 0.774355, 0, 0.774355, 0.545787, -0.320142, 0, -0.320142, 0.774355, 0.545787, 0, 0, 396.356, 0, 1);animation-play-state:running;animation-duration:2s;animation-delay:-1.20108s"
+        ><rect
+            x="-5.986666966762387"
+            y="-4.565603453316926"
+            width="11.973333933524774"
+            height="9.131206906633851"
+            fill="#91bcc6"
+            style="transform:matrix(2.31159, 0, 0, 2.31159, 0, 0);animation-play-state:running"
+          /></g></g>
+<g
+        transform="translate(330.226701089282 0)"
+        style="animation-play-state:running"
+      ><g
+          class="ld ld-fall"
+          style="transform:matrix3d(0.873072, -0.275424, 0.402352, 0, 0.402352, 0.873072, -0.275424, 0, -0.275424, 0.402352, 0.873072, 0, 0, 638.035, 0, 1);animation-play-state:running;animation-duration:2s;animation-delay:-1.93344s"
+        ><rect
+            x="-4.1865722485327534"
+            y="-5.382977442774564"
+            width="8.373144497065507"
+            height="10.765954885549128"
+            fill="#e2bb8b"
+            style="transform:matrix(3.28515, 0, 0, 3.28515, 0, 0);animation-play-state:running"
+          /></g></g>
+<g
+        transform="translate(1008.5456439194845 0)"
+        style="animation-play-state:running"
+      ><g
+          class="ld ld-fall"
+          style="transform:matrix3d(-0.309194, 0.808552, 0.500642, 0, 0.500642, -0.309194, 0.808552, 0, 0.808552, 0.500642, -0.309194, 0, 0, 100.549, 0, 1);animation-play-state:running;animation-duration:4s;animation-delay:-0.609387s"
+        ><rect
+            x="-5.394137345507918"
+            y="-5.766325190468998"
+            width="10.788274691015836"
+            height="11.532650380937996"
+            fill="#e2bb8b"
+            style="transform:matrix(3.19535, 0, 0, 3.19535, 0, 0);animation-play-state:running"
+          /></g></g>
+<g
+        transform="translate(959.1506508772911 0)"
+        style="animation-play-state:running"
+      ><g
+          class="ld ld-fall"
+          style="transform:matrix3d(0.811763, -0.307954, 0.496191, 0, 0.496191, 0.811763, -0.307954, 0, -0.307954, 0.496191, 0.811763, 0, 0, 633.026, 0, 1);animation-play-state:running;animation-duration:2s;animation-delay:-3.91826s"
+        ><rect
+            x="-3.9150013398276493"
+            y="-5.555054687504062"
+            width="7.830002679655299"
+            height="11.110109375008124"
+            fill="#e1e7e7"
+            style="transform:matrix(2.69951, 0, 0, 2.69951, 0, 0);animation-play-state:running"
+          /></g></g>
+<g
+        transform="translate(112.95521697017054 0)"
+        style="animation-play-state:running"
+      ><g
+          class="ld ld-fall"
+          style="transform:matrix3d(0.119922, -0.10693, 0.987008, 0, 0.987008, 0.119922, -0.10693, 0, -0.10693, 0.987008, 0.119922, 0, 0, 153.591, 0, 1);animation-play-state:running;animation-duration:2s;animation-delay:-0.465426s"
+        ><rect
+            x="-5.111761991130595"
+            y="-4.0047949636262805"
+            width="10.22352398226119"
+            height="8.009589927252561"
+            fill="#194645"
+            style="transform:matrix(1.77223, 0, 0, 1.77223, 0, 0);animation-play-state:running"
+          /></g></g>
+<g
+        transform="translate(809.9082597283294 0)"
+        style="animation-play-state:running"
+      ><g
+          class="ld ld-fall"
+          style="transform:matrix3d(0.165577, 0.975984, -0.141561, 0, -0.141561, 0.165577, 0.975984, 0, 0.975984, -0.141561, 0.165577, 0, 0, 63.9065, 0, 1);animation-play-state:running;animation-duration:2s;animation-delay:-0.193656s"
+        ><rect
+            x="-3.142751933113965"
+            y="-3.205686597500393"
+            width="6.28550386622793"
+            height="6.411373195000786"
+            fill="#e2bb8b"
+            style="transform:matrix(2.87679, 0, 0, 2.87679, 0, 0);animation-play-state:running"
+          /></g></g>
+<g
+        transform="translate(353.65125735407184 0)"
+        style="animation-play-state:running"
+      ><g
+          class="ld ld-fall"
+          style="transform:matrix3d(0.440063, -0.289935, 0.849872, 0, 0.849872, 0.440063, -0.289935, 0, -0.289935, 0.849872, 0.440063, 0, 0, 170.63, 0, 1);animation-play-state:running;animation-duration:4s;animation-delay:-1.03412s"
+        ><rect
+            x="-4.359558126039303"
+            y="-5.883402580951529"
+            width="8.719116252078607"
+            height="11.766805161903058"
+            fill="#e1e7e7"
+            style="transform:matrix(2.45045, 0, 0, 2.45045, 0, 0);animation-play-state:running"
+          /></g></g>
+<g
+        transform="translate(330.98543103696966 0)"
+        style="animation-play-state:running"
+      ><g
+          class="ld ld-fall"
+          style="transform:matrix3d(-0.327566, 0.739563, 0.588004, 0, 0.588004, -0.327566, 0.739563, 0, 0.739563, 0.588004, -0.327566, 0, 0, 545.391, 0, 1);animation-play-state:running;animation-duration:2s;animation-delay:-3.6527s"
+        ><rect
+            x="-3.62230618810254"
+            y="-4.959914032885737"
+            width="7.24461237620508"
+            height="9.919828065771474"
+            fill="#07abcc"
+            style="transform:matrix(1.8232, 0, 0, 1.8232, 0, 0);animation-play-state:running"
+          /></g></g>
+<g
+        transform="translate(175.65835019024482 0)"
+        style="animation-play-state:running"
+      ><g
+          class="ld ld-fall"
+          style="transform:matrix3d(0.128361, -0.113565, 0.985204, 0, 0.985204, 0.128361, -0.113565, 0, -0.113565, 0.985204, 0.128361, 0, 0, 154.057, 0, 1);animation-play-state:running;animation-duration:4s;animation-delay:-0.933681s"
+        ><rect
+            x="-4.4846837040490835"
+            y="-4.2131926685859655"
+            width="8.969367408098167"
+            height="8.426385337171931"
+            fill="#e2bb8b"
+            style="transform:matrix(2.62961, 0, 0, 2.62961, 0, 0);animation-play-state:running"
+          /></g></g>
+<g
+        transform="translate(9.484189969262557 0)"
+        style="animation-play-state:running"
+      ><g
+          class="ld ld-fall"
+          style="transform:matrix3d(0.728705, -0.329212, 0.600506, 0, 0.600506, 0.728705, -0.329212, 0, -0.329212, 0.600506, 0.728705, 0, 0, 187.229, 0, 1);animation-play-state:running;animation-duration:2s;animation-delay:-2.56736s"
+        ><rect
+            x="-3.6227768121101906"
+            y="-3.155804548805628"
+            width="7.245553624220381"
+            height="6.311609097611256"
+            fill="#194645"
+            style="transform:matrix(2.59802, 0, 0, 2.59802, 0, 0);animation-play-state:running"
+          /></g></g></g>
+
+  
+<g
+      transform="translate(0 -10.909854600991139)"
+      style="animation-play-state:running"
+    ><g
+        transform="translate(181.33199479285088 0)"
+        style="animation-play-state:running"
+      ><g
+          class="ld ld-fall"
+          style="transform:matrix(1, 0, 0, 1, 0, 0);animation-play-state:running;animation-duration:2s"
+        ><rect
+            x="-5.2465881107534145"
+            y="-4.3319552956735174"
+            width="10.493176221506829"
+            height="8.663910591347035"
+            fill="#07abcc"
+            style="transform:matrix(1.74235, 0, 0, 1.74235, 0, 0);animation-play-state:running"
+          /></g></g>
+<g
+        transform="translate(625.7163712575257 0)"
+        style="animation-play-state:running"
+      ><g
+          class="ld ld-fall"
+          style="transform:matrix3d(-0.0970346, 0.107585, 0.989449, 0, 0.989449, -0.0970346, 0.107585, 0, 0.107585, 0.989449, -0.0970346, 0, 0, 140.429, 0, 1);animation-play-state:running;animation-duration:4s;animation-delay:-0.851085s"
+        ><rect
+            x="-5.249182734115175"
+            y="-3.1351136609008603"
+            width="10.49836546823035"
+            height="6.270227321801721"
+            fill="#91bcc6"
+            style="transform:matrix(2.5944, 0, 0, 2.5944, 0, 0);animation-play-state:running"
+          /></g></g>
+<g
+        transform="translate(143.25089546594546 0)"
+        style="animation-play-state:running"
+      ><g
+          class="ld ld-fall"
+          style="transform:matrix3d(0.374002, -0.263276, 0.889274, 0, 0.889274, 0.374002, -0.263276, 0, -0.263276, 0.889274, 0.374002, 0, 0, 607.137, 0, 1);animation-play-state:running;animation-duration:4s;animation-delay:-3.67962s"
+        ><rect
+            x="-5.554945323294678"
+            y="-4.242407958227579"
+            width="11.109890646589356"
+            height="8.484815916455158"
+            fill="#0a69aa"
+            style="transform:matrix(3.03975, 0, 0, 3.03975, 0, 0);animation-play-state:running"
+          /></g></g>
+<g
+        transform="translate(162.48988281536646 0)"
+        style="animation-play-state:running"
+      ><g
+          class="ld ld-fall"
+          style="transform:matrix3d(0.744235, -0.326764, 0.582529, 0, 0.582529, 0.744235, -0.326764, 0, -0.326764, 0.582529, 0.744235, 0, 0, 408.253, 0, 1);animation-play-state:running;animation-duration:4s;animation-delay:-2.47426s"
+        ><rect
+            x="-4.246469371067933"
+            y="-4.598284236327464"
+            width="8.492938742135866"
+            height="9.196568472654928"
+            fill="#e4934b"
+            style="transform:matrix(2.12798, 0, 0, 2.12798, 0, 0);animation-play-state:running"
+          /></g></g>
+<g
+        transform="translate(17.013798421174485 0)"
+        style="animation-play-state:running"
+      ><g
+          class="ld ld-fall"
+          style="transform:matrix3d(0.988176, -0.102344, 0.114168, 0, 0.114168, 0.988176, -0.102344, 0, -0.102344, 0.114168, 0.988176, 0, 0, 433.396, 0, 1);animation-play-state:running;animation-duration:2s;animation-delay:-1.31332s"
+        ><rect
+            x="-5.88694416567076"
+            y="-4.868401327437198"
+            width="11.77388833134152"
+            height="9.736802654874396"
+            fill="#0a69aa"
+            style="transform:matrix(2.85103, 0, 0, 2.85103, 0, 0);animation-play-state:running"
+          /></g></g>
+<g
+        transform="translate(44.19054707604795 0)"
+        style="animation-play-state:running"
+      ><g
+          class="ld ld-fall"
+          style="transform:matrix3d(0.537372, 0.780959, -0.318331, 0, -0.318331, 0.537372, 0.780959, 0, 0.780959, -0.318331, 0.537372, 0, 0, 264.109, 0, 1);animation-play-state:running;animation-duration:4s;animation-delay:-1.60066s"
+        ><rect
+            x="-3.121650351584875"
+            y="-3.7185530174810033"
+            width="6.24330070316975"
+            height="7.437106034962007"
+            fill="#0a69aa"
+            style="transform:matrix(1.8524, 0, 0, 1.8524, 0, 0);animation-play-state:running"
+          /></g></g>
+<g
+        transform="translate(217.5086880771052 0)"
+        style="animation-play-state:running"
+      ><g
+          class="ld ld-fall"
+          style="transform:matrix3d(0.95441, 0.232631, -0.187041, 0, -0.187041, 0.95441, 0.232631, 0, 0.232631, -0.187041, 0.95441, 0, 0, 453.024, 0, 1);animation-play-state:running;animation-duration:4s;animation-delay:-2.7456s"
+        ><rect
+            x="-5.777687351723463"
+            y="-4.231541749541715"
+            width="11.555374703446926"
+            height="8.46308349908343"
+            fill="#df1317"
+            style="transform:matrix(3.04084, 0, 0, 3.04084, 0, 0);animation-play-state:running"
+          /></g></g>
+<g
+        transform="translate(277.6970836338155 0)"
+        style="animation-play-state:running"
+      ><g
+          class="ld ld-fall"
+          style="transform:matrix3d(0.951767, -0.191495, 0.239728, 0, 0.239728, 0.951767, -0.191495, 0, -0.191495, 0.239728, 0.951767, 0, 0, 426.599, 0, 1);animation-play-state:running;animation-duration:4s;animation-delay:-2.58545s"
+        ><rect
+            x="-3.4798941916728054"
+            y="-3.969429523833951"
+            width="6.959788383345611"
+            height="7.938859047667902"
+            fill="#07abcc"
+            style="transform:matrix(2.66689, 0, 0, 2.66689, 0, 0);animation-play-state:running"
+          /></g></g>
+<g
+        transform="translate(334.8408312084349 0)"
+        style="animation-play-state:running"
+      ><g
+          class="ld ld-fall"
+          style="transform:matrix3d(0.708973, -0.331461, 0.622488, 0, 0.622488, 0.708973, -0.331461, 0, -0.331461, 0.622488, 0.708973, 0, 0, 185.958, 0, 1);animation-play-state:running;animation-duration:4s;animation-delay:-1.12702s"
+        ><rect
+            x="-3.079798297549176"
+            y="-4.430992871220974"
+            width="6.159596595098352"
+            height="8.861985742441949"
+            fill="#e1e7e7"
+            style="transform:matrix(1.81568, 0, 0, 1.81568, 0, 0);animation-play-state:running"
+          /></g></g>
+<g
+        transform="translate(139.8377319513458 0)"
+        style="animation-play-state:running"
+      ><g
+          class="ld ld-fall"
+          style="transform:matrix3d(0.838962, 0.456801, -0.295763, 0, -0.295763, 0.838962, 0.456801, 0, 0.456801, -0.295763, 0.838962, 0, 0, 24.8556, 0, 1);animation-play-state:running;animation-duration:2s;animation-delay:-2.07532s"
+        ><rect
+            x="-3.2699744749618094"
+            y="-3.8084651068051407"
+            width="6.539948949923619"
+            height="7.616930213610281"
+            fill="#e4934b"
+            style="transform:matrix(2.54421, 0, 0, 2.54421, 0, 0);animation-play-state:running"
+          /></g></g>
+<g
+        transform="translate(488.7324994557799 0)"
+        style="animation-play-state:running"
+      ><g
+          class="ld ld-fall"
+          style="transform:matrix3d(0.169721, -0.144554, 0.974833, 0, 0.974833, 0.169721, -0.144554, 0, -0.144554, 0.974833, 0.169721, 0, 0, 156.318, 0, 1);animation-play-state:running;animation-duration:4s;animation-delay:-0.947383s"
+        ><rect
+            x="-5.917212093105275"
+            y="-4.926030902772717"
+            width="11.83442418621055"
+            height="9.852061805545434"
+            fill="#e1e7e7"
+            style="transform:matrix(3.06189, 0, 0, 3.06189, 0, 0);animation-play-state:running"
+          /></g></g>
+<g
+        transform="translate(578.0341820068741 0)"
+        style="animation-play-state:running"
+      ><g
+          class="ld ld-fall"
+          style="transform:matrix3d(0.557988, 0.764588, -0.322576, 0, -0.322576, 0.557988, 0.764588, 0, 0.764588, -0.322576, 0.557988, 0, 0, 42.9653, 0, 1);animation-play-state:running;animation-duration:4s;animation-delay:-0.260396s"
+        ><rect
+            x="-5.427531801142334"
+            y="-3.487605487738205"
+            width="10.855063602284668"
+            height="6.97521097547641"
+            fill="#07abcc"
+            style="transform:matrix(3.49014, 0, 0, 3.49014, 0, 0);animation-play-state:running"
+          /></g></g>
+<g
+        transform="translate(1006.3785315276481 0)"
+        style="animation-play-state:running"
+      ><g
+          class="ld ld-fall"
+          style="transform:matrix3d(-0.0343352, 0.0355574, 0.998778, 0, 0.998778, -0.0343352, 0.0355574, 0, 0.0355574, 0.998778, -0.0343352, 0, 0, 364.546, 0, 1);animation-play-state:running;animation-duration:4s;animation-delay:-2.20937s"
+        ><rect
+            x="-4.771031194739313"
+            y="-4.416170686693051"
+            width="9.542062389478627"
+            height="8.832341373386102"
+            fill="#91bcc6"
+            style="transform:matrix(3.05933, 0, 0, 3.05933, 0, 0);animation-play-state:running"
+          /></g></g>
+<g
+        transform="translate(369.1227221116224 0)"
+        style="animation-play-state:running"
+      ><g
+          class="ld ld-fall"
+          style="transform:matrix3d(-0.268433, 0.882695, 0.385738, 0, 0.385738, -0.268433, 0.882695, 0, 0.882695, 0.385738, -0.268433, 0, 0, 534.422, 0, 1);animation-play-state:running;animation-duration:2s;animation-delay:-3.61946s"
+        ><rect
+            x="-5.218532894050896"
+            y="-4.227462086060424"
+            width="10.437065788101792"
+            height="8.454924172120847"
+            fill="#91bcc6"
+            style="transform:matrix(1.68439, 0, 0, 1.68439, 0, 0);animation-play-state:running"
+          /></g></g>
+<g
+        transform="translate(1056.7787087034528 0)"
+        style="animation-play-state:running"
+      ><g
+          class="ld ld-fall"
+          style="transform:matrix3d(0.0569112, 0.996927, -0.0538379, 0, -0.0538379, 0.0569112, 0.996927, 0, 0.996927, -0.0538379, 0.0569112, 0, 0, 69.9699, 0, 1);animation-play-state:running;animation-duration:2s;animation-delay:-0.21203s"
+        ><rect
+            x="-5.158337830723715"
+            y="-3.2733596283926167"
+            width="10.31667566144743"
+            height="6.5467192567852335"
+            fill="#e2bb8b"
+            style="transform:matrix(2.25095, 0, 0, 2.25095, 0, 0);animation-play-state:running"
+          /></g></g>
+<g
+        transform="translate(1069.0841298479593 0)"
+        style="animation-play-state:running"
+      ><g
+          class="ld ld-fall"
+          style="transform:matrix3d(0.545787, -0.320142, 0.774355, 0, 0.774355, 0.545787, -0.320142, 0, -0.320142, 0.774355, 0.545787, 0, 0, 396.356, 0, 1);animation-play-state:running;animation-duration:2s;animation-delay:-1.20108s"
+        ><rect
+            x="-5.986666966762387"
+            y="-4.565603453316926"
+            width="11.973333933524774"
+            height="9.131206906633851"
+            fill="#91bcc6"
+            style="transform:matrix(2.31159, 0, 0, 2.31159, 0, 0);animation-play-state:running"
+          /></g></g>
+<g
+        transform="translate(330.226701089282 0)"
+        style="animation-play-state:running"
+      ><g
+          class="ld ld-fall"
+          style="transform:matrix3d(0.873072, -0.275424, 0.402352, 0, 0.402352, 0.873072, -0.275424, 0, -0.275424, 0.402352, 0.873072, 0, 0, 638.035, 0, 1);animation-play-state:running;animation-duration:2s;animation-delay:-1.93344s"
+        ><rect
+            x="-4.1865722485327534"
+            y="-5.382977442774564"
+            width="8.373144497065507"
+            height="10.765954885549128"
+            fill="#e2bb8b"
+            style="transform:matrix(3.28515, 0, 0, 3.28515, 0, 0);animation-play-state:running"
+          /></g></g>
+<g
+        transform="translate(1008.5456439194845 0)"
+        style="animation-play-state:running"
+      ><g
+          class="ld ld-fall"
+          style="transform:matrix3d(-0.309194, 0.808552, 0.500642, 0, 0.500642, -0.309194, 0.808552, 0, 0.808552, 0.500642, -0.309194, 0, 0, 100.549, 0, 1);animation-play-state:running;animation-duration:4s;animation-delay:-0.609387s"
+        ><rect
+            x="-5.394137345507918"
+            y="-5.766325190468998"
+            width="10.788274691015836"
+            height="11.532650380937996"
+            fill="#e2bb8b"
+            style="transform:matrix(3.19535, 0, 0, 3.19535, 0, 0);animation-play-state:running"
+          /></g></g>
+<g
+        transform="translate(959.1506508772911 0)"
+        style="animation-play-state:running"
+      ><g
+          class="ld ld-fall"
+          style="transform:matrix3d(0.811763, -0.307954, 0.496191, 0, 0.496191, 0.811763, -0.307954, 0, -0.307954, 0.496191, 0.811763, 0, 0, 633.026, 0, 1);animation-play-state:running;animation-duration:2s;animation-delay:-3.91826s"
+        ><rect
+            x="-3.9150013398276493"
+            y="-5.555054687504062"
+            width="7.830002679655299"
+            height="11.110109375008124"
+            fill="#e1e7e7"
+            style="transform:matrix(2.69951, 0, 0, 2.69951, 0, 0);animation-play-state:running"
+          /></g></g>
+<g
+        transform="translate(112.95521697017054 0)"
+        style="animation-play-state:running"
+      ><g
+          class="ld ld-fall"
+          style="transform:matrix3d(0.119922, -0.10693, 0.987008, 0, 0.987008, 0.119922, -0.10693, 0, -0.10693, 0.987008, 0.119922, 0, 0, 153.591, 0, 1);animation-play-state:running;animation-duration:2s;animation-delay:-0.465426s"
+        ><rect
+            x="-5.111761991130595"
+            y="-4.0047949636262805"
+            width="10.22352398226119"
+            height="8.009589927252561"
+            fill="#194645"
+            style="transform:matrix(1.77223, 0, 0, 1.77223, 0, 0);animation-play-state:running"
+          /></g></g>
+<g
+        transform="translate(809.9082597283294 0)"
+        style="animation-play-state:running"
+      ><g
+          class="ld ld-fall"
+          style="transform:matrix3d(0.165577, 0.975984, -0.141561, 0, -0.141561, 0.165577, 0.975984, 0, 0.975984, -0.141561, 0.165577, 0, 0, 63.9065, 0, 1);animation-play-state:running;animation-duration:2s;animation-delay:-0.193656s"
+        ><rect
+            x="-3.142751933113965"
+            y="-3.205686597500393"
+            width="6.28550386622793"
+            height="6.411373195000786"
+            fill="#e2bb8b"
+            style="transform:matrix(2.87679, 0, 0, 2.87679, 0, 0);animation-play-state:running"
+          /></g></g>
+<g
+        transform="translate(353.65125735407184 0)"
+        style="animation-play-state:running"
+      ><g
+          class="ld ld-fall"
+          style="transform:matrix3d(0.440063, -0.289935, 0.849872, 0, 0.849872, 0.440063, -0.289935, 0, -0.289935, 0.849872, 0.440063, 0, 0, 170.63, 0, 1);animation-play-state:running;animation-duration:4s;animation-delay:-1.03412s"
+        ><rect
+            x="-4.359558126039303"
+            y="-5.883402580951529"
+            width="8.719116252078607"
+            height="11.766805161903058"
+            fill="#e1e7e7"
+            style="transform:matrix(2.45045, 0, 0, 2.45045, 0, 0);animation-play-state:running"
+          /></g></g>
+<g
+        transform="translate(330.98543103696966 0)"
+        style="animation-play-state:running"
+      ><g
+          class="ld ld-fall"
+          style="transform:matrix3d(-0.327566, 0.739563, 0.588004, 0, 0.588004, -0.327566, 0.739563, 0, 0.739563, 0.588004, -0.327566, 0, 0, 545.391, 0, 1);animation-play-state:running;animation-duration:2s;animation-delay:-3.6527s"
+        ><rect
+            x="-3.62230618810254"
+            y="-4.959914032885737"
+            width="7.24461237620508"
+            height="9.919828065771474"
+            fill="#07abcc"
+            style="transform:matrix(1.8232, 0, 0, 1.8232, 0, 0);animation-play-state:running"
+          /></g></g>
+<g
+        transform="translate(175.65835019024482 0)"
+        style="animation-play-state:running"
+      ><g
+          class="ld ld-fall"
+          style="transform:matrix3d(0.128361, -0.113565, 0.985204, 0, 0.985204, 0.128361, -0.113565, 0, -0.113565, 0.985204, 0.128361, 0, 0, 154.057, 0, 1);animation-play-state:running;animation-duration:4s;animation-delay:-0.933681s"
+        ><rect
+            x="-4.4846837040490835"
+            y="-4.2131926685859655"
+            width="8.969367408098167"
+            height="8.426385337171931"
+            fill="#e2bb8b"
+            style="transform:matrix(2.62961, 0, 0, 2.62961, 0, 0);animation-play-state:running"
+          /></g></g>
+<g
+        transform="translate(9.484189969262557 0)"
+        style="animation-play-state:running"
+      ><g
+          class="ld ld-fall"
+          style="transform:matrix3d(0.728705, -0.329212, 0.600506, 0, 0.600506, 0.728705, -0.329212, 0, -0.329212, 0.600506, 0.728705, 0, 0, 187.229, 0, 1);animation-play-state:running;animation-duration:2s;animation-delay:-2.56736s"
+        ><rect
+            x="-3.6227768121101906"
+            y="-3.155804548805628"
+            width="7.245553624220381"
+            height="6.311609097611256"
+            fill="#194645"
+            style="transform:matrix(2.59802, 0, 0, 2.59802, 0, 0);animation-play-state:running"
+          /></g></g></g></g></svg>

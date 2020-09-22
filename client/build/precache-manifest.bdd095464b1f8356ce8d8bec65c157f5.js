@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "bf1ac0b2be27085dafccc8e7bf95adb3",
+    "revision": "5d9ea7ad0f5d3d5255f9c3dd1e6131b2",
     "url": "/index.html"
   },
   {
-    "revision": "bd0e92a8bab7bb0cfcf1",
-    "url": "/static/css/main.e774d326.chunk.css"
+    "revision": "561b546c4b782b825467",
+    "url": "/static/css/main.fc1fd045.chunk.css"
   },
   {
-    "revision": "9b201499b7920db204ff",
-    "url": "/static/js/2.120e2fdb.chunk.js"
+    "revision": "b69283c3a001389d9005",
+    "url": "/static/js/2.d3c81323.chunk.js"
   },
   {
     "revision": "216e537bacc64f9dbaabd26649a9ab95",
-    "url": "/static/js/2.120e2fdb.chunk.js.LICENSE.txt"
+    "url": "/static/js/2.d3c81323.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "bd0e92a8bab7bb0cfcf1",
-    "url": "/static/js/main.239742a0.chunk.js"
+    "revision": "561b546c4b782b825467",
+    "url": "/static/js/main.a18ac194.chunk.js"
   },
   {
     "revision": "9b4e396c183e42c1fa5c",
@@ -26,6 +26,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "33a2d2e6c53e83e1a22a90663dd871e9",
     "url": "/static/media/2860933.33a2d2e6.jpg"
+  },
+  {
+    "revision": "826fe9c4712bd9bc6a81dd5d520a8963",
+    "url": "/static/media/Confetti-4s-1156px.826fe9c4.svg"
   },
   {
     "revision": "1257a6156712fd19a5fbc7533816bcb3",
@@ -48,8 +52,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/media/Repeating-Triangles.3eb74d6f.svg"
   },
   {
-    "revision": "7a14df2a71698f115fb91228441e9e5d",
-    "url": "/static/media/undraw_Online_page_re_lhgx.7a14df2a.svg"
+    "revision": "3692bbfc0118c3cd01020b360377b4fd",
+    "url": "/static/media/undraw_Online_page_re_lhgx.3692bbfc.svg"
   },
   {
     "revision": "b0c11510c7d2a8e2f2402be014387b85",
@@ -74,5 +78,9 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "d5872f4a3f4f6e3d606e536a87338dd7",
     "url": "/static/media/undraw_web_search_eetr.d5872f4a.svg"
+  },
+  {
+    "revision": "76f91b853e6d163124d140931ead0cfb",
+    "url": "/static/media/wave.76f91b85.svg"
   }
 ]);

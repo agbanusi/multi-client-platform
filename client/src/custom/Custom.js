@@ -2,6 +2,7 @@ import React, { Component, useState } from 'react'
 import {Redirect} from 'react-router-dom'
 import './custom.css'
 import Creative from '../customer/Creative';
+import {temps} from '../temps'
 
 const cloudinary=window.cloudinary;
 var ident
@@ -33,17 +34,18 @@ class Custom extends Component {
         const method= {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:ident})}
         const dot =await fetch('/getFirstData',method)
         var data =await dot.json()
+        console.log(data.info, temps[data.temp], data.info.backImg==`url(${''})`, data.info.backImg=="")
         if (data.status ==='success'){
             this.setState({name:data.username,email:data.email, fullName:data.name,
                 text:data.text,fileData:data.fileData,
-                selectTemp:data.temp, website:data.website, company:data.company,paid:data.paid,loading:false
+                selectTemp:temps[data.temp], website:data.website, company:data.company,paid:data.paid,loading:false
             })
 
             if(data.info.container1 && data.info.container2 && data.info.container3){
                 this.setState({
                     containerOne:data.info.containerOne,containerTwo:data.info.containerTwo,containerThree:data.info.containerThree,
                     last1:data.info.last1, last2:data.info.last2, last3: data.info.last3, container1: data.info.container1,
-                    container2: data.info.container2, container3: data.info.container3
+                    container2: data.info.container2, container3: data.info.container3, background:data.info.background,backImg:data.temp==""?  data.info.backImg : `url(${temps[data.temp]})` ,backCol:data.info.backCol,
                 })
             }
         }else{
@@ -79,6 +81,8 @@ class Custom extends Component {
                       container2.backgroundImage=result.info.secure_url
                     }
                     this.setState({container3:container2})
+                  }else if(num==4){
+                    this.setState({backImg:`url(${result.info.secure_url})`})
                   }
               }
             }
@@ -86,8 +90,8 @@ class Custom extends Component {
     )
     
     backWidget=()=>{
-        const wid=this.widget().open()
-        this.setState({backImg:wid})
+        const wid=this.widget(4,'one').open()
+        //this.setState({backImg:wid})
     }
     change=(e)=>{
         this.setState({backCol: e.target.value})
@@ -263,8 +267,9 @@ class Custom extends Component {
         if(redirect){
             return <Redirect to={'/user?id='+ident} />
         }
+        console.log(backImg)
         return (
-            <div className='custom' style={{backgroundImage: backImg,backgroundColor: backCol}}>
+            <div className='custom' style={{backgroundImage: backImg || this.state.selectTemp,backgroundColor: backCol}}>
                <select className='dropCustom' value={this.state.background} onChange={this.background}>
                 <option value="" selected="selected">--</option>
                 <option value="color">Change background Color</option>
@@ -634,7 +639,7 @@ class Landings extends Component {
                 }
                 break;
             case 'desLands':
-                items[num].description=e.target.value
+                items[num].des=e.target.value
                 break;
         }
         this.setState({items})
@@ -644,7 +649,7 @@ class Landings extends Component {
             cloudName: 'johnny11',
             uploadPreset: 'q1bjjs9hgr5h'}, (error, result) => { 
               if (!error && result && result.event === "success") {
-                    this.setState({items:[...this.state.items,{name:'',price:'0.00',description:'',number:'0',url:result.info.secure_url}]})
+                    this.setState({items:[...this.state.items,{name:'',price:'0.00',des:'',number:'0',url:result.info.secure_url}]})
               }
             }).open()
     )

@@ -2,15 +2,7 @@ import React, { Component, useState, useEffect } from 'react'
 import {Link} from 'react-router-dom'
 import { PaystackButton } from 'react-paystack'
 import './Creative.css'
-import img from '../assets/undraw_online_video_ivvq.svg'
-import img1 from '../assets/undraw_web_search_eetr.svg'
-import img2 from '../assets/undraw_business_shop_qw5t.png'
-import img3 from '../assets/undraw_group_selfie_ijc6.png'
-import img4 from '../assets/undraw_selfie_time_cws4.png'
-import img5 from '../assets/Repeating-Triangles.svg'
-import img6 from '../assets/Diamond-Sunset.svg'
-import img7 from '../assets/Liquid-Cheese.svg'
-import img8 from '../assets/Rainbow-Vortex.svg'
+import {temps} from '../temps'
 import Loader from 'react-loader-spinner';
 
 const firstArb={
@@ -56,7 +48,7 @@ export default class Creative extends Component {
             name:'',
             email:'',
             selectTemp:'',
-            temp:[img1,img2,img3,img4,img,img5,img6,img7,img8],
+            temp:temps,
             fileData:[],
             cart:[],
             index:0,
@@ -75,7 +67,7 @@ export default class Creative extends Component {
             let info=this.props.info
             ident=this.getUrlParameter('id')
             document.getElementById('diddyCreate').style.opacity=1
-            this.setState({name:info.name,fourth:info.fourth,fileData:info.fourth,selectTemp:this.state.temp[info.temp],index:3,loading:false})
+            this.setState({name:info.name,fourth:info.fourth,fileData:info.fourth,selectTemp:this.state.temp[info.temp], first:{backImg: `url(${this.state.temp[info.temp]})`},index:3,loading:false})
         }
         else if(this.props.total){
             let total=this.props.total
@@ -92,6 +84,8 @@ export default class Creative extends Component {
                     document.getElementById('diddyCreate').style.opacity=1
                     this.setState({email:data.email,fileData:data.fileData, name:data.company,loading:false})
                     if(data.first.container1 && data.first.container2 && data.first.container3){
+                        let first=data.first
+                        first.backImg=data.temp==""?first.backImg : `url(${temps[data.temp]})`
                         this.setState({first:data.first, second:data.second, third:data.third,fourth:data.fourth})
                     }
                 }
@@ -114,7 +108,7 @@ export default class Creative extends Component {
             0:<Item1 {...this.props} total={this.props.total} first={this.state.first} change={(num)=>{this.setState({index:num})}}/>,
             1:<Item2 {...this.props} total={this.props.total} second={this.state.second} first={{backImg:this.state.first.backImg,backCol:this.state.first.backCol}} change={(num)=>{this.setState({index:num})}} changeData={(data)=>{this.setState({data})}} />,
             2:<Item3 {...this.props} total={this.props.total} third={this.state.third} first={{backImg:this.state.first.backImg,backImg2:this.state.selectTemp,backCol:this.state.first.backCol}} change={(num)=>{this.setState({index:num})}} changeData={(data)=>{this.setState({data})}} />,
-            3:<Item4 {...this.props} total={this.props.total} fileData={this.state.fourth} cart={this.state.cart} first={{backImg:this.state.selectTemp || this.state.first.backImg,backCol:this.state.first.backCol || 'rgb(223, 234, 247)'}} change={(num)=>{this.setState({index:num})}} carter={(cart)=>{this.setState({cart})}} />,
+            3:<Item4 {...this.props} total={this.props.total} fileData={this.state.fourth} cart={this.state.cart} first={{backImg:this.state.first.backImg,backCol:this.state.first.backCol || 'rgb(223, 234, 247)'}} change={(num)=>{this.setState({index:num})}} carter={(cart)=>{this.setState({cart})}} />,
             4:<Item5 {...this.props} total={this.props.total} cart={this.state.cart} change={(num)=>{this.setState({index:num})}} carter={(cart)=>{this.setState({cart})}} />
         }
         return (
@@ -162,7 +156,7 @@ const Item1=(props)=>{
     }
 
     return(
-    <div className='passid' style={{backgroundImage:props.first.backImg,backgroundColor:props.first.backCol}}>
+    <div className='passid resortFar' style={{backgroundImage:props.first.backImg,backgroundColor:props.first.backCol}}>
         <div className='beautCustom beauterCustom'>
             <div className='firstCont' style={{backgroundImage:'url('+props.first.container1.backgroundImage+')',backgroundSize:'100% 100%', backgroundColor:props.first.container1.backgroundColor, color:props.first.container1.color}}>
                 {props.first.last1==='image' && props.first.container1.image!==""?
@@ -222,7 +216,7 @@ const Item2=(props)=>{
     }
     
     return(
-    <div className='mainSignIn' style={{backgroundImage:props.first.backImg,backgroundColor:props.first.backCol}}>
+    <div className='mainSignIn resortFar' style={{backgroundImage:props.first.backImg,backgroundColor:props.first.backCol}}>
         <div className='signIn noPass'>
             {props.second.form.map((i,k)=>{
                 if(i.name==='Username/Email'){
@@ -294,7 +288,7 @@ const Item3=(props)=>{
     }
 
     return(
-    <div id='signedd' style={{backgroundImage:props.first.backImg,backgroundColor:props.first.backCol}} >
+    <div id='signedd' className='resortFar' style={{backgroundImage:props.first.backImg,backgroundColor:props.first.backCol}} >
         <div className='leftin' style={{backgroundImage:''}} >
             <h1>Welcome to {props.third.companyName}</h1>
         </div>
@@ -375,7 +369,7 @@ const Item4=(props)=>{
     }
 
     return(
-    <div className='total' style={{backgroundImage:props.first.backImg,backgroundColor:props.first.backCol}} >
+    <div className='total resortFar' style={{backgroundImage:props.first.backImg,backgroundColor:props.first.backCol}} >
         <div className='head'>
             <div className='butonn'>
             <p className='cart'>{cart.length}</p>

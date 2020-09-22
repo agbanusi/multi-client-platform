@@ -5,15 +5,7 @@ import { PaystackButton } from 'react-paystack'
 import Creative from '../customer/Creative'
 import Loader from 'react-loader-spinner';
 //import all images and templates here for test
-import img from '../assets/undraw_online_video_ivvq.svg'
-import img1 from '../assets/undraw_web_search_eetr.svg'
-import img2 from '../assets/undraw_business_shop_qw5t.png'
-import img3 from '../assets/undraw_group_selfie_ijc6.png'
-import img4 from '../assets/undraw_selfie_time_cws4.png'
-import img5 from '../assets/Repeating-Triangles.svg'
-import img6 from '../assets/Diamond-Sunset.svg'
-import img7 from '../assets/Liquid-Cheese.svg'
-import img8 from '../assets/Rainbow-Vortex.svg'
+import {temps} from '../temps'
 
 const cloudinary = window.cloudinary
 var ident
@@ -34,7 +26,7 @@ export default class Landing extends Component {
             password2:'',
             selectTemp:'',
             fileData:[],
-            temp:[img1,img2,img3,img4,img,img5,img6,img7,img8],
+            temp:temps,
             company:'',
             website:'',
             showCase:'',
@@ -50,7 +42,7 @@ export default class Landing extends Component {
                 let data=dat.dat
                 this.setState({name:data.username,email:data.email, fullName:data.name,
                     text:data.text,fileData:data.fourth || data.fileData, bankName:data.bankName,
-                    bankNo:data.bankNo, selectTemp:data.temp, payment:data.payment+'.00', website:data.website, company:data.company,paid:data.paid,loading:false
+                    bankNo:data.bankNo, payment:data.payment+'.00', website:data.website, company:data.company,paid:data.paid,loading:false
                 })
                 document.getElementById('landing').style.opacity=1.0
             }
@@ -190,8 +182,8 @@ export default class Landing extends Component {
             setTimeout(()=>{
                 document.getElementsByClassName('total')[0].style.transform='scale(0.325)'
                 document.getElementsByClassName('total')[0].style.marginLeft='-66.25%'
-                document.getElementsByClassName('total')[0].style.marginTop='-10%'
-                document.getElementsByClassName('total')[0].style.height='100%'
+                document.getElementsByClassName('total')[0].style.marginTop='-15%'
+                document.getElementsByClassName('total')[0].style.height='70vh'
 
             },3000)
         })
@@ -302,7 +294,7 @@ export default class Landing extends Component {
              </div>
              )}
              <button className='save' onClick={this.publish}>Save</button>
-             <button id='custom' onClick={this.disable?()=>alert('Your device width is too small, therefore customized setup is not available'):()=>console.log('redirecting')}>{!this.disable?<Link to={'/custom?id='+ident}>Customize your Site fully {'->'}</Link>:"Customize your Site fully ->"}</button>
+             <button id='custom' onClick={()=>this.disable()?alert('Your device width is too small, therefore customized setup is not available'):console.log('redirecting')}>{!this.disable()?<Link to={'/custom?id='+ident}>Customize your Site fully {'->'}</Link>:"Customize your Site fully ->"}</button>
             </div>), 
             2:<div className='bank'>
             <h3>Please we will only pay if this account matches the name used to register.</h3>
