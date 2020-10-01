@@ -1,0 +1,58 @@
+
+.coverForgot{
+    width:100vw;
+    display: grid;
+    place-items: center;
+    height: 100vh;
+}
+.insideForgot{
+    width: 90%;
+    height: 50%;
+    display: grid;
+    place-items: center;
+}
+.insideForgot input{
+    width: 50%;
+    height: 1.5rem;
+    border-radius: 0.75rem;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+}
+.resetedButton{
+    margin-top: 2rem;
+    height: 3.5rem;
+    width: 5.5rem;
+    border-radius: 1rem;
+    background-color: seagreen;
+    color: white;
+}
+
+@media only screen and (max-width: 600px), only screen and (max-device-width: 600px){
+    .coverForgot{
+        width:100vw;
+        display: grid;
+        place-items: center;
+        height: 100vh;
+    }
+    .insideForgot{
+        width: 90%;
+        height: 50%;
+        display: grid;
+        place-items: center;
+    }
+    .insideForgot input{
+        width: 75%;
+        height: 1.5rem;
+        border-radius: 0.75rem;
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+    }
+    .resetedButton{
+        margin-top: 2rem;
+        height: 3.5rem;
+        width: 5.5rem;
+        border-radius: 1rem;
+        background-color: seagreen;
+        color: white;
+    }
+}

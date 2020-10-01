@@ -6,6 +6,9 @@ import Signin from './Signin/Signin'
 import Landing from './landing/Landing'
 import Custom from './custom/Custom'
 import Creative from './customer/Creative'
+import NotFound from './unfound/Unfound'
+import Reset from './reset/Reset'
+import ForgotPassword from './forgot/Forgot'
 
 function App() {
   return (
@@ -17,6 +20,10 @@ function App() {
         <Route path='/landing' component={Landing} />
         <Route path='/custom' component={Custom} />
         <Route path='/user' component={Creative} />
+        <Route path='/api' component={Creative} />
+        <Route exact path='/reset' component={Reset} />
+        <Route exact path='/forgot' component={ForgotPassword} />
+        <Route component={NotFound} />
       </Switch>
     </Brow>
     </div>

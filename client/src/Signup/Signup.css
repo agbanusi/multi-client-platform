@@ -71,14 +71,14 @@ button:focus,input:focus{
 .id{
     margin-top:1rem;
 }
-.but{
+.butty{
     height:3rem;
     border-radius: 0.5rem;
     margin-top:1rem;
     width: 50%;
     color: rgb(133, 15, 117);
 }
-.but:hover{
+.butty:hover{
     background-color: purple;
     color:white;
 }
@@ -87,4 +87,47 @@ button:focus,input:focus{
 }
 a{
     text-decoration: none;
+}
+@media only screen and (max-width: 600px), only screen and (max-device-width: 600px){
+    #signed{
+        grid-template-columns:1fr;
+    }
+    .left{
+        text-align: center;
+    }
+    .img1{
+        margin-top:10%;
+        margin-left: 0;
+    }
+    .logUp{
+        margin:0px;
+        margin-top: 2rem;
+    }
+    .signedInner{
+        color: darkslateblue ;
+    }
+    .signedInner:active, .signedInner:focus{
+        color: orangered;
+    }
+    .form{
+        width:90%;
+    }
+    .namesUp{
+        display: grid;
+        width:100%;
+    }
+    .namesUp div{
+        width: 90vw;
+    }
+    .mail{
+        width:95%;
+    }
+    .butty{
+        margin-left: 20%;
+    }
+    .butty:focus, .butty:active, .butty:focus-within{
+        background-color: purple;
+        color:white;
+        background-color: silver;
+    }
 }

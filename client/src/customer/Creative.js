@@ -108,7 +108,7 @@ export default class Creative extends Component {
             0:<Item1 {...this.props} total={this.props.total} first={this.state.first} change={(num)=>{this.setState({index:num})}}/>,
             1:<Item2 {...this.props} total={this.props.total} second={this.state.second} first={{backImg:this.state.first.backImg,backCol:this.state.first.backCol}} change={(num)=>{this.setState({index:num})}} changeData={(data)=>{this.setState({data})}} />,
             2:<Item3 {...this.props} total={this.props.total} third={this.state.third} first={{backImg:this.state.first.backImg,backImg2:this.state.selectTemp,backCol:this.state.first.backCol}} change={(num)=>{this.setState({index:num})}} changeData={(data)=>{this.setState({data})}} />,
-            3:<Item4 {...this.props} total={this.props.total} fileData={this.state.fourth} cart={this.state.cart} first={{backImg:this.state.first.backImg,backCol:this.state.first.backCol || 'rgb(223, 234, 247)'}} change={(num)=>{this.setState({index:num})}} carter={(cart)=>{this.setState({cart})}} />,
+            3:<Item4 {...this.props} total={this.props.total} fileData={this.state.fourth} cart={this.state.cart} first={{backImg:this.state.first.backImg,backCol:this.state.first.backCol || 'rgb(223, 234, 247)'}} change={(num)=>{this.setState({index:num})}} carter={(cart)=>this.setState({cart})} />,
             4:<Item5 {...this.props} total={this.props.total} cart={this.state.cart} change={(num)=>{this.setState({index:num})}} carter={(cart)=>{this.setState({cart})}} />
         }
         return (
@@ -125,7 +125,7 @@ const Item1=(props)=>{
 
     useEffect(()=>{
         custIdent=getCookie('id')
-        fetch('/getCustomerData',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:ident,custId:custIdent}) }).then(res=>res.json()).then(dat=>{
+        fetch('/getCustomerData',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:ident,custId:custIdent || null}) }).then(res=>res.json()).then(dat=>{
             if(dat.status ==='success'){
                 let data=dat.dat.data
                 document.getElementById('diddyCreate').style.opacity=1
@@ -135,7 +135,7 @@ const Item1=(props)=>{
                 //first:data.first, second:data.second, third:data.third,fourth:data.fourth, data:data.data})
             }
         })
-    })
+    }, [])
     const getCookie=(name)=>{
         var ident
         let t = decodeURIComponent(document.cookie).split(';')
@@ -162,14 +162,14 @@ const Item1=(props)=>{
                 {props.first.last1==='image' && props.first.container1.image!==""?
                 <img className='nittyCreateImg' src={props.first.container1.image} />: 
                 <h3 className='nittyCreate'>{props.first.container1.text}</h3>}
-                {!(props.first.last1==='image' && props.first.container1.image!=="") && <div className='showFirst'><h5>Already a member? </h5><button onClick={()=>logged()} className='signin'>Sign In</button></div>}
+                {!(props.first.last1==='image' && props.first.container1.image!=="") && name=="" && <div className='showFirst'><h5>Already a member? </h5><button onClick={()=>logged()} className='signin'>Sign In</button></div>}
                 {!(props.first.last1==='image' && props.first.container1.image!=="") && <div className='showFirst'><h5>Go to Products Page</h5><button onClick={()=>props.change(3)} className='signin'>Products</button></div>}
             </div>  
                 <div className='firstCont' style={{backgroundImage:'url('+props.first.container2.backgroundImage+')',backgroundSize:'100% 100%', backgroundColor:props.first.container2.backgroundColor, color:props.first.container2.color}} >
                 {props.first.last2==='text' && props.first.container2.text!==""?
                 <h3 className='nittyCreate'>{props.first.container2.text}</h3>:
                 <img className='nittyCreateImg' src={props.first.container2.image} />}
-                {(props.first.last2==='text' && props.first.container2.text!=="") && <div className='showFirst'><h5>Already a member? </h5><button onClick={()=>logged()} className='signin'>Sign In</button></div>}
+                {(props.first.last2==='text' && props.first.container2.text!=="") && name=="" && <div className='showFirst'><h5>Already a member? </h5><button onClick={()=>logged()} className='signin'>Sign In</button></div>}
                 {(props.first.last2==='text' && props.first.container2.text!=="") && <div className='showFirst'><h5>Go to Products Page</h5><button onClick={()=>props.change(3)} className='signin'>Products</button></div>}
             </div>
         </div>
@@ -229,6 +229,7 @@ const Item2=(props)=>{
             })}
             <p id='checked'></p>
             <button className='loggy' onClick={()=>login()} >Sign In</button><p className='forgot'><a href='/forgot'>Forgot your Password?</a></p><div className='helf'>Not a member?<button onClick={()=>{props.change(2)}}>Sign Up</button></div>
+            <button className='home buton' onClick={()=>{props.change(0)}}>Welcome Page</button>
         </div>
         {props.total?<div className='nextDivCreate'><button className='nextCreate' onClick={()=>props.change(2)}>NEXT</button>
         <button className='nextCreate' onClick={()=>props.change(0)}>BACK</button></div>:<></>}
@@ -246,7 +247,7 @@ const Item3=(props)=>{
             newt=[...newt,'']
         })
         setForm(newt)
-    },props.third)
+    },[props.third])
 
     const change=(e,i)=>{
         let old=[...form]
@@ -319,24 +320,25 @@ const Item3=(props)=>{
 }
 
 const Item4=(props)=>{
-    const[cart, setCart]=useState(props.cart)
+    const [cart, setCart]=useState([])
     const [name,setName]=useState("")
     const [email, setMail]=useState("")
-
+    
     useEffect(()=>{
         custIdent=getCookie('id')
-        console.log(props.cart)
-        fetch('/getCustomerData',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:ident,custId:custIdent}) }).then(res=>res.json()).then(dat=>{
+        fetch('/getCustomerData',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:ident,custId:custIdent || null}) }).then(res=>res.json()).then(dat=>{
             if(dat.status ==='success'){
                 let data=dat.dat.data
                 document.getElementById('diddyCreate').style.opacity=1
                 setName(data.name)
                 setMail(data.email)
+                setCart(data.cart)
+                props.carter(data.cart)
                 ///this.setState({email:data.email,fileData:data.fileData, name:data.company,loading:false,
                 //first:data.first, second:data.second, third:data.third,fourth:data.fourth, data:data.data})
             }
         })
-    })
+    }, [])
 
     const getCookie=(name)=>{
         var ident
@@ -352,19 +354,20 @@ const Item4=(props)=>{
     const add=(item,id)=>{
         let cartNames=cart.map(i=>i.name)
         if(!cartNames.includes(item.name)){
-            setCart([...cart,{...item,id}])
-            props.carter([...cart,{...item,id}])
-            save()
+            let carted=[...cart,{...item,id}]
+            setCart(carted)
+            props.carter(carted)
+            save(carted)
             document.getElementById('mess').innerHTML='Added to Cart.'
         }
         else{
             document.getElementById('mess').innerHTML='Already added to Cart, you can increase the number of a particular item at the checkout.'
         }
     }
-    const save=()=>{
+    const save=(carted)=>{
         //server path attention
         custIdent=getCookie('id')
-        const method={method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:ident,custId:custIdent,cart})}
+        const method={method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:ident,custId:custIdent,cart:carted})}
         fetch('/saveCart',method).then(res=>res.json())
     }
 
@@ -373,8 +376,8 @@ const Item4=(props)=>{
         <div className='head'>
             <div className='butonn'>
             <p className='cart'>{cart.length}</p>
-            <p className='homer' onClick={()=>{if(cart.length>0){props.change(4)}
-                                                else if(name != ""){props.change(1)}else{props.change(4)}}}>🛒</p>
+            <p className='homer' onClick={()=>{if(cart.length>0 && email !=="" ){props.change(4)}
+                                                else if(email == ""){props.change(1)}}}>🛒</p>
             </div>
             <button className='home buton' onClick={()=>{props.change(0)}}>Welcome Page</button>
         </div>
@@ -415,7 +418,7 @@ const Item5=(props)=>{
 
     const componentProps = {
         email:email,
-        amount:(cart.map(i=>Number(i.price)).reduce((acc,value)=>acc+value,0))*100,
+        amount:(cart.map((i,k)=>Number(i.price)*no[k]).reduce((acc,value)=>acc+value,0))*100,
         metadata: {
           name:name,
           phone: '08012345678',
@@ -431,7 +434,7 @@ const Item5=(props)=>{
     }
     useEffect(()=>{
         custIdent=getCookie('id')
-        fetch('/getCustomerData',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:ident,custId:custIdent}) }).then(res=>res.json()).then(dat=>{
+        fetch('/getCustomerData',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:ident,custId:custIdent || null}) }).then(res=>res.json()).then(dat=>{
             if(dat.status ==='success'){
                 let data=dat.dat.data
                 document.getElementById('diddyCreate').style.opacity=1
@@ -444,7 +447,7 @@ const Item5=(props)=>{
             }
             
         })
-    })
+    },[])
     const remove=(k)=>{
         let carted=[...cart.slice(0,k),...cart.slice(k+1)]
         let numb=[...no.slice(0,k),...no.slice(k+1)]
@@ -498,9 +501,9 @@ const Item5=(props)=>{
                 <h5>NGN {i.price*no[k]}</h5>
                 </div>
                 <div className='bottomSeeny'>
-                <button className='removeCartItem' onClick={()=>remove(k)}>Remove</button>
+                <button className='removeCartItem' style={{backgroundColor:'red'}} onClick={()=>remove(k)}>Remove</button>
                 <button className='removeCartItem' onClick={()=>add(k)}>Add More</button>
-                <button className='removeCartItem' onClick={()=>reduce(k)}>Reduce</button>
+                <button className='removeCartItem' style={{backgroundColor:'orange'}} onClick={()=>reduce(k)}>Reduce</button>
                 </div>
             </div>)
         )}

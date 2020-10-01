@@ -101,6 +101,7 @@
 }
 .person button{
     margin-bottom: 1rem;
+    height: 7.5rem;
 }
 .personal input{
     width:90%;
@@ -198,4 +199,50 @@ button:focus, input:focus{
     width:50vw;
     display: flex;
     justify-content: space-around;
+}
+table{
+    width: 85%;
+}
+@media only screen and (max-width: 600px), only screen and (max-device-width: 600px){
+    .landing{
+        background-repeat: repeat-y;
+    }
+    .mainer{
+        grid-template-columns: 1fr;
+    }
+    .topper{
+        padding-left: 1rem ;
+    }
+    .web{
+        padding: 0rem;
+        width: 100vw;
+        display:grid;
+        place-items: center;
+        text-align: center;
+    }
+    .webbed1{
+        padding:1.5rem;
+        justify-items: center;
+    }
+    #custom, .web button{
+        margin-left:0px;
+    }
+    .items{
+        width:90vw;
+    }
+     #destroy{
+        opacity:1 !important;
+    }
+
+    .uploadUser{
+        height: 4rem !important ;
+        width: 7rem !important;
+        background-color: gold !important;
+        margin-left: 25% !important;
+        
+    }
+    .uploadUser:hover, .uploadUser:active, .uploadUser:focus{
+        background-color: teal !important;
+        color: white !important;
+    }
 }

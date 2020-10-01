@@ -31,7 +31,8 @@ export default class Landing extends Component {
             website:'',
             showCase:'',
             loading:true,
-            redirect:false
+            redirect:false,
+            customers:[]
         }
             
     }
@@ -42,8 +43,9 @@ export default class Landing extends Component {
                 let data=dat.dat
                 this.setState({name:data.username,email:data.email, fullName:data.name,
                     text:data.text,fileData:data.fourth || data.fileData, bankName:data.bankName,
-                    bankNo:data.bankNo, payment:data.payment+'.00', website:data.website, company:data.company,paid:data.paid,loading:false
+                    bankNo:data.bankNo, payment:data.payment+'.00', website:data.website, company:data.company,paid:data.paid,loading:false,customers:data.customers
                 })
+                
                 document.getElementById('landing').style.opacity=1.0
             }
             else{
@@ -248,6 +250,12 @@ export default class Landing extends Component {
             }
         })
     }
+    fulfill=(k)=>{
+        let cust = this.state.customers
+        cust[k].fulfill=true
+        this.setState({customers:cust})
+    }
+    
     render() {
         var componentProps = {
             email:this.state.email,
@@ -313,7 +321,22 @@ export default class Landing extends Component {
             </div>,
             4:<div className='showOff'>
                 {this.state.showCase}
-            </div>
+            </div>,
+            5:<table className='customersOff'>
+                <tr>
+                <th>Customer</th>
+                <th>Items</th>
+                <th>Date</th>
+                </tr>
+                {this.state.customers.filter(i=>i.bought.length>0 && !i.bought.fulfilled).map((i,k)=>(
+                    <tr key={k}>
+                    <td>{i.name}</td>
+                    <td>{i.bought.items}</td>
+                    <td>{i.bought.date}</td>
+                    <button onClick={()=>this.fulfill(k)}>Fulfill</button>
+                    </tr>
+                ))}
+            </table>
          }
          
          if(document.getElementById('live') && this.state.website !==''){
@@ -343,6 +366,7 @@ export default class Landing extends Component {
                             <div className='tens'><h5>Edit your personal Information</h5><button onClick={this.edit}>Edit</button></div>
                             <div className='tens'><h5>Preview Your Site</h5><button ><Link to={'/user?id='+ident} target='_blank'>Preview</Link></button></div>
                             {this.state.paid?<></>:<div className='tens'><h5>Pay to get your website deployed immediately</h5><PaystackButton id='kk' {...componentProps} /></div>}
+                            <div className='tens'><h5>Customer Payments and orders</h5><button onClick={()=>this.setState({index:5}) }>List</button></div>
                             <div className='tens'><h5>Withdraw Payments</h5><button onClick={this.withdraw}>Withdraw</button></div>
                         </div>
                         

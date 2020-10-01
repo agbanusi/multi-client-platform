@@ -19,6 +19,7 @@
     display:grid;
     place-items: center;
 }
+
 .mainSignIn{
     height:100vh;
     width:100vw;
@@ -50,6 +51,9 @@
     height: 2.5rem;
     border:1px solid;
     border-radius: 1.25rem;
+}
+.forms{
+    background-color: white;
 }
 .inputSignIn{
     width: 70%;
@@ -366,6 +370,7 @@ a{
     background-color: lime;
     color: black;
     border-radius: 1rem;
+    border: 0px;
 }
 .seeny h4{
     width:10rem;
@@ -403,8 +408,7 @@ a{
     height:3rem;
     width:6.5rem;
     border-radius: 0.74rem;
-    background-color: orange;
+    background-color: teal;
     color:white;
     cursor: pointer;
-
 }

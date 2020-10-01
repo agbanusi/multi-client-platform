@@ -1,0 +1,31 @@
+.coverNot{
+    width:100vw;
+    height:100vh;
+    display:grid;
+    place-items: center;
+}
+.coverNot div{
+    height: 50%;
+    width:75%;
+    display:grid;
+    place-items: center;
+}
+.coverNot p{
+    width:50%;
+    display:flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.returnNot{
+    text-decoration: none;
+}
+@media only screen and (max-width: 600px), only screen and (max-device-width: 600px){
+    .coverNot div{
+        width: 90%;
+        text-align: center;
+    }
+    .coverNot p{
+        width:100%;
+    }
+
+}

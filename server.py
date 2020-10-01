@@ -1,6 +1,9 @@
 from flask import Flask, request,render_template,redirect,url_for,make_response
 from werkzeug.utils import secure_filename
-from datetime import datetime
+from datetime import datetime, timedelta
+import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
 from dotenv import load_dotenv
 from pymongo import MongoClient
 from bson.objectid import ObjectId
@@ -10,6 +13,7 @@ from passlib.hash import sha256_crypt as sha
 import os
 import time
 import json
+import secrets
 import requests as req
 load_dotenv()
 
@@ -206,7 +210,7 @@ def customerData():
     if request.method=='POST':
         data=request.json
         result=db.find_one({'_id':ObjectId(data['id'])})
-        if result ==None:
+        if result ==None or not data['custId']:
             response={'status':'Failed'}
         else:
             customer=[i for i in result['customers'] if i['id']==data['custId']]
@@ -217,7 +221,6 @@ def customerData():
                 response={'status':'success','dat':resd}
             else:
                 response={'status':'empty'}
-        
         return response
 
 @app.route('/getUserData',methods=['POST'])
@@ -238,22 +241,28 @@ def cart_saver():
     if request.method=='POST':
         data=request.json
         result=db.find_one({'_id':ObjectId(data['id'])})
-        if result ==None:
+        if result ==None or not data['custId']:
             response={'status':'Failed'}
         else:
-            customers=result['customers']
-            ind=-1
-            customer={}
-            for i in range(len(customers)):
-                if customers[i]['id'] == data['custId']:
-                    customer= customers[i]
-                    ind=i
-                    break
+            try:
+                customers=result['customers']
+                ind=-1
+                customer={}
+                for i in range(len(customers)):
+                    if customers[i]['id'] == data['custId']:
+                        customer= customers[i]
+                        ind=i
+                        break
+                
+                customer['cart']=data['cart']
+                customers[ind]=customer
+                print(customers)
+                db.find_one_and_update({'_id':ObjectId(data['id'])}, {'$set':{'customers':customers} })
+                response={'status':'success'}
+            except:
+                print('failed')
+                response={'status':'Failed'}
 
-            customer['cart']=data['cart']
-            customers[ind]=customer
-            db.find_one_and_update({'_id':ObjectId(data['id'])}, {'$set':{'customers':customers} })
-            response={'status':'success'}
         return response
 
 @app.route('/saveData',methods=['POST'])
@@ -285,6 +294,7 @@ def customer_paid():
         if result ==None:
             response={'status':'Failed'}
         else:
+            
             customers=result['customers']
             ind=-1
             customer={}
@@ -293,12 +303,14 @@ def customer_paid():
                     customer= customers[i]
                     ind=i
                     break
-
+            rem = result['fileData']
+            for i in customer['cart']:
+                rem[i].number=rem[i].number-1
             customer['cart']=[]
             date=datetime.today().strftime('%Y-%m-%d-%H:%M:%S')
-            customer['bought'].append({'items':data['cart'],'date':date})
+            customer['bought'].append({'items':data['cart'],'date':date, 'fulfilled':False})
             customers[ind]=customer
-            db.find_one_and_update({'_id':ObjectId(data['id'])}, {'$set':{'customers':customers} })
+            db.find_one_and_update({'_id':ObjectId(data['id'])}, {'$set':{'customers':customers, 'fileData':rem} })
             response={'status':'success'}     
         return response
 
@@ -372,14 +384,15 @@ def minilogin():
         result=db.find_one({'_id':ObjectId(data['id'])})
         if result != None:
             filt={}
-            for i in result.customers:
+            for i in result['customers']:
                 if i['email']==data['username'] or i['username']==data['username']:
                     filt=i
                     break
             if sha.verify(data['password'],filt['password']):
                     #session['id']=
+                    idd=filt['id']
                     response=make_response({'status':'success',**filt})
-                    response.set_cookie('id',filt['id'])
+                    response.set_cookie('id',idd)
             else:
                 response={'status':'Failed'}
         else:
@@ -390,18 +403,75 @@ def minilogin():
 def mininew():
     if request.method=='POST':
         data=request.json
-        password=sha.encrypt(data['password'])
+        password=sha.encrypt(data['form'][4])
         user=db.find_one({'_id':ObjectId(data['id'])})
-        user=[i for i in user['customers'] if i==data['email']]
+        user=[i for i in user['customers'] if i==data['form'][3]]
         if(len(user) <1):
             idd=uniq()
-            db.find_one_and_update({'_id':ObjectId(data['id'])},{'$push':{'customers':{'id':idd,'email':data['email'],'name':data['name'],'username':data['username'],'password':password,'cart':[],'bought':[]}}})
+            db.find_one_and_update({'_id':ObjectId(data['id'])},{'$push':{'customers':{'id':idd,'email':data['form'][3],'name':data['form'][0]+" "+ data['form'][1],'username':data['form'][0][0:4]+data['form'][1][0:4],'number':data['form'][2],'password':password,'cart':[],'bought':[]}}})
             res=make_response({'status':'success'})
             res.set_cookie('id',idd)
             return res
         else:
             return ({'status':'Failed'})     
 
+@app.route('/resetting',methods=["POST"])
+def reset():
+    if request.method=="POST":
+        token = (request.json)["token"]
+        res=db.findOne({"token":token,"expires":{"$gt": datetime.now()} })
+        if res !=None:
+            return {'status':'success', 'user':res["email"]}
+        else:
+            return {'status':'Failed'}
+
+@app.route('/resetted',methods=["POST"])
+def resetted():
+    if request.method=="POST":
+        data = request.json
+        email = data["user"]
+        password = data["password"]
+        res=db.findOne({"email":email})
+        if not sha.verify(password,res['password']):
+            password = sha.encrypt(password)
+            db.find_one_and_update({"email":email}, {"$set": {"password": password} })
+            return {'status':'success'}
+        else:
+            return {'status':'Failed'}
+        
+@app.route('/forgotten',methods=["POST"])
+def forgot():
+    if request.method=="POST":
+        data=request.json
+        email = data['email']
+        res=db.find_one({"email":email})
+        if res != None:
+            token = secrets.token_hex(24)
+            db.find_one_and_update({'email':email}, {"$set": {"token":token, "expires":datetime.now()+timedelta(hours=24)} })
+            fromm=os.getenv("USER")
+            to=email
+            subject="Password Reset"
+            # alt request.host_url
+            message= "Hey "+res["username"] + ", /n You're receiving this email because you requested for\
+                the reset of your password. Please click this link or paste in your browser"+ request.remote_addr+"/reset/token"+"/n /n Link expires in 24 hours and If you did \
+                    not request this, please ignore this email and your password will remain unchanged."
+            messages = MIMEMultipart()
+            messages['From'] = fromm
+            messages['To'] = to
+            messages['Subject'] = subject
+            #The body and the attachments for the mail
+            messages.attach(MIMEText(message, 'plain'))
+            s = smtplib.SMTP('smtp.gmail.com', 587)
+            s.ehlo()
+            s.starttls() 
+            s.login(os.getenv("USER"), os.getenv("PASS"))
+            text = messages.as_string()
+            s.sendmail(fromm, to, text)
+            s.quit()
+            response={'status':'success'}
+        else:
+            response={'status':'Failed'}
+        return response
 
 @app.route('/api/',defaults={'ide':'none'},methods=['GET','POST'])
 @app.route('/api/<ide>',methods=['GET','POST'])

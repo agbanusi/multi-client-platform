@@ -88,7 +88,7 @@ export default class Signup extends Component {
                     <img className='img1' alt='welcome svg' src={img} />
                     </div>
                 <div className='rightUp'>
-                    <p className='logUp'>Already a member? <Link to='/?sign=signed'>Sign In.</Link></p>
+                    <p className='logUp'>Already a member? <Link className='signedInner' to='/?sign=signed'>Sign In.</Link></p>
                     <div className='form'>
                     <h2 className='namer'>Sign up to Magento.</h2>
                     <hr/>
@@ -102,7 +102,7 @@ export default class Signup extends Component {
                     <div className='mail'><h3>Repeat Password</h3><input id='password2' value={this.state.password2} onChange={this.change} type='password' required /></div>
                     <input type='checkbox' className='id' id='checkbox' onChange={this.change} name='checkbox' value={this.state.check} required />
                     <label for='checkbox' className='id' >Creating an account means you're okay with our <a href='/terms'>terms and conditions</a>.</label><br />
-                    <button className='but' onClick={this.submit}> Create Account</button>
+                    <button className='butty' onClick={this.submit}> Create Account</button>
                     </div>
                     <p id='copywrite'> ©{new Date().getFullYear()}</p>
                 </div>
