@@ -228,7 +228,7 @@ const Item2=(props)=>{
                 }
             })}
             <p id='checked'></p>
-            <button className='loggy' onClick={()=>login()} >Sign In</button><p className='forgot'><a href='/forgot'>Forgot your Password?</a></p><div className='helf'>Not a member?<button onClick={()=>{props.change(2)}}>Sign Up</button></div>
+            <button className='loggy' onClick={()=>login()} >Sign In</button><p className='forgot'><a href={'/forgot?id='+ident}>Forgot your Password?</a></p><div className='helf'>Not a member?<button onClick={()=>{props.change(2)}}>Sign Up</button></div>
             <button className='home buton' onClick={()=>{props.change(0)}}>Welcome Page</button>
         </div>
         {props.total?<div className='nextDivCreate'><button className='nextCreate' onClick={()=>props.change(2)}>NEXT</button>
@@ -366,7 +366,7 @@ const Item4=(props)=>{
     }
     const save=(carted)=>{
         //server path attention
-        custIdent=getCookie('id')
+        custIdent=getCookie('id') || null
         const method={method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:ident,custId:custIdent,cart:carted})}
         fetch('/saveCart',method).then(res=>res.json())
     }
@@ -519,12 +519,4 @@ const Item5=(props)=>{
     )
 }
 
-const Forgot=()=>{
-
-    return(
-        <div>
-        
-        </div>
-    )
-}
 // add and add twitter acct, facebook acct, email done, instagram acct

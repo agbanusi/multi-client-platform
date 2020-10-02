@@ -412,3 +412,31 @@ a{
     color:white;
     cursor: pointer;
 }
+@media only screen and (max-width: 600px), only screen and (max-device-width: 600px){
+    .beautCustom{
+        display: grid !important;
+        justify-items: center;
+    }
+    .right{
+        width: 87.5%;
+        padding: 1.5rem 0.5rem 1.5rem 0.5rem ;
+    }
+    #copywrite{
+        margin-top: 1.5rem;
+    }
+    .names div{
+        width: 95%;
+    }
+    .noPass{
+        width:95vw;
+    }
+    .head{
+        margin-left: 62.5vw;
+    }
+    #hover{
+        opacity:1;
+    }
+    .bodyLin{
+        margin-top: 2rem;
+    }
+}

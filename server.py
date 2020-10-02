@@ -418,8 +418,23 @@ def mininew():
 @app.route('/resetting',methods=["POST"])
 def reset():
     if request.method=="POST":
-        token = (request.json)["token"]
-        res=db.findOne({"token":token,"expires":{"$gt": datetime.now()} })
+        data = request.json
+        token = data["token"]
+        idd = data["id"]
+        if idd != None:
+            ress= db.find_one({"_id":ObjectId(idd)})
+            if ress != None:
+                ress=ress["customers"]
+                ressy=[i for i in ress if i["token"]==token]
+                if len(ressy) >0:
+                    res=ressy[0]
+                else:
+                    res = None
+            else:
+                res = None
+        else:
+            res=db.findOne({"token":token,"expires":{"$gt": datetime.now()} })
+        
         if res !=None:
             return {'status':'success', 'user':res["email"]}
         else:
@@ -431,10 +446,25 @@ def resetted():
         data = request.json
         email = data["user"]
         password = data["password"]
-        res=db.findOne({"email":email})
+        idd = data['id']
+        if idd != None:
+            ress=db.find_one({"_id":ObjectId(idd)})
+            ress=ress["customers"]
+            ressy=[i for i in ress if i["email"]==email]
+            k = [i for i in range(len(ress)) if ress[i]["email"]==email][0]
+            res=ressy[0]
+        else:
+            res=db.find_one({"email":email})
+
         if not sha.verify(password,res['password']):
             password = sha.encrypt(password)
-            db.find_one_and_update({"email":email}, {"$set": {"password": password} })
+            if idd != None:
+                res["password"]=password
+                ress[k]=res
+                db.find_one_and_update({"_id":ObjectId(idd)}, {"$set": {"customers":ress} })
+            else:
+                db.find_one_and_update({"email":email}, {"$set": {"password": password} })
+            
             return {'status':'success'}
         else:
             return {'status':'Failed'}
@@ -443,22 +473,54 @@ def resetted():
 def forgot():
     if request.method=="POST":
         data=request.json
+        idd = data['id']
         email = data['email']
-        res=db.find_one({"email":email})
+        if idd != None:
+            ress=db.find_one({"_id":ObjectId(idd)})
+            if ress != None:
+                ress=ress["customers"]
+                ressy=[i for i in ress if i["email"]==email]
+                k = [i for i in range(len(ress)) if ress[i]["email"]==email]
+                if len(ressy) >0:
+                    res=ressy[0]
+                    k=k[0]
+                else:
+                    res = None
+                    
+            else:
+                res=None
+
+        else:
+            res=db.find_one({"email":email})
+
         if res != None:
             token = secrets.token_hex(24)
-            db.find_one_and_update({'email':email}, {"$set": {"token":token, "expires":datetime.now()+timedelta(hours=24)} })
+            if idd !=None:
+                res["customers"]={**res["customers"],"token":token, "expires":datetime.now()+timedelta(hours=24)}
+                ress[k]=res
+                db.find_one_and_update({"_id":ObjectId(idd)}, {"$set": {"customers":ress} })
+            else:    
+                db.find_one_and_update({'email':email}, {"$set": {"token":token, "expires":datetime.now()+timedelta(hours=24)} })
+            
             fromm=os.getenv("USER")
             to=email
             subject="Password Reset"
             # alt request.host_url
-            message= "Hey "+res["username"] + ", /n You're receiving this email because you requested for\
-                the reset of your password. Please click this link or paste in your browser"+ request.remote_addr+"/reset/token"+"/n /n Link expires in 24 hours and If you did \
-                    not request this, please ignore this email and your password will remain unchanged."
             messages = MIMEMultipart()
-            messages['From'] = fromm
+            if idd != None:
+                messages['From']=res["email"]
+                website= request.remote_addr+"?id="+idd+"/reset/"+token
+            else:
+                messages['From'] = fromm
+                website= request.remote_addr+"/reset/"+token
+            
             messages['To'] = to
             messages['Subject'] = subject
+           
+            message= "Hey "+res["username"] + ", /n You're receiving this email because you requested for\
+                the reset of your password. Please click this link or paste in your browser"+ website +"/n /n Link expires in 24 hours and If you did \
+                    not request this, please ignore this email and your password will remain unchanged."
+
             #The body and the attachments for the mail
             messages.attach(MIMEText(message, 'plain'))
             s = smtplib.SMTP('smtp.gmail.com', 587)

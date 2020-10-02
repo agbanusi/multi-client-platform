@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+var ident
 
 export default function Reset(props) {
     const [start,setStart]=useState(true)
@@ -8,9 +9,11 @@ export default function Reset(props) {
     const [pass1, setPass1] = useState("")
     const [pass2, setPass2] = useState("")
 
-    useEffect(async()=>{
+    useEffect(async(props)=>{
+        ident = getUrlParameter('id')
         if(start){
-            const method= {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({token:props.match.params.token})}
+            const id =ident? ident : null
+            const method= {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({token:props.match.params.token, id})}
             const dot =await fetch('/resetting',method)
             const data = dot.json()
             if(data.status=='success'){
@@ -23,12 +26,21 @@ export default function Reset(props) {
         }
     })
 
+    const getUrlParameter=(name)=>{
+        // eslint-disable-next-line
+        name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+        var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+        var results = regex.exec(props.location.search);
+        return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+    }
+
     const submit=async(e)=>{
         e.preventDefault()
         if(pass1 !== pass2){
             setMessage("Password don't match.")
         }else{
-            const method= {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({user:user, password:pass1})}
+            const id = ident?ident:null
+            const method= {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({user:user, password:pass1, id})}
             const dot =await fetch('/resetted',method)
             const data = dot.json()
             if(data.status=='success'){
@@ -41,7 +53,7 @@ export default function Reset(props) {
     }
 
     return (
-        <div>
+        <div className="coverReset">
             {loading?<h5>Incorrect or expired token, will redirect you in 3 seconds.</h5>
             :<form onSubmit={(e)=>submit(e)}>
                 <h5>{message}</h5>
