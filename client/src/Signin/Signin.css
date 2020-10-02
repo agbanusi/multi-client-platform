@@ -135,6 +135,9 @@ button:focus,input:focus{
         background-size: 75vh 67.5vw;
         margin-top: -9vh;
     }
+    .signinjs h1{
+        margin-top: 1rem;
+    }
     .righty{
         justify-items: center;
         padding-bottom: 3rem;

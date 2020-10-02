@@ -58,6 +58,7 @@ const ForgotPassword=(props)=>{
                 <div className='insideForgot'>
                     <h3>Password Reset</h3>
                     <h5>{message}</h5>
+                    <h4>Enter your email address</h4>
                     <input className='inputForgot' value={email} onChange={(e)=>change(e.target.value)} placeholder="Enter your Email address." />
                     <button className='resetedButton' onClick={()=>submit()}>submit</button>
                     {message==="Recovery email sent."?<Link to='\' className='signnedOff'>Sign In</Link>:<></>}
