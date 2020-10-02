@@ -11,7 +11,7 @@ export default function Reset(props) {
 
     useEffect(async(props)=>{
         ident = getUrlParameter('id')
-        if(start){
+        async function fetchData(){
             const id =ident? ident : null
             const method= {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({token:props.match.params.token, id})}
             const dot =await fetch('/resetting',method)
@@ -23,6 +23,9 @@ export default function Reset(props) {
                 setTimeout(()=>{props.history.push('/')},3000)
             }
             setStart(false)
+        }
+        if(start){
+            fetchData();
         }
     })
 
