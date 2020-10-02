@@ -245,4 +245,7 @@ table{
         background-color: teal !important;
         color: white !important;
     }
+    .person button{
+        height: 6rem;
+    }
 }
