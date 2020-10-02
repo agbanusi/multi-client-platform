@@ -248,4 +248,7 @@ table{
     .person button{
         height: 6rem;
     }
+    .showOff{
+        width:90vw;
+    }
 }
