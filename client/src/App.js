@@ -20,7 +20,7 @@ function App() {
         <Route path='/landing' component={Landing} />
         <Route path='/custom' component={Custom} />
         <Route path='/user' component={Creative} />
-        <Route path='/api' component={Creative} />
+        <Route path='/api/:id' component={Creative} />
         <Route exact path='/reset' component={Reset} />
         <Route exact path='/forgot' component={ForgotPassword} />
         <Route component={NotFound} />

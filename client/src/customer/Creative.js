@@ -65,7 +65,7 @@ export default class Creative extends Component {
     componentDidMount(){
         if(this.props.info){
             let info=this.props.info
-            ident=this.getUrlParameter('id')
+            ident=this.getUrlParameter('id') || this.props.match.params.id
             document.getElementById('diddyCreate').style.opacity=1
             this.setState({name:info.name,fourth:info.fourth,fileData:info.fourth,selectTemp:this.state.temp[info.temp], first:{backImg: `url(${this.state.temp[info.temp]})`},index:3,loading:false})
         }

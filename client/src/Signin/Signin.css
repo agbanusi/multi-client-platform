@@ -23,20 +23,21 @@
     justify-content: space-between;
     align-items: center;
     animation-name:slideup;
-    animation-duration:4s;
+    animation-duration:3.5s;
     animation-timing-function:ease-out;
 }
 @keyframes slideup {
-    0%{margin-top:100%}
-    100%{margin-top:0;}
+    0%{opacity: 0.1;}
+    100%{opacity: 1}
   }
 .righty .pass button{
    border:none;
    height:3rem;
    width: 5.5rem;
    border-radius: 1rem;
-   background-color: aqua;
-   
+   background-color: teal;
+   color: white;
+   cursor: pointer;
 }
 a{
     text-decoration: none;
